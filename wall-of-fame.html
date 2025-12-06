@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wall of Fame - snoolink</title>
-    <link rel="icon" type="image/png" href="https://i.imgur.com/YC8Z9Xo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/favicon.ico">    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script>
         tailwind.config = {
@@ -67,16 +66,17 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <img src="https://i.imgur.com/YC8Z9Xo.png" alt="snoolink logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">snoolink</span>
+            <a href="index.html" class="flex items-center">
+                <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="index.html#features" class="hover:text-purple-400 transition">Features</a>
-                <a href="index.html#how-it-works" class="hover:text-purple-400 transition">How It Works</a>
-                <a href="index.html#pricing" class="hover:text-purple-400 transition">Pricing</a>
-                <a href="index.html#team" class="hover:text-purple-400 transition">Team</a>
-                <a href="#" class="text-snoolink-purple font-semibold">Wall of Fame</a>
+                <a href="pricing.html" class="hover:text-purple-400 transition">Pricing</a>
+                <a href="use-cases.html" class="hover:text-purple-400 transition">Use Cases</a>
+                <a href="roadmap.html" class="hover:text-purple-400 transition">Roadmap</a>
+                <a href="wall-of-fame.html" class="text-snoolink-purple font-semibold">Wall of Fame</a>
+                <a href="about.html" class="hover:text-purple-400 transition">About</a>
+                <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
             </div>
             <button class="bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-snoolink-purple/50">
                 Get Started
@@ -143,6 +143,7 @@
         </div>
     </section>
 
+
     <!-- Wall of Fame Grid -->
     <section class="py-16 px-6">
         <div class="max-w-7xl mx-auto">
@@ -162,11 +163,80 @@
         </div>
     </section>
 
+         <!-- Join Wall of Fame Section -->
+    <section class="py-24 px-6 border-t border-gray-800 bg-gradient-to-br from-snoolink-purple/10 via-gray-900 to-snoolink-purple/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass rounded-3xl p-12 relative overflow-hidden">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-snoolink-purple/20 rounded-full filter blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full filter blur-3xl"></div>
+                
+                <div class="relative text-center">
+                    <div class="inline-block mb-6 px-4 py-2 bg-snoolink-purple/30 rounded-full border border-snoolink-purple/50">
+                        <span class="text-purple-300 font-semibold">✨ Limited Time Offer</span>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        Want to Be Featured on Our <br>
+                        <span class="bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">Wall of Fame?</span>
+                    </h2>
+                    
+                    <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                        We're currently collaborating with influencers and offering <span class="text-snoolink-purple font-bold">FREE</span> video editing services, reel creation, and exclusive content curation tips & tricks!
+                    </p>
+
+                    <div class="bg-gray-800/50 rounded-2xl p-6 mb-8 max-w-2xl mx-auto border border-snoolink-purple/30">
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <span class="text-4xl">🎁</span>
+                            <h3 class="text-2xl font-bold text-white">What You Get:</h3>
+                        </div>
+                        <ul class="text-left text-gray-300 space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span><strong>Free Video Editing Services</strong> - Professional quality for your content</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span><strong>Reel Creation</strong> - Trending, engagement-optimized reels</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span><strong>Curation Tips & Tricks</strong> - Insider strategies to boost your growth</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span><strong>Featured Spotlight</strong> - Be showcased on our Wall of Fame</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="inline-block mb-6 px-6 py-3 bg-yellow-500/20 rounded-full border border-yellow-500/50">
+                        <span class="text-yellow-300 font-bold text-lg">⚡ First 100 Influencers Only!</span>
+                    </div>
+
+                    <a href="https://www.instagram.com/snoolink/" target="_blank" rel="noopener noreferrer" 
+                       class="inline-block bg-gradient-to-r from-purple-600 via-snoolink-purple to-pink-600 px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
+                        <span class="flex items-center gap-3">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            DM Us on Instagram
+                        </span>
+                    </a>
+
+                    <p class="text-gray-400 text-sm mt-6">
+                        Message us @snoolink on Instagram to secure your spot!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+   
     <!-- CTA Section -->
     <section class="py-24 px-6 border-t border-gray-800">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Want to Join Our Wall of Fame?</h2>
-            <p class="text-xl text-gray-400 mb-10">Start using snoolink today and see your growth skyrocket!</p>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Growing Your Influence Today</h2>
+            <p class="text-xl text-gray-400 mb-10">Join snoolink and transform your social media presence!</p>
             <button class="bg-snoolink-purple px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
                 Start Your Free Trial
             </button>
@@ -176,11 +246,11 @@
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-12 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <div class="flex items-center justify-center space-x-3 mb-4">
-                <img src="https://i.imgur.com/YC8Z9Xo.png" alt="snoolink logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">snoolink</span>
-            </div>
+              <a href="index.html" class="flex items-center justify-center space-x-3 mb-4">
+                <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
+            </a>
             <p class="text-gray-400 text-sm mb-4">© 2025 snoolink AI. All rights reserved.</p>
+        </div>
             <div class="flex justify-center space-x-6">
                 <a href="#" class="text-gray-400 hover:text-white transition">Twitter</a>
                 <a href="#" class="text-gray-400 hover:text-white transition">LinkedIn</a>

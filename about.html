@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - snoolink</title>
-    <link rel="icon" type="image/png" href="https://i.imgur.com/YC8Z9Xo.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/favicon.ico">        
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,6 +28,18 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .gradient-animate { 
             background-size: 200% 200%;
@@ -37,22 +50,26 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
         html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
     
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <img src="https://i.imgur.com/YC8Z9Xo.png" alt="snoolink logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">snoolink</span>
+    <nav class="fixed w-full z-50 glass"> 
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"> 
+            <a href="index.html" class="flex items-center">
+                <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="index.html#features" class="hover:text-purple-400 transition">Features</a>
-                <a href="pricing.html" class="hover:text-purple-400 transition">Pricing</a>
-                <a href="wall-of-fame.html" class="hover:text-purple-400 transition">Wall of Fame</a>
+                <a href="pricing.html" class="hover:text-purple-400 transition">Pricing</a> 
+                <a href="use-cases.html" class="hover:text-purple-400 transition">Use Cases</a> 
+                <a href="roadmap.html" class="hover:text-purple-400 transition">Roadmap</a> 
+                <a href="wall-of-fame.html" class="hover:text-purple-400 transition">Wall of Fame</a> 
                 <a href="about.html" class="text-snoolink-purple font-semibold">About</a>
                 <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
             </div>
@@ -86,44 +103,313 @@
         </div>
     </section>
 
+    <!-- Jay's Story - The Real Inspiration -->
+    <section class="py-24 px-6 bg-gradient-to-br from-gray-800/50 to-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-6 px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30">
+                    <span class="text-purple-300">✈️ The Story Behind snoolink</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Meet Jay: Traveler Who Never Shared His Story</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-12">
+                <div class="slide-in-left">
+                    <div class="glass p-8 rounded-2xl">
+                        <div class="text-6xl mb-6 text-center">🌏</div>
+                        <h3 class="text-2xl font-bold mb-4 text-snoolink-purple">The Passionate Traveler</h3>
+                        <p class="text-gray-300 text-lg mb-4">
+                            Jay has always had a deep love for travel. From the vibrant street markets of <strong>Bangkok</strong> to the neon-lit energy of <strong>Las Vegas</strong>, from the serene views of <strong>Canada</strong> to the architecture of <strong>Ahmedabad</strong>—he's explored over 30 different cities across 5 continents.
+                        </p>
+                        <p class="text-gray-300 text-lg">
+                            Every trip was meticulously documented. Thousands of photos capturing sunsets over Los Angeles, street food adventures in Mumbai, walking trips in New York, hiking trails in Colorado. Hundreds of hours of video footage that could tell stories to inspire millions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="slide-in-right">
+                    <div class="space-y-4">
+                        <div class="glass p-6 rounded-xl flex items-start gap-4">
+                            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">📱</div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">12,000+ Photos</h4>
+                                <p class="text-gray-400">Captured across 6 years of travel adventures</p>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-xl flex items-start gap-4">
+                            <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">🎥</div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">300+ Hours of Video</h4>
+                                <p class="text-gray-400">From cityscapes to cultural experiences</p>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-xl flex items-start gap-4">
+                            <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">🌍</div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2">30+ Cities Visited</h4>
+                                <p class="text-gray-400">Each with unique stories to tell</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jay's Travel Photos Gallery -->
+            <div class="mb-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold mb-4">📸 A Glimpse Into Jay's Adventures</h3>
+                    <p class="text-gray-400 text-lg">These are just a few of the thousands of moments Jay captured but never shared...</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Photo 1 - Thailand -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&h=400&fit=crop" 
+                             alt="Thailand Temple" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Bangkok, Thailand</p>
+                                <p class="text-gray-300 text-sm">Wat Arun Temple</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 - Las Vegas -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=400&h=400&fit=crop" 
+                             alt="Las Vegas Strip" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Las Vegas, USA</p>
+                                <p class="text-gray-300 text-sm">The Strip at Night</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3 - Santorini -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=400&h=400&fit=crop" 
+                             alt="Santorini Greece" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Santorini, Greece</p>
+                                <p class="text-gray-300 text-sm">Blue Domes Sunset</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 - Tokyo -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=400&fit=crop" 
+                             alt="Tokyo Japan" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Tokyo, Japan</p>
+                                <p class="text-gray-300 text-sm">Shibuya Crossing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 5 - Rome -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&h=400&fit=crop" 
+                             alt="Rome Italy" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Rome, Italy</p>
+                                <p class="text-gray-300 text-sm">Colosseum</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 6 - Iceland -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=400&h=400&fit=crop" 
+                             alt="Iceland Waterfall" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Iceland</p>
+                                <p class="text-gray-300 text-sm">Skógafoss Waterfall</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 7 - Dubai -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=400&fit=crop" 
+                             alt="Dubai Skyline" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Dubai, UAE</p>
+                                <p class="text-gray-300 text-sm">Burj Khalifa</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photo 8 - Bali -->
+                    <div class="glass rounded-xl overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=400&fit=crop" 
+                             alt="Bali Indonesia" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <div>
+                                <p class="text-white font-bold">Bali, Indonesia</p>
+                                <p class="text-gray-300 text-sm">Rice Terraces</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8 glass p-6 rounded-xl max-w-3xl mx-auto">
+                    <p class="text-gray-300 text-lg italic">
+                        "These 8 photos represent just 0.06% of my collection. Imagine having 12,000 more like these and not knowing where to start..."
+                    </p>
+                    <p class="text-snoolink-purple font-bold mt-2">— Jay, Co-Founder</p>
+                </div>
+            </div>
+
+            <!-- The Problem -->
+            <div class="glass p-10 rounded-2xl mb-12">
+                <div class="flex items-start gap-6">
+                    <div class="text-6xl flex-shrink-0">😔</div>
+                    <div>
+                        <h3 class="text-3xl font-bold mb-6 text-red-400">The Heartbreaking Reality</h3>
+                        <p class="text-gray-300 text-lg mb-4">
+                            Despite all this incredible content, Jay never shared it with the world. He dreamed of creating engaging Instagram Reels that would inspire other travelers, showcase hidden gems, and build a community of adventure seekers.
+                        </p>
+                        <p class="text-gray-300 text-lg mb-6">
+                            <strong>But the dream remained just that—a dream.</strong>
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-red-500">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="text-2xl">⏰</span>
+                                    <h4 class="font-bold text-lg">Time Constraints</h4>
+                                </div>
+                                <p class="text-gray-400 text-sm">
+                                    "I have a full-time job. After work, I'm exhausted. The thought of spending hours editing videos just drains me before I even start."
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-orange-500">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="text-2xl">🔍</span>
+                                    <h4 class="font-bold text-lg">The Search Nightmare</h4>
+                                </div>
+                                <p class="text-gray-400 text-sm">
+                                    "Finding specific clips in 12,000 photos? Impossible. Which Thailand sunset was the best? Which Vegas video had that perfect moment? I give up after 20 minutes."
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-yellow-500">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="text-2xl">📈</span>
+                                    <h4 class="font-bold text-lg">Trend Paralysis</h4>
+                                </div>
+                                <p class="text-gray-400 text-sm">
+                                    "By the time I figure out what's trending, pick content, and edit it—the trend is over. I always feel like I'm three steps behind."
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-purple-500">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="text-2xl">🎯</span>
+                                    <h4 class="font-bold text-lg">Marketing Mystery</h4>
+                                </div>
+                                <p class="text-gray-400 text-sm">
+                                    "Even if I create something, how do I market it? What hashtags? What time? What caption? I have no idea where to start."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Turning Point -->
+            <div class="bg-gradient-to-r from-snoolink-purple/20 to-purple-600/20 p-10 rounded-2xl border-2 border-snoolink-purple/50">
+                <div class="flex items-start gap-6">
+                    <div class="text-6xl flex-shrink-0 pulse-slow">💡</div>
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4 text-snoolink-purple">The "Aha!" Moment</h3>
+                        <p class="text-gray-300 text-lg mb-4">
+                            "I realized I wasn't alone," Jay recalls. "Millions of travelers, photographers, and content creators have the same problem. We're sitting on goldmines of content but lack the time, tools, or know-how to turn it into something shareable."
+                        </p>
+                        <p class="text-gray-300 text-lg mb-4">
+                            That realization became the seed for <strong>snoolink</strong>. What if AI could do the heavy lifting? What if technology could:
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span class="text-gray-300"><strong>Instantly search</strong> through thousands of files using natural language?</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span class="text-gray-300"><strong>Automatically curate</strong> the best shots for trending reel formats?</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span class="text-gray-300"><strong>Suggest optimal posting times</strong> and marketing strategies?</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-snoolink-purple text-xl mt-1">✓</span>
+                                <span class="text-gray-300"><strong>Edit videos automatically</strong> to match viral trends?</span>
+                            </li>
+                        </ul>
+                        <p class="text-xl text-white font-bold">
+                            snoolink was born to solve Jay's problem—and yours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Origin Story -->
     <section class="py-24 px-6">
         <div class="max-w-5xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">The Problem We Saw</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">From Problem to Solution</h2>
                     <p class="text-gray-300 text-lg mb-4">
-                        In 2023, our founder Sarah was a full-time travel influencer managing over 50,000 photos and videos across multiple platforms. She spent 15+ hours every week just organizing content, finding the right shots, and manually engaging with followers.
+                        Jay didn't stop at just recognizing the problem—he took action. He reached out to hundreds of influencers, content creators, and digital marketers to understand their pain points. The feedback was unanimous: everyone was drowning in content management.
                     </p>
                     <p class="text-gray-300 text-lg mb-4">
-                        "I was spending more time managing content than creating it," she recalls. "I knew there had to be a better way."
+                        "Every conversation confirmed what I already knew—this was a universal problem that needed solving," Jay recalls.
                     </p>
                     <p class="text-gray-300 text-lg">
-                        That frustration sparked an idea: what if AI could handle all the tedious parts of being a creator, so you could focus purely on your craft?
+                        Being a techie himself, Jay always knew the right people who were ready to jump on an idea that would shape the future. He assembled a team of talented engineers, AI specialists, and designers who shared his vision. Together, they decided to build the solution that would transform content creation forever. And that's how it all started.
                     </p>
                 </div>
                 <div class="glass p-8 rounded-2xl">
-                    <div class="text-6xl mb-6 text-center">📸</div>
+                    <div class="text-6xl mb-6 text-center">🤝</div>
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">15</div>
+                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">100+</div>
                             <div>
-                                <p class="font-bold">Hours per week</p>
-                                <p class="text-sm text-gray-400">wasted on content management</p>
+                                <p class="font-bold">Influencers Interviewed</p>
+                                <p class="text-sm text-gray-400">to understand the problem</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">50K</div>
+                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">1</div>
                             <div>
-                                <p class="font-bold">Files to organize</p>
-                                <p class="text-sm text-gray-400">scattered across platforms</p>
+                                <p class="font-bold">Powerful Vision</p>
+                                <p class="text-sm text-gray-400">to revolutionize content creation</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">0</div>
+                            <div class="w-16 h-16 bg-snoolink-purple/20 rounded-full flex items-center justify-center font-bold text-2xl">∞</div>
                             <div>
-                                <p class="font-bold">Smart solutions</p>
-                                <p class="text-sm text-gray-400">available at the time</p>
+                                <p class="font-bold">Infinite Possibilities</p>
+                                <p class="text-sm text-gray-400">for creators worldwide</p>
                             </div>
                         </div>
                     </div>
@@ -133,7 +419,7 @@
     </section>
 
     <!-- Mission & Vision -->
-    <section class="py-24 px-6 bg-gray-800/30">
+    <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-bold mb-6">Our Mission</h2>
@@ -163,7 +449,7 @@
     </section>
 
     <!-- Company Values -->
-    <section class="py-24 px-6">
+    <section class="py-24 px-6 bg-gray-800/30">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-bold mb-6">Our Values</h2>
@@ -234,96 +520,385 @@
         </div>
     </section>
 
-    <!-- Milestones -->
-    <section class="py-24 px-6 bg-gray-800/30">
-        <div class="max-w-5xl mx-auto">
+    <!-- Milestones - Visual Journey -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-bold mb-6">Our Journey</h2>
-                <p class="text-xl text-gray-400">Key milestones in the snoolink story</p>
+                <p class="text-xl text-gray-400">From frustrated creators to empowering millions</p>
             </div>
 
-            <div class="space-y-8">
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2023</div>
-                        <div class="text-sm text-gray-400">Q1</div>
+            <!-- Visual Timeline -->
+            <div class="relative">
+                <!-- Central Timeline Line -->
+                <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-snoolink-purple via-purple-500 to-snoolink-purple transform -translate-x-1/2"></div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- 2023 Q1 - Foundation -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:text-right slide-in-left">
+                            <div class="glass p-8 rounded-2xl inline-block">
+                                <div class="text-6xl mb-4">🚀</div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">Company Founded</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    Sarah and Jay join forces after bonding over their shared frustration with content management. The mission is clear: fix this problem for creators everywhere.
+                                </p>
+                                <div class="flex items-center justify-end gap-2 text-sm text-gray-500">
+                                    <span class="bg-snoolink-purple/20 px-3 py-1 rounded-full">Day 1</span>
+                                    <span class="bg-snoolink-purple/20 px-3 py-1 rounded-full">2 Founders</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-start">
+                                <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-20"></div>
+                                    Q1
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2023</div>
+                                    <div class="text-gray-400">January - March</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center">
+                            <span class="text-2xl font-bold text-snoolink-purple">2023 Q1</span>
+                        </div>
                     </div>
-                    <div class="glass p-6 rounded-xl flex-1">
-                        <h3 class="text-xl font-bold mb-2">🚀 Company Founded</h3>
-                        <p class="text-gray-400">Sarah and Jordan team up to solve the content management crisis for creators.</p>
+
+                    <!-- 2023 Q3 - Beta -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-end">
+                                <div class="mr-4 text-right">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2023</div>
+                                    <div class="text-gray-400">July - September</div>
+                                </div>
+                                <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-20"></div>
+                                    Q3
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-in-right">
+                            <div class="glass p-8 rounded-2xl inline-block">
+                                <div class="text-6xl mb-4">🎯</div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">Beta Launch</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    After 6 months of intense development, we hand-pick 50 creators to test snoolink. The feedback is overwhelming: "This is exactly what we needed!"
+                                </p>
+                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                    <span class="bg-green-500/20 px-3 py-1 rounded-full">50 Beta Users</span>
+                                    <span class="bg-green-500/20 px-3 py-1 rounded-full">4.8★ Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center">
+                            <span class="text-2xl font-bold text-snoolink-purple">2023 Q3</span>
+                        </div>
+                    </div>
+
+                    <!-- 2024 Q1 - Public Launch -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:text-right slide-in-left">
+                            <div class="glass p-8 rounded-2xl inline-block">
+                                <div class="text-6xl mb-4">🌟</div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">Public Launch</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    snoolink opens its doors to the world. Within 30 days, 1,000 creators join the platform. The vision is becoming reality.
+                                </p>
+                                <div class="flex items-center justify-end gap-2 text-sm text-gray-500">
+                                    <span class="bg-blue-500/20 px-3 py-1 rounded-full">1K Users</span>
+                                    <span class="bg-blue-500/20 px-3 py-1 rounded-full">Global Reach</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-start">
+                                <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-20"></div>
+                                    Q1
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2024</div>
+                                    <div class="text-gray-400">January - March</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center">
+                            <span class="text-2xl font-bold text-snoolink-purple">2024 Q1</span>
+                        </div>
+                    </div>
+
+                    <!-- 2024 Q3 - Funding -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-end">
+                                <div class="mr-4 text-right">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2024</div>
+                                    <div class="text-gray-400">July - September</div>
+                                </div>
+                                <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-20"></div>
+                                    Q3
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-in-right">
+                            <div class="glass p-8 rounded-2xl inline-block">
+                                <div class="text-6xl mb-4">💰</div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">Seed Funding</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    Investors believe in our mission. We raise $2M in seed funding to scale the team, accelerate development, and bring AI-powered features to creators worldwide.
+                                </p>
+                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                    <span class="bg-yellow-500/20 px-3 py-1 rounded-full">$2M Raised</span>
+                                    <span class="bg-yellow-500/20 px-3 py-1 rounded-full">Team of 15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center">
+                            <span class="text-2xl font-bold text-snoolink-purple">2024 Q3</span>
+                        </div>
+                    </div>
+
+                    <!-- 2024 Q4 - 10K Milestone -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:text-right slide-in-left">
+                            <div class="glass p-8 rounded-2xl inline-block">
+                                <div class="text-6xl mb-4">🎉</div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">10,000 Creators</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    A massive milestone! 10,000 active creators are now managing over 100 million files on snoolink. The impact is real and growing.
+                                </p>
+                                <div class="flex items-center justify-end gap-2 text-sm text-gray-500">
+                                    <span class="bg-purple-500/20 px-3 py-1 rounded-full">10K Users</span>
+                                    <span class="bg-purple-500/20 px-3 py-1 rounded-full">100M Files</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-start">
+                                <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-20"></div>
+                                    Q4
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2024</div>
+                                    <div class="text-gray-400">October - December</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center">
+                            <span class="text-2xl font-bold text-snoolink-purple">2024 Q4</span>
+                        </div>
+                    </div>
+
+                    <!-- 2025 Q1 - AI 2.0 -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:block hidden">
+                            <div class="flex items-center justify-end">
+                                <div class="mr-4 text-right">
+                                    <div class="text-4xl font-bold text-snoolink-purple">2025</div>
+                                    <div class="text-gray-400">January - March</div>
+                                </div>
+                                <div class="w-16 h-16 bg-gradient-to-r from-snoolink-purple to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl shadow-snoolink-purple/50 z-10 relative border-4 border-white">
+                                    <div class="absolute inset-0 bg-snoolink-purple rounded-full animate-ping opacity-30"></div>
+                                    Q1
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-in-right">
+                            <div class="glass p-8 rounded-2xl inline-block border-2 border-snoolink-purple shadow-2xl shadow-snoolink-purple/30">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="text-6xl">🚀</div>
+                                    <span class="bg-gradient-to-r from-snoolink-purple to-pink-500 px-4 py-2 rounded-full text-sm font-bold">LATEST</span>
+                                </div>
+                                <h3 class="text-3xl font-bold mb-3 text-snoolink-purple">AI 2.0 Launch</h3>
+                                <p class="text-gray-300 text-lg mb-4">
+                                    We launch next-generation AI features: predictive content scoring, advanced automation, intelligent reel suggestions, and smart trend detection. The future is here.
+                                </p>
+                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                    <span class="bg-gradient-to-r from-snoolink-purple/20 to-pink-500/20 px-3 py-1 rounded-full">AI Powered</span>
+                                    <span class="bg-gradient-to-r from-snoolink-purple/20 to-pink-500/20 px-3 py-1 rounded-full">Game Changer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:hidden glass p-4 rounded-xl text-center border-2 border-snoolink-purple">
+                            <span class="text-2xl font-bold text-snoolink-purple">2025 Q1 - NOW</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2023</div>
-                        <div class="text-sm text-gray-400">Q3</div>
-                    </div>
-                    <div class="glass p-6 rounded-xl flex-1">
-                        <h3 class="text-xl font-bold mb-2">🎯 Beta Launch</h3>
-                        <p class="text-gray-400">50 hand-picked creators test the first version. Feedback is overwhelmingly positive.</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2024</div>
-                        <div class="text-sm text-gray-400">Q1</div>
-                    </div>
-                    <div class="glass p-6 rounded-xl flex-1">
-                        <h3 class="text-xl font-bold mb-2">🌟 Public Launch</h3>
-                        <p class="text-gray-400">snoolink goes live to the world. We hit 1,000 users in the first month.</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2024</div>
-                        <div class="text-sm text-gray-400">Q3</div>
-                    </div>
-                    <div class="glass p-6 rounded-xl flex-1">
-                        <h3 class="text-xl font-bold mb-2">💰 Seed Funding</h3>
-                        <p class="text-gray-400">Raised $2M to accelerate product development and expand the team.</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2024</div>
-                        <div class="text-sm text-gray-400">Q4</div>
-                    </div>
-                    <div class="glass p-6 rounded-xl flex-1">
-                        <h3 class="text-xl font-bold mb-2">🎉 10K Creators</h3>
-                        <p class="text-gray-400">Crossed 10,000 active creators managing over 100M files on snoolink.</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-8 items-start">
-                    <div class="flex-shrink-0 w-32 text-right">
-                        <div class="text-3xl font-bold text-snoolink-purple">2025</div>
-                        <div class="text-sm text-gray-400">Q1</div>
-                    </div>
-                    <div class="glass p-6 rounded-xl flex-1 border-2 border-snoolink-purple">
-                        <h3 class="text-xl font-bold mb-2">🚀 AI 2.0 Launch</h3>
-                        <p class="text-gray-400">Launched next-gen AI features including predictive content scoring and advanced automation.</p>
+                <!-- Future Vision -->
+                <div class="mt-20 text-center">
+                    <div class="inline-block glass p-10 rounded-2xl">
+                        <div class="text-6xl mb-4">🌟</div>
+                        <h3 class="text-3xl font-bold mb-4 bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">What's Next?</h3>
+                        <p class="text-gray-300 text-lg max-w-2xl">
+                            This is just the beginning. We're building features that will revolutionize how creators work. Stay tuned for mobile apps, real-time collaboration, and AI tools you've never imagined.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Preview -->
-    <section class="py-24 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl font-bold mb-6">Meet the Team</h2>
-            <p class="text-xl text-gray-400 mb-12">The people building the future of content creation</p>
-            <a href="index.html#team" class="inline-flex items-center gap-2 bg-snoolink-purple px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition transform shadow-lg hover:shadow-snoolink-purple/50">
-                <span>Meet Our Team</span>
-                <span>→</span>
-            </a>
+    <!-- Privacy & Security Section -->
+    <section class="py-24 px-6 bg-gradient-to-br from-gray-800/70 to-gray-900 border-y-4 border-snoolink-purple/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-6 px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30">
+                    <span class="text-purple-300">🔒 Your Trust, Our Priority</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+                    Fort Knox-Level <span class="bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">Privacy & Security</span>
+                </h2>
+                <p class="text-2xl text-gray-300 max-w-4xl mx-auto mb-4">
+                    Your photos and videos are your memories, your livelihood, your creative assets.
+                </p>
+                <p class="text-xl text-snoolink-purple font-bold">
+                    We treat them with the highest level of security and respect. Period.
+                </p>
+            </div>
+
+            <!-- Key Privacy Promises -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="glass p-8 rounded-2xl border-2 border-green-500/30">
+                    <div class="text-5xl mb-4 text-center">🔐</div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-green-400">End-to-End Encryption</h3>
+                    <p class="text-gray-300 text-center">
+                        All your files are encrypted in transit and at rest using military-grade AES-256 encryption. Not even our team can access your content without your permission.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl border-2 border-blue-500/30">
+                    <div class="text-5xl mb-4 text-center">👤</div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-blue-400">Zero Data Selling</h3>
+                    <p class="text-gray-300 text-center">
+                        We will NEVER sell, share, or monetize your personal content. Ever. Your data is yours, not our product.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl border-2 border-purple-500/30">
+                    <div class="text-5xl mb-4 text-center">🗑️</div>
+                    <h3 class="text-2xl font-bold mb-4 text-center text-purple-400">Complete Data Control</h3>
+                    <p class="text-gray-300 text-center">
+                        Delete your content anytime, and it's permanently erased from our servers within 24 hours. No hidden backups, no exceptions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Detailed Privacy Commitments -->
+            <div class="glass p-10 rounded-2xl mb-12">
+                <h3 class="text-3xl font-bold mb-8 text-center">Our Unbreakable Privacy Commitments</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-green-400">Private Processing</h4>
+                            <p class="text-gray-300">
+                                Our AI processes your content in isolated, secure environments. Your travel photos from Thailand? Your Vegas videos? They're analyzed in encrypted containers that are immediately destroyed after processing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-blue-400">No Human Access</h4>
+                            <p class="text-gray-300">
+                                Your personal content is NEVER viewed by human eyes unless you explicitly grant access for support purposes. Even then, access is logged, time-limited, and requires your specific authorization.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-purple-400">Compliance & Certifications</h4>
+                            <p class="text-gray-300">
+                                We're GDPR compliant, SOC 2 Type II certified, and follow CCPA regulations. Regular third-party security audits ensure we maintain the highest standards.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-yellow-400">Transparent Practices</h4>
+                            <p class="text-gray-300">
+                                Our privacy policy is written in plain English (not legalese). We tell you exactly what we do with your data, why we do it, and how you can control it. No hidden clauses.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-red-400">Instant Breach Notification</h4>
+                            <p class="text-gray-300">
+                                In the extremely unlikely event of a security incident, you'll be notified immediately—not weeks later. Transparency in crisis is non-negotiable.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 bg-gray-800/50 p-6 rounded-xl">
+                        <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center flex-shrink-0 text-2xl">✓</div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2 text-indigo-400">Content Ownership</h4>
+                            <p class="text-gray-300">
+                                You retain 100% ownership of all your content. We don't claim any rights to your photos, videos, or creations. What's yours stays yours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+                <div class="glass p-6 rounded-xl">
+                    <div class="text-4xl mb-3">🛡️</div>
+                    <div class="text-3xl font-bold text-snoolink-purple mb-2">256-bit</div>
+                    <p class="text-gray-400 text-sm">AES Encryption</p>
+                </div>
+                <div class="glass p-6 rounded-xl">
+                    <div class="text-4xl mb-3">✅</div>
+                    <div class="text-3xl font-bold text-snoolink-purple mb-2">SOC 2</div>
+                    <p class="text-gray-400 text-sm">Type II Certified</p>
+                </div>
+                <div class="glass p-6 rounded-xl">
+                    <div class="text-4xl mb-3">🌍</div>
+                    <div class="text-3xl font-bold text-snoolink-purple mb-2">GDPR</div>
+                    <p class="text-gray-400 text-sm">Fully Compliant</p>
+                </div>
+                <div class="glass p-6 rounded-xl">
+                    <div class="text-4xl mb-3">🔒</div>
+                    <div class="text-3xl font-bold text-snoolink-purple mb-2">0</div>
+                    <p class="text-gray-400 text-sm">Data Breaches</p>
+                </div>
+            </div>
+
+            <!-- Privacy Promise -->
+            <div class="mt-16 bg-gradient-to-r from-snoolink-purple/30 to-purple-600/30 p-10 rounded-2xl border-2 border-snoolink-purple text-center">
+                <h3 class="text-3xl font-bold mb-4">Our Privacy Promise to You</h3>
+                <p class="text-xl text-gray-200 max-w-4xl mx-auto mb-6">
+                    "We built snoolink because we understand the value of your content. Every photo tells a story. Every video captures a moment. We promise to protect your creative assets with the same care we'd protect our own family photos."
+                </p>
+                <p class="text-lg text-snoolink-purple font-bold">
+                    — Jay & Sarah, Co-Founders
+                </p>
+                <div class="mt-8">
+                    <a href="privacy.html" class="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-lg">
+                        <span>Read Our Full Privacy Policy</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-
     <!-- CTA Section -->
     <section id="cta" class="py-24 px-6 bg-gray-800/30">
         <div class="max-w-4xl mx-auto text-center">
@@ -332,18 +907,19 @@
             <button class="bg-snoolink-purple px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
                 Start Your Free Trial
             </button>
-            <p class="text-gray-500 mt-6 text-sm">No credit card required • 14-day free trial</p>
+            <p class="text-gray-500 mt-6 text-sm">No credit card required • 14-day free trial • Your data stays private</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-12 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <div class="flex items-center justify-center space-x-3 mb-4">
-                <img src="https://i.imgur.com/YC8Z9Xo.png" alt="snoolink logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">snoolink</span>
-            </div>
-            <p class="text-gray-400 text-sm mb-4">© 2025 snoolink AI. All rights reserved.</p>
+            <div class="max-w-7xl mx-auto text-center">
+                    <a href="index.html" class="flex items-center justify-center space-x-3 mb-4">
+                        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4">© 2025 snoolink AI. All rights reserved.</p>
+                </div>
             <div class="flex justify-center space-x-6">
                 <a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a>
                 <a href="terms.html" class="text-gray-400 hover:text-white transition">Terms</a>
