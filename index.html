@@ -4,7 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>snoolink - Your AI Social Media Assistant</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/favicon.ico">
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Snoolink — an AI assistant for creators to search, organize, and automate social media workflows. 14-day free trial. Secure, private, and built for creators.">
+    <link rel="canonical" href="https://snoolink.ai/">
+    <meta name="robots" content="index, follow">
+
+    <!-- Theme / App colors -->
+    <meta name="theme-color" content="#5D1EF4">
+    <meta name="msapplication-TileColor" content="#5D1EF4">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="snoolink - Your AI Social Media Assistant">
+    <meta property="og:description" content="Snoolink helps creators search, organize, and automate social media workflows with advanced AI. Start your 14-day free trial.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snoolink.ai/">
+    <meta property="og:image" content="https://snoolink.ai/assets/full_logo-white.png">
+    <meta property="og:site_name" content="snoolink">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@snoolink">
+    <meta name="twitter:title" content="snoolink - Your AI Social Media Assistant">
+    <meta name="twitter:description" content="Snoolink helps creators search, organize, and automate social media workflows with advanced AI.">
+    <meta name="twitter:image" content="https://snoolink.ai/assets/full_logo-white.png">
+
+    <!-- Structured data (Organization + WebSite) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://snoolink.ai/#organization","name":"snoolink","url":"https://snoolink.ai/","logo":"https://snoolink.ai/assets/full_logo-white.png","sameAs":["https://twitter.com/snoolink"]},{"@type":"WebSite","@id":"https://snoolink.ai/#website","url":"https://snoolink.ai/","name":"snoolink","publisher":{"@id":"https://snoolink.ai/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://snoolink.ai/?s={search_term_string}","query-input":"required name=search_term_string"}}]}
+    </script>
+
+    <!-- Performance: preload hero image + preconnect fonts + prefetch next pages -->
+    <link rel="preload" href="assets/semantic-search-on-content.png" as="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="prefetch" href="pricing.html" as="document">
+    <link rel="prefetch" href="use-cases.html" as="document">
+
+    <!-- Icons & PWA -->
+    <link rel="icon" type="image/png" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/full_logo-white.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Sitemap reference -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Existing third-party scripts and styles (Tailwind, custom styles) -->
+    <!-- <script defer src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {

@@ -1,0 +1,21 @@
+{
+  "name": "snoolink",
+  "short_name": "snoolink",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1720",
+  "theme_color": "#5D1EF4",
+  "description": "AI assistant to search, organize, and automate social media workflows for creators.",
+  "icons": [
+    {
+      "src": "assets/full_logo-white.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/full_logo-white.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
