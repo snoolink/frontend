@@ -650,28 +650,61 @@
                     // Set download button to trigger actual download
                     downloadBtn.onclick = async (e) => {
                         e.preventDefault();
+                        
+                        // Show downloading state
+                        const originalText = downloadBtn.innerHTML;
+                        downloadBtn.innerHTML = '<span>⏳ Downloading...</span>';
+                        downloadBtn.disabled = true;
+                        
                         try {
-                            // Fetch the video file
-                            const videoResponse = await fetch(body.s3_url);
-                            const blob = await videoResponse.blob();
+                            console.log('Fetching video from:', body.s3_url);
                             
-                            // Create a download link
-                            const url = window.URL.createObjectURL(blob);
+                            // Fetch the video file as blob
+                            const videoResponse = await fetch(body.s3_url, {
+                                method: 'GET',
+                                mode: 'cors'
+                            });
+                            
+                            if (!videoResponse.ok) {
+                                throw new Error('Failed to fetch video');
+                            }
+                            
+                            const blob = await videoResponse.blob();
+                            console.log('Blob created, size:', blob.size);
+                            
+                            // Create a temporary URL for the blob
+                            const blobUrl = window.URL.createObjectURL(blob);
+                            
+                            // Create a hidden anchor element
                             const a = document.createElement('a');
                             a.style.display = 'none';
-                            a.href = url;
+                            a.href = blobUrl;
                             a.download = body.file_name || 'instagram-reel.mp4';
                             
-                            // Trigger download
+                            // Add to DOM, click, and remove
                             document.body.appendChild(a);
                             a.click();
                             
-                            // Cleanup
-                            window.URL.revokeObjectURL(url);
-                            document.body.removeChild(a);
+                            // Small delay before cleanup
+                            setTimeout(() => {
+                                document.body.removeChild(a);
+                                window.URL.revokeObjectURL(blobUrl);
+                                console.log('Download triggered successfully');
+                            }, 100);
+                            
+                            // Reset button
+                            downloadBtn.innerHTML = originalText;
+                            downloadBtn.disabled = false;
+                            
                         } catch (err) {
                             console.error('Download error:', err);
-                            // Fallback to direct link
+                            
+                            // Reset button
+                            downloadBtn.innerHTML = originalText;
+                            downloadBtn.disabled = false;
+                            
+                            // Try alternative download method
+                            alert('Direct download failed. Opening video in new tab - use browser "Save As" to download.');
                             window.open(body.s3_url, '_blank');
                         }
                     };
@@ -727,3 +760,8 @@
     </script>
 </body>
 </html>
+<!--
+https://thesocialcat.com/tools/instagram-reels-downloader
+https://snapinsta.to/en/instagram-reels-downloader
+https://snapdownloader.com/tools/instagram-reels-downloader
+-->
