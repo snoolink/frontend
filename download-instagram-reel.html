@@ -249,16 +249,8 @@
                         <div class="glass p-4 rounded-xl mb-6">
                             <div class="grid grid-cols-2 gap-4 text-sm">
                                 <div>
-                                    <p class="text-gray-400">File Name:</p>
-                                    <p class="font-semibold" id="fileName">-</p>
-                                </div>
-                                <div>
                                     <p class="text-gray-400">File Size:</p>
                                     <p class="font-semibold" id="fileSize">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-gray-400">Region:</p>
-                                    <p class="font-semibold" id="region">-</p>
                                 </div>
                                 <div>
                                     <p class="text-gray-400">Status:</p>
@@ -459,7 +451,7 @@
 
     <script>
         // API Configuration
-        const API_ENDPOINT = 'https://6tbypxrnfjxfwzthmahds52oky0hpuhc.lambda-url.us-east-1.on.aws/';
+        const API_ENDPOINT = 'https://24nxpvemp7t7kk2ejbhwhquciu0faoiu.lambda-url.us-east-1.on.aws/';
 
         // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
@@ -581,47 +573,72 @@
                 
                 const data = await response.json();
                 
-                if (response.ok && data.statusCode === 200) {
-                    const body = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
-                    
-                    // Check if download was successful
-                    if (body.s3_uploaded && body.s3_url) {
-                        // Set video source
-                        videoPlayer.src = body.s3_url;
-                        
-                        // Set download link
-                        downloadBtn.href = body.s3_url;
-                        downloadBtn.download = body.file_name || 'instagram-reel.mp4';
-                        
-                        // Update info
-                        document.getElementById('fileName').textContent = body.file_name || 'instagram-reel.mp4';
-                        document.getElementById('fileSize').textContent = formatBytes(body.file_size || 0);
-                        document.getElementById('region').textContent = body.region || 'Unknown';
-                        
-                        // Show preview
-                        form.classList.add('hidden');
-                        videoPreview.classList.remove('hidden');
-                        errorMessage.classList.add('hidden');
-                    } else {
-                        throw new Error('Video download failed. Please try again.');
-                    }
+                console.log('Response data:', data); // Debug log
+                
+                // Handle both response formats:
+                // 1. Direct response: {message: "...", s3_url: "...", ...}
+                // 2. Wrapped response: {statusCode: 200, body: "{...}"}
+                let body;
+                
+                if (data.statusCode === 200) {
+                    // Wrapped response - parse body
+                    body = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
+                } else if (data.message && data.s3_uploaded) {
+                    // Direct response - use data as body
+                    body = data;
+                } else if (response.ok && data.s3_uploaded) {
+                    // Another direct format
+                    body = data;
                 } else {
-                    const errorBody = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
+                    // Error response
+                    throw new Error(data.message || data.error || 'Failed to download reel');
+                }
+                
+                console.log('Parsed body:', body); // Debug log
+                
+                // Check if download was successful
+                if (body.s3_uploaded && body.s3_url) {
+                    // Set video source
+                    videoPlayer.src = body.s3_url;
                     
-                    // Handle specific error messages
-                    let errorMsg = errorBody.message || 'Failed to download reel';
+                    // Set download button to trigger actual download
+                    downloadBtn.onclick = async (e) => {
+                        e.preventDefault();
+                        try {
+                            // Fetch the video file
+                            const videoResponse = await fetch(body.s3_url);
+                            const blob = await videoResponse.blob();
+                            
+                            // Create a download link
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.style.display = 'none';
+                            a.href = url;
+                            a.download = body.file_name || 'instagram-reel.mp4';
+                            
+                            // Trigger download
+                            document.body.appendChild(a);
+                            a.click();
+                            
+                            // Cleanup
+                            window.URL.revokeObjectURL(url);
+                            document.body.removeChild(a);
+                        } catch (err) {
+                            console.error('Download error:', err);
+                            // Fallback to direct link
+                            window.open(body.s3_url, '_blank');
+                        }
+                    };
                     
-                    if (errorMsg.includes('rate-limit') || errorMsg.includes('Rate-limited')) {
-                        errorMsg = '⏰ Instagram is rate-limiting downloads. Please try again in a few minutes.';
-                    } else if (errorMsg.includes('login required') || errorMsg.includes('private')) {
-                        errorMsg = '🔒 This reel is from a private account or requires login. We can only download public reels.';
-                    } else if (errorMsg.includes('not found') || errorMsg.includes('404')) {
-                        errorMsg = '❌ Reel not found. Make sure the URL is correct and the reel still exists.';
-                    } else {
-                        errorMsg = '😕 ' + errorMsg;
-                    }
+                    // Update info
+                    document.getElementById('fileSize').textContent = formatBytes(body.file_size || 0);
                     
-                    throw new Error(errorMsg);
+                    // Show preview
+                    form.classList.add('hidden');
+                    videoPreview.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
+                } else {
+                    throw new Error('Video download failed. Please try again.');
                 }
                 
             } catch (error) {
