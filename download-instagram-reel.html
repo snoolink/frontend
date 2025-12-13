@@ -310,7 +310,6 @@
                             <a 
                                 id="downloadBtn"
                                 href="#" 
-                                download
                                 class="flex-1 bg-snoolink-purple px-8 py-4 rounded-full font-bold text-center hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50 flex items-center justify-center gap-2"
                             >
                                 <span>⬇️ Download Video</span>
@@ -321,6 +320,13 @@
                             >
                                 Download Another
                             </button>
+                        </div>
+                        
+                        <!-- Mobile Download Instructions -->
+                        <div id="mobileInstructions" class="hidden mt-4 p-4 bg-blue-500/20 border border-blue-500/30 rounded-xl text-sm text-center">
+                            <p class="text-blue-300">
+                                📱 <strong>Mobile Tip:</strong> Video will open in new tab. Tap and hold on the video, then select "Download Video" or "Save Video"
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -647,65 +653,57 @@
                     // Set video source
                     videoPlayer.src = body.s3_url;
                     
-                    // Set download button to trigger actual download
+                    // Store the S3 URL and filename for download
+                    const s3Url = body.s3_url;
+                    const fileName = body.file_name || 'instagram-reel.mp4';
+                    
+                    // Detect if mobile
+                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                    
+                    // Show mobile instructions if on mobile
+                    if (isMobile) {
+                        document.getElementById('mobileInstructions').classList.remove('hidden');
+                    }
+                    
+                    // Set download button click handler
                     downloadBtn.onclick = async (e) => {
                         e.preventDefault();
                         
-                        // Show downloading state
-                        const originalText = downloadBtn.innerHTML;
-                        downloadBtn.innerHTML = '<span>⏳ Downloading...</span>';
-                        downloadBtn.disabled = true;
+                        console.log('Download clicked - Mobile:', isMobile, 'URL:', s3Url);
                         
-                        try {
-                            console.log('Fetching video from:', body.s3_url);
-                            
-                            // Fetch the video file as blob
-                            const videoResponse = await fetch(body.s3_url, {
-                                method: 'GET',
-                                mode: 'cors'
-                            });
-                            
-                            if (!videoResponse.ok) {
-                                throw new Error('Failed to fetch video');
-                            }
-                            
-                            const blob = await videoResponse.blob();
-                            console.log('Blob created, size:', blob.size);
-                            
-                            // Create a temporary URL for the blob
-                            const blobUrl = window.URL.createObjectURL(blob);
-                            
-                            // Create a hidden anchor element
-                            const a = document.createElement('a');
-                            a.style.display = 'none';
-                            a.href = blobUrl;
-                            a.download = body.file_name || 'instagram-reel.mp4';
-                            
-                            // Add to DOM, click, and remove
-                            document.body.appendChild(a);
-                            a.click();
-                            
-                            // Small delay before cleanup
-                            setTimeout(() => {
+                        if (isMobile) {
+                            // Mobile: Open in new tab and let user save from there
+                            // iOS doesn't support download attribute well
+                            window.open(s3Url, '_blank');
+                        } else {
+                            // Desktop: Try fetch and blob download first
+                            try {
+                                const response = await fetch(s3Url);
+                                const blob = await response.blob();
+                                
+                                // Create blob URL
+                                const blobUrl = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = blobUrl;
+                                a.download = fileName;
+                                document.body.appendChild(a);
+                                a.click();
+                                
+                                setTimeout(() => {
+                                    document.body.removeChild(a);
+                                    URL.revokeObjectURL(blobUrl);
+                                }, 100);
+                            } catch (err) {
+                                console.error('Blob download failed:', err);
+                                // Fallback to direct link
+                                const a = document.createElement('a');
+                                a.href = s3Url;
+                                a.download = fileName;
+                                a.target = '_blank';
+                                document.body.appendChild(a);
+                                a.click();
                                 document.body.removeChild(a);
-                                window.URL.revokeObjectURL(blobUrl);
-                                console.log('Download triggered successfully');
-                            }, 100);
-                            
-                            // Reset button
-                            downloadBtn.innerHTML = originalText;
-                            downloadBtn.disabled = false;
-                            
-                        } catch (err) {
-                            console.error('Download error:', err);
-                            
-                            // Reset button
-                            downloadBtn.innerHTML = originalText;
-                            downloadBtn.disabled = false;
-                            
-                            // Try alternative download method
-                            alert('Direct download failed. Opening video in new tab - use browser "Save As" to download.');
-                            window.open(body.s3_url, '_blank');
+                            }
                         }
                     };
                     
