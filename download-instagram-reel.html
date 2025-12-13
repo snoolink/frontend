@@ -129,21 +129,28 @@
     <nav class="fixed w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
+                <!-- Logo -->
                 <a href="index.html" class="flex items-center z-50">
                     <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-10 md:h-14 w-auto">
                 </a>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html#features" class="hover:text-purple-400 transition">Features</a>
+                    <a href="#features" class="hover:text-purple-400 transition">Features</a>
                     <a href="pricing.html" class="hover:text-purple-400 transition">Pricing</a>
                     <a href="use-cases.html" class="hover:text-purple-400 transition">Use Cases</a>
+                    <a href="roadmap.html" class="hover:text-purple-400 transition">Roadmap</a>
+                    <a href="wall-of-fame.html" class="hover:text-purple-400 transition">Wall of Fame</a>
                     <a href="about.html" class="hover:text-purple-400 transition">About</a>
+                    <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
                 </div>
                 
+                <!-- Desktop CTA Button -->
                 <a href="invite.html" class="hidden md:block bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-purple-500/50">
                     Get Started
                 </a>
                 
+                <!-- Mobile Hamburger -->
                 <button class="md:hidden hamburger z-50" id="hamburger">
                     <span></span>
                     <span></span>
@@ -151,12 +158,16 @@
                 </button>
             </div>
             
+            <!-- Mobile Menu -->
             <div class="mobile-menu md:hidden" id="mobileMenu">
                 <div class="flex flex-col space-y-4 pt-6 pb-4">
-                    <a href="index.html#features" class="hover:text-purple-400 transition py-2">Features</a>
+                    <a href="#features" class="hover:text-purple-400 transition py-2">Features</a>
                     <a href="pricing.html" class="hover:text-purple-400 transition py-2">Pricing</a>
                     <a href="use-cases.html" class="hover:text-purple-400 transition py-2">Use Cases</a>
+                    <a href="roadmap.html" class="hover:text-purple-400 transition py-2">Roadmap</a>
+                    <a href="wall-of-fame.html" class="hover:text-purple-400 transition py-2">Wall of Fame</a>
                     <a href="about.html" class="hover:text-purple-400 transition py-2">About</a>
+                    <a href="contact.html" class="hover:text-purple-400 transition py-2">Contact</a>
                     <a href="invite.html" class="bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">
                         Get Started
                     </a>
@@ -164,7 +175,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Hero Section with Form -->
     <section class="relative pt-32 pb-20 px-6 overflow-hidden min-h-screen flex items-center">
         <div class="absolute inset-0 bg-gradient-to-br from-snoolink-purple/40 via-gray-900 to-snoolink-purple/20 gradient-animate"></div>
