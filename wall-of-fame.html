@@ -100,6 +100,28 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
     </style>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Snoolink - Your AI Social Media Assistant">
+    <meta property="og:description" content="Snoolink helps creators search, organize, and automate social media workflows with advanced AI. Start your 14-day free trial.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snoolink.com/wall-of-fame.html">
+    <meta property="og:image" content="assets/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="snoolink">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@snoolink">
+    <meta name="twitter:title" content="Snoolink - Your AI Social Media Assistant">
+    <meta name="twitter:description" content="Snoolink helps creators search, organize, and automate social media workflows with advanced AI.">
+    <meta name="twitter:image" content="assets/social-preview.png">
+
+    <!-- Structured data (Organization + WebSite) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://snoolink.com/#organization","name":"snoolink","url":"https://snoolink.com/","logo":"assets/social-preview.png","sameAs":["https://twitter.com/snoolink"]},{"@type":"WebSite","@id":"https://snoolink.com/#website","url":"https://snoolink.com/","name":"snoolink","publisher":{"@id":"https://snoolink.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://snoolink.com/?s={search_term_string}","query-input":"required name=search_term_string"}}]}
+    </script>
 </head>
 <body class="bg-gray-900 text-white font-sans">
     
@@ -120,7 +142,9 @@
                 <a href="about.html" class="hover:text-purple-400 transition">About</a>
                 <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
             </div>
-            <a href="invite.html" class="hidden md:block bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-purple-500/50">Get Started</a>
+            <button class="bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-snoolink-purple/50">
+                Get Started
+            </button>
         
                                     <!-- Mobile Hamburger -->
                 <button class="md:hidden hamburger z-50" id="hamburger">
@@ -139,7 +163,9 @@
                     <a href="wall-of-fame.html" class="hover:text-purple-400 transition py-2">Wall of Fame</a>
                     <a href="about.html" class="hover:text-purple-400 transition py-2">About</a>
                     <a href="contact.html" class="hover:text-purple-400 transition py-2">Contact</a>
-                    <a href="invite.html" class="bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">Get Started</a>
+                    <a href="#cta" class="bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">
+                        Get Started
+                    </a>
                 </div>
             </div>
         </div>
@@ -298,9 +324,9 @@
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Growing Your Influence Today</h2>
             <p class="text-xl text-gray-400 mb-10">Join snoolink and transform your social media presence!</p>
-            <a href="invite.html" class="bg-snoolink-purple px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
+            <button class="bg-snoolink-purple px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
                 Start Your Free Trial
-            </a>
+            </button>
         </div>
     </section>
 
