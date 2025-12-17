@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://snoolink.ai/sitemap.xml
-Host: snoolink.ai
+Sitemap: https://snoolink.com/sitemap.xml
+Host: snoolink.com
 # Rate limit and crawl-delay rules can be added here if needed.
