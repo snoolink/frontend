@@ -17,6 +17,7 @@ pricing, roadmap, privacy, terms, use‑cases, and more.
     about.html  
     contact.html  
     index.html          → main landing page  
+    snoolink-lens-desktop.html → desktop app landing + downloads  
     pitch‑deck.html     → pitch deck / marketing page  
     pricing.html        → pricing page  
     privacy.html        → privacy policy page  
@@ -52,6 +53,7 @@ pricing, roadmap, privacy, terms, use‑cases, and more.
 ## 📄 Pages Included
 
 -   `index.html` --- main landing page\
+-   `snoolink-lens-desktop.html` --- Snoolink Lens desktop app page\
 -   `about.html` --- about page\
 -   `contact.html` --- contact page\
 -   `pricing.html` --- pricing\

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LFKW2DK9WQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LFKW2DK9WQ');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snoolink Lens Desktop App - AI Search for Photos and Videos</title>
+<meta name="description" content="Download Snoolink Lens desktop app for macOS and Windows. Search photos and videos with AI semantic search, local indexing, and privacy-first workflows.">
+<link rel="canonical" href="https://snoolink.com/snoolink-lens-desktop.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#5D1EF4">
+
+<meta property="og:title" content="Snoolink Lens Desktop App">
+<meta property="og:description" content="AI-powered desktop app for creators to search and organize photo and video libraries with natural language.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snoolink.com/snoolink-lens-desktop.html">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Snoolink Lens Desktop App">
+<meta name="twitter:description" content="Download for macOS and Windows. AI semantic search for your media library.">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif">
+
+<link rel="icon" type="image/png" href="assets/favicon.ico">
+<link rel="apple-touch-icon" href="assets/full_logo-white.png">
+<link rel="manifest" href="/manifest.json">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'snoolink-purple': '#5D1EF4'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-16px); }
+  }
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  .glass {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+  }
+  .nav-glass {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  }
+  .bg-snoolink-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  }
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  .mobile-menu.active {
+    max-height: 520px;
+  }
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+</style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+<nav class="fixed w-full z-50 nav-glass">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <a href="index.html" class="flex items-center z-50">
+        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-10 md:h-14 w-auto">
+      </a>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html#features" class="hover:text-purple-400 transition">Features</a>
+        <a href="snoolink-lens-desktop.html" class="text-snoolink-purple font-semibold">Desktop App</a>
+        <a href="pricing.html" class="hover:text-purple-400 transition">Pricing</a>
+        <a href="use-cases.html" class="hover:text-purple-400 transition">Use Cases</a>
+        <a href="roadmap.html" class="hover:text-purple-400 transition">Roadmap</a>
+        <a href="wall-of-fame.html" class="hover:text-purple-400 transition">Wall of Fame</a>
+        <a href="about.html" class="hover:text-purple-400 transition">About</a>
+        <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
+      </div>
+
+      <a href="https://app.snoolink.com/" class="hidden md:block bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-snoolink-purple/50">Get Started</a>
+
+      <button class="md:hidden hamburger z-50" id="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu md:hidden" id="mobileMenu">
+      <div class="flex flex-col space-y-4 pt-6 pb-4">
+        <a href="index.html#features" class="hover:text-purple-400 transition py-2">Features</a>
+        <a href="snoolink-lens-desktop.html" class="text-snoolink-purple font-semibold py-2">Desktop App</a>
+        <a href="pricing.html" class="hover:text-purple-400 transition py-2">Pricing</a>
+        <a href="use-cases.html" class="hover:text-purple-400 transition py-2">Use Cases</a>
+        <a href="roadmap.html" class="hover:text-purple-400 transition py-2">Roadmap</a>
+        <a href="wall-of-fame.html" class="hover:text-purple-400 transition py-2">Wall of Fame</a>
+        <a href="about.html" class="hover:text-purple-400 transition py-2">About</a>
+        <a href="contact.html" class="hover:text-purple-400 transition py-2">Contact</a>
+        <a href="https://app.snoolink.com/" class="bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="relative pt-32 pb-20 px-6 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-snoolink-purple/40 via-gray-900 to-snoolink-purple/20 gradient-animate"></div>
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-snoolink-purple rounded-full filter blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-snoolink-purple rounded-full filter blur-3xl animate-float" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="inline-block mb-6 px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30">
+          <span class="text-purple-300">Snoolink Lens v1.0.0 • Desktop Release</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Stop Hunting Through Folders.<br>
+          <span class="bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">Find the Right Clip in Seconds.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl">
+          Snoolink Lens is a desktop media search app for creators and teams. Index your libraries once, then search photos and videos with natural language.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-3 mb-8 text-sm">
+          <div class="glass p-3 rounded-lg">Latest release: <strong>v1.0.0</strong></div>
+          <div class="glass p-3 rounded-lg">Local-first indexing: <strong>Enabled</strong></div>
+          <div class="glass p-3 rounded-lg">Windows installer: <strong>.exe</strong></div>
+          <div class="glass p-3 rounded-lg">macOS build: <strong>Apple Silicon .dmg</strong></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+          <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens.Setup.1.0.0.exe" class="bg-snoolink-purple px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50" target="_blank" rel="noopener">Download for Windows</a>
+          <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens-1.0.0-arm64.dmg" class="glass px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition" target="_blank" rel="noopener">Download for macOS</a>
+        </div>
+
+        <a href="https://github.com/snoolink/snoolink-lens/releases" target="_blank" rel="noopener" class="inline-block mt-4 text-purple-300 hover:text-purple-200 transition underline underline-offset-4">View all releases and notes</a>
+      </div>
+
+      <div class="glass p-4 rounded-2xl">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif"
+          alt="Placeholder GIF for Snoolink Lens app walkthrough"
+          class="w-full h-[360px] md:h-[460px] object-cover rounded-xl"
+          loading="lazy"
+        >
+        <p class="text-xs text-yellow-300 mt-3">
+          Placeholder GIF: Replace with a 12-18 second product walkthrough showing 1) folder import, 2) natural language search query, and 3) opening a matched result inside the app UI.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6 bg-gray-800/30 border-y border-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+      <p class="text-xl text-gray-400">From unorganized media to searchable assets in three clear steps.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-2xl">
+        <div class="w-10 h-10 rounded-full bg-snoolink-purple flex items-center justify-center font-bold mb-4">1</div>
+        <img src="https://placehold.co/1200x700/111827/8b5cf6?text=Step+1:+Import+Folders" alt="Placeholder for import folders screen" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-bold mb-2">Connect Your Library</h3>
+        <p class="text-gray-400">Point Lens to one or more folders. It starts local indexing for photos and videos.</p>
+        <p class="text-xs text-yellow-300 mt-3">Replace with screenshot of the real "Add Folder" + indexing progress screen.</p>
+      </div>
+
+      <div class="glass p-6 rounded-2xl">
+        <div class="w-10 h-10 rounded-full bg-snoolink-purple flex items-center justify-center font-bold mb-4">2</div>
+        <img src="https://placehold.co/1200x700/111827/8b5cf6?text=Step+2:+Search+in+Natural+Language" alt="Placeholder for semantic search input" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-bold mb-2">Search by Meaning</h3>
+        <p class="text-gray-400">Use prompts like "sunset drone shot over water" instead of filenames or folder paths.</p>
+        <p class="text-xs text-yellow-300 mt-3">Replace with screenshot that shows query input and ranked semantic results.</p>
+      </div>
+
+      <div class="glass p-6 rounded-2xl">
+        <div class="w-10 h-10 rounded-full bg-snoolink-purple flex items-center justify-center font-bold mb-4">3</div>
+        <img src="https://placehold.co/1200x700/111827/8b5cf6?text=Step+3:+Preview+and+Reuse+Assets" alt="Placeholder for result preview and reuse flow" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+        <h3 class="text-xl font-bold mb-2">Preview and Reuse</h3>
+        <p class="text-gray-400">Open exact moments quickly and move faster in your curation, editing, and publishing workflow.</p>
+        <p class="text-xs text-yellow-300 mt-3">Replace with screenshot of media preview pane and selected match details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl md:text-5xl font-bold mb-5">Core Features</h2>
+      <p class="text-xl text-gray-400">Designed to reduce search time, recover hidden assets, and speed up publishing.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass p-8 rounded-2xl">
+        <img src="https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Placeholder visual for semantic search" class="w-full h-48 object-cover rounded-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold mb-3 text-snoolink-purple">AI-Powered Semantic Search</h3>
+        <p class="text-gray-300 mb-4">Search by intent, context, and meaning instead of filenames and manual tags.</p>
+        <ul class="space-y-2 text-gray-300">
+          <li>• Query examples: "city b-roll night rain" or "mountain hike sunrise"</li>
+          <li>• No rigid folder naming system required</li>
+          <li>• Better retrieval from large multi-year archives</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-3">Replace with product screenshot showing search bar, prompt, and top results.</p>
+      </div>
+
+      <div class="glass p-8 rounded-2xl">
+        <img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Placeholder visual for image discovery" class="w-full h-48 object-cover rounded-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold mb-3 text-snoolink-purple">Intelligent Image Discovery</h3>
+        <p class="text-gray-300 mb-4">Find visually similar media and uncover assets you forgot existed.</p>
+        <ul class="space-y-2 text-gray-300">
+          <li>• CLIP-style visual understanding</li>
+          <li>• Content-aware grouping and retrieval</li>
+          <li>• Fast local index performance</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-3">Replace with gallery screenshot highlighting "similar results" interactions.</p>
+      </div>
+
+      <div class="glass p-8 rounded-2xl">
+        <img src="https://images.pexels.com/photos/5475754/pexels-photo-5475754.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Placeholder visual for video analysis" class="w-full h-48 object-cover rounded-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold mb-3 text-snoolink-purple">Video Search and Scene Retrieval</h3>
+        <p class="text-gray-300 mb-4">Search videos semantically and pinpoint useful moments without timeline scrubbing fatigue.</p>
+        <ul class="space-y-2 text-gray-300">
+          <li>• Scene-level understanding</li>
+          <li>• Content-based moment discovery</li>
+          <li>• Better reuse from archived footage</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-3">Replace with timeline screenshot showing scene markers and matched timestamps.</p>
+      </div>
+
+      <div class="glass p-8 rounded-2xl">
+        <img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Placeholder visual for privacy-first architecture" class="w-full h-48 object-cover rounded-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold mb-3 text-snoolink-purple">Privacy-First Local Architecture</h3>
+        <p class="text-gray-300 mb-4">Keep your media on your machine with local indexing and local search by default.</p>
+        <ul class="space-y-2 text-gray-300">
+          <li>• No mandatory cloud upload</li>
+          <li>• Local metadata and local query execution</li>
+          <li>• Built for creator and agency privacy workflows</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-3">Replace with architecture diagram showing local data flow and no-cloud-required path.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6 bg-gray-800/30 border-y border-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">System Requirements and Compatibility</h2>
+      <p class="text-xl text-gray-400">Set expectations clearly before install to reduce setup friction.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="glass p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-4">Minimum Requirements</h3>
+        <ul class="space-y-3 text-gray-300">
+          <li>• Windows 10+ or macOS 13+ (Apple Silicon)</li>
+          <li>• 8 GB RAM minimum, 16 GB recommended</li>
+          <li>• 4 CPU cores recommended for faster indexing</li>
+          <li>• 5 GB free disk space plus index growth</li>
+          <li>• SSD recommended for large media libraries</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-4">Replace with verified requirements from production benchmarks and support docs.</p>
+      </div>
+
+      <div class="glass p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-4">Install Notes</h3>
+        <ul class="space-y-3 text-gray-300">
+          <li>• macOS package currently targets Apple Silicon</li>
+          <li>• Windows installer package: .exe</li>
+          <li>• Check release notes for known issues before updating</li>
+          <li>• Keep 2x media size free for smooth initial indexing</li>
+          <li>• Use latest release for model and search improvements</li>
+        </ul>
+        <p class="text-xs text-yellow-300 mt-4">Replace with final install troubleshooting notes from your support team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Why Lens Over Manual Browsing</h2>
+      <p class="text-xl text-gray-400">A practical comparison for creators and social teams.</p>
+    </div>
+
+    <div class="glass rounded-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-snoolink-purple/20">
+            <tr>
+              <th class="p-4">Capability</th>
+              <th class="p-4">Manual Folders</th>
+              <th class="p-4">Traditional DAM</th>
+              <th class="p-4">Snoolink Lens</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800 text-gray-300">
+            <tr>
+              <td class="p-4 font-semibold">Search by meaning</td>
+              <td class="p-4">Limited</td>
+              <td class="p-4">Partial</td>
+              <td class="p-4 text-green-400">Yes</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold">Setup effort</td>
+              <td class="p-4">High</td>
+              <td class="p-4">Medium</td>
+              <td class="p-4 text-green-400">Low</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold">Local-first privacy</td>
+              <td class="p-4">Yes</td>
+              <td class="p-4">Varies</td>
+              <td class="p-4 text-green-400">Yes</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold">Scene-level video retrieval</td>
+              <td class="p-4">No</td>
+              <td class="p-4">Limited</td>
+              <td class="p-4 text-green-400">Yes</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold">Large library usability</td>
+              <td class="p-4">Poor</td>
+              <td class="p-4">Medium</td>
+              <td class="p-4 text-green-400">High</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6 bg-gray-800/30 border-y border-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Expected Outcomes</h2>
+      <p class="text-xl text-gray-400">Show users the operational impact, not only feature lists.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div class="glass p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-5">Workflow Time Comparison</h3>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span>Manual search and scrubbing</span><span>100%</span></div>
+            <div class="h-3 bg-gray-700 rounded-full"><div class="h-3 bg-red-500 rounded-full w-full"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span>Lens-assisted retrieval</span><span>35%</span></div>
+            <div class="h-3 bg-gray-700 rounded-full"><div class="h-3 bg-green-500 rounded-full" style="width: 35%;"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-2"><span>Estimated time saved</span><span>65%</span></div>
+            <div class="h-3 bg-gray-700 rounded-full"><div class="h-3 bg-snoolink-purple rounded-full" style="width: 65%;"></div></div>
+          </div>
+        </div>
+        <p class="text-xs text-yellow-300 mt-4">Replace with measured benchmark data from your internal test set.</p>
+      </div>
+
+      <div class="glass p-4 rounded-2xl">
+        <img src="https://placehold.co/1400x900/111827/8b5cf6?text=Dashboard:+Search+Speed+and+Reuse+Metrics" alt="Placeholder for dashboard analytics screenshot" class="w-full h-[320px] object-cover rounded-xl" loading="lazy">
+        <p class="text-xs text-yellow-300 mt-3">Replace with product analytics screenshot showing index count, query speed, and reused assets over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Download Snoolink Lens</h2>
+      <p class="text-xl text-gray-300">Choose your installer and get started in minutes.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="glass p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-2">Windows</h3>
+        <p class="text-gray-400 mb-4">Installer: .exe</p>
+        <ul class="text-sm text-gray-300 space-y-2 mb-6">
+          <li>• Version: v1.0.0</li>
+          <li>• Architecture: x64</li>
+          <li>• Release date: 2026-06-22</li>
+        </ul>
+        <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens.Setup.1.0.0.exe" class="inline-block bg-snoolink-purple px-7 py-3 rounded-full font-bold hover:scale-105 transition transform" target="_blank" rel="noopener">Download Windows Installer</a>
+        <p class="text-xs text-yellow-300 mt-4">Replace metadata with live API-fed values from GitHub releases.</p>
+      </div>
+
+      <div class="glass p-8 rounded-2xl">
+        <h3 class="text-2xl font-bold mb-2">macOS</h3>
+        <p class="text-gray-400 mb-4">Installer: Apple Silicon .dmg</p>
+        <ul class="text-sm text-gray-300 space-y-2 mb-6">
+          <li>• Version: v1.0.0</li>
+          <li>• Architecture: arm64</li>
+          <li>• Release date: 2026-06-22</li>
+        </ul>
+        <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens-1.0.0-arm64.dmg" class="inline-block glass px-7 py-3 rounded-full font-semibold hover:bg-white/10 transition" target="_blank" rel="noopener">Download macOS Installer</a>
+        <p class="text-xs text-yellow-300 mt-4">Replace with dual build options if Intel macOS package becomes available.</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="https://github.com/snoolink/snoolink-lens/releases" target="_blank" rel="noopener" class="text-purple-300 hover:text-purple-200 transition underline underline-offset-4">Need another version? Browse all releases</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6 bg-gray-800/30 border-y border-gray-800">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
+      <p class="text-xl text-gray-400">Answer the main objections before download.</p>
+    </div>
+
+    <div class="space-y-4">
+      <details class="glass p-6 rounded-xl">
+        <summary class="font-semibold cursor-pointer">Does Lens upload my media to the cloud?</summary>
+        <p class="text-gray-400 mt-3">Lens is local-first. Media indexing and search can run on your machine without mandatory cloud upload.</p>
+      </details>
+      <details class="glass p-6 rounded-xl">
+        <summary class="font-semibold cursor-pointer">How long does indexing take?</summary>
+        <p class="text-gray-400 mt-3">It depends on media volume, hardware, and storage speed. First index is the longest; incremental updates are faster.</p>
+      </details>
+      <details class="glass p-6 rounded-xl">
+        <summary class="font-semibold cursor-pointer">Can I search video scenes, not just files?</summary>
+        <p class="text-gray-400 mt-3">Yes. Lens is designed for scene-level retrieval so you can jump to relevant moments more quickly.</p>
+      </details>
+      <details class="glass p-6 rounded-xl">
+        <summary class="font-semibold cursor-pointer">Can teams use the same setup?</summary>
+        <p class="text-gray-400 mt-3">Yes. Teams can standardize tagging/query workflows while keeping local-first operational control.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Search Your Media Like a Pro?</h2>
+    <p class="text-xl text-gray-400 mb-8">Install Lens and turn buried footage into reusable content in minutes.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens.Setup.1.0.0.exe" class="bg-snoolink-purple px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50" target="_blank" rel="noopener">Get Windows App</a>
+      <a href="https://github.com/snoolink/snoolink-lens/releases/download/v1.0.0/Snoolink.Lens-1.0.0-arm64.dmg" class="glass px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition" target="_blank" rel="noopener">Get macOS App</a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-gray-800 py-12 px-6 bg-gradient-to-b from-gray-900 to-black">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <a href="index.html" class="flex items-center">
+        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-10 w-auto">
+      </a>
+      <div class="flex flex-wrap justify-center gap-6 text-gray-300">
+        <a href="privacy.html" class="hover:text-purple-400 transition">Privacy</a>
+        <a href="terms.html" class="hover:text-purple-400 transition">Terms</a>
+        <a href="contact.html" class="hover:text-purple-400 transition">Contact</a>
+        <a href="https://github.com/snoolink/snoolink-lens" target="_blank" rel="noopener" class="hover:text-purple-400 transition">GitHub Repo</a>
+      </div>
+      <p class="text-gray-400 text-sm">© 2026 Snoolink. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  });
+
+  const mobileLinks = mobileMenu.querySelectorAll('a');
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    });
+  });
+</script>
+
+    <script src="assets/shared-layout.js"></script>
+</body>
+</html>
