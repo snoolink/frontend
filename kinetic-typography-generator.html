@@ -601,6 +601,7 @@ let currentStyle='neon', currentLayout='center', currentAnim='mix', currentRatio
 let bgOverride=null;
 let playing=false, raf=null, startStamp=null, progress=0, totalDurMs=0, generated=false;
 let ffmpegInstance=null;
+let isExporting=false;
 
 function downloadBlob(blob, filename){
   const url=URL.createObjectURL(blob);
@@ -1504,6 +1505,9 @@ function hideAllLotties() {
 // Called each frame
 function drawPhraseMotionGraphic(ph, phIdx, localMs) {
   showGraphicForPhrase(ph, phIdx);
+  if (isExporting && pixabayEnabled) {
+    drawPixabayOnCanvas(ph, phIdx);
+  }
   // Also show Lottie beside the words if enabled
   if (lottieEnabled) showLottieForPhrase(ph, phIdx, localMs);
   // Also show unDraw illustration if enabled
@@ -1834,7 +1838,7 @@ function openExportModal(){
 }
 function closeExportModal(){document.getElementById('exportModal').classList.remove('show');}
 
-function startExport(type){
+async function startExport(type){
   if(type==='frames'){
     // Snapshot current frame as PNG
     drawAtTime(progress*totalDurMs);
@@ -1876,9 +1880,15 @@ function startExport(type){
   const barEl=document.getElementById('dlBar');
   const statusEl=document.getElementById('dlStatus');
   statusEl.textContent='Starting recording…';
+  isExporting=true;
 
   // Stop live playback
   playing=false;cancelAnimationFrame(raf);startStamp=null;setPlayIcon(false);
+
+  if (pixabayEnabled) {
+    statusEl.textContent='Preparing photos…';
+    await preloadPixabayCanvasAssets();
+  }
 
   const chunks=[];
   const stream=cv.captureStream(30);
@@ -1924,6 +1934,8 @@ function startExport(type){
         toast('Export failed ('+reason+').',true);
       }
       setTimeout(closeExportModal,1800);
+    }finally{
+      isExporting=false;
     }
   };
 
@@ -2872,6 +2884,58 @@ function syncUndrawLayer() {
 let pixabayEnabled = false;
 let pixabayPhraseData = {}; // phIdx -> { url, keyword, user, tags } | null
 let currentPixabayPhIdx = -1;
+let pixabayCanvasImageCache = {}; // phIdx -> HTMLImageElement | null
+let pixabayCanvasImageLoaders = {}; // phIdx -> Promise<HTMLImageElement|null>
+
+function ensurePixabayCanvasImage(phIdx, url) {
+  if (!url) return Promise.resolve(null);
+  if (pixabayCanvasImageCache[phIdx]) return Promise.resolve(pixabayCanvasImageCache[phIdx]);
+  if (pixabayCanvasImageLoaders[phIdx]) return pixabayCanvasImageLoaders[phIdx];
+
+  pixabayCanvasImageLoaders[phIdx] = new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      pixabayCanvasImageCache[phIdx] = img;
+      resolve(img);
+    };
+    img.onerror = () => resolve(null);
+    img.src = url;
+  }).finally(() => {
+    delete pixabayCanvasImageLoaders[phIdx];
+  });
+
+  return pixabayCanvasImageLoaders[phIdx];
+}
+
+async function preloadPixabayCanvasAssets() {
+  const jobs = Object.keys(pixabayPhraseData).map(async (k) => {
+    const idx = Number(k);
+    const data = pixabayPhraseData[idx];
+    if (data?.url) await ensurePixabayCanvasImage(idx, data.url);
+  });
+  await Promise.all(jobs);
+}
+
+function drawPixabayOnCanvas(ph, phIdx) {
+  const data = pixabayPhraseData[phIdx];
+  if (!data?.url) return;
+  const img = pixabayCanvasImageCache[phIdx];
+  if (!img) return;
+
+  getPixabaySizePx._activeAspect = data.aspect || ((img.naturalWidth && img.naturalHeight) ? (img.naturalWidth / img.naturalHeight) : 1);
+  const size = getPixabaySizePx();
+  const pos = getPixabayPosition(ph, phIdx, size);
+  if (!pos) return;
+
+  const x = Math.round(pos.x - size.w / 2);
+  const y = Math.round(pos.y - size.h / 2);
+
+  ctx.save();
+  ctx.globalAlpha = 0.92;
+  ctx.drawImage(img, x, y, size.w, size.h);
+  ctx.restore();
+}
 
 function hasPixabayKey() {
   return typeof PIXABAY_API_KEY === 'string' && PIXABAY_API_KEY.trim().length > 0;
@@ -2961,6 +3025,8 @@ function togglePixabayMode(btn) {
 
 async function preloadPixabayImages(phrasesArr, phraseKeywords = []) {
   pixabayPhraseData = {};
+  pixabayCanvasImageCache = {};
+  pixabayCanvasImageLoaders = {};
   const statusEl = document.getElementById('pixabayStatus');
   const setStatus = t => { if (statusEl) statusEl.textContent = t; };
 
@@ -2979,8 +3045,9 @@ async function preloadPixabayImages(phrasesArr, phraseKeywords = []) {
       : extractUniversalSearchKeyword(ph);
     const hit = await pixabaySearchFirstHit(kw);
     pixabayPhraseData[idx] = hit
-      ? { url: hit.url, keyword: kw, user: hit.user, tags: hit.tags }
+      ? { url: hit.url, keyword: kw, user: hit.user, tags: hit.tags, aspect: hit.aspect }
       : null;
+    if (hit?.url) ensurePixabayCanvasImage(idx, hit.url);
     if (hit) matched++;
     done++;
     setStatus(`Searching Pixabay... ${done}/${phrasesArr.length} (${kw})`);
