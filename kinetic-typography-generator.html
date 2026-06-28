@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snoolink Kinetic Typography Generator - Dashboard</title>
 <meta name="description" content="Create high-impact kinetic typography videos with Snoolink. Animate scripts, customize layout, style, timing, and export directly from your browser.">
 <link rel="canonical" href="https://snoolink.com/kinetic-typography-generator.html">
@@ -25,13 +25,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Snoolink Kinetic Typography Generator","url":"https://snoolink.com/kinetic-typography-generator.html","applicationCategory":"MultimediaApplication","operatingSystem":"Web Browser","publisher":{"@type":"Organization","name":"snoolink","url":"https://snoolink.com/"}}
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ui-scale:1.25;
   --bg:#0C0C0E;--surface:#141416;--surface2:#1C1C1F;
   --border:#252528;--border2:#333337;
   --accent:#5D1EF4;--adim:rgba(93,30,244,0.16);--ahov:#7C4DFF;
@@ -39,7 +39,7 @@
   --r:10px;--rs:6px;
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);}
-body{zoom:var(--ui-scale);width:calc(100vw/var(--ui-scale));height:calc(100vh/var(--ui-scale));font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;}
+body{width:100%;min-height:100dvh;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;}
 
 /* ── NAV ── */
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;z-index:200;}
@@ -78,6 +78,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
 
 .s-section{padding:16px 18px;border-bottom:1px solid var(--border);}
 .s-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:11px;}
+.s-head-btn{width:100%;display:flex;align-items:center;justify-content:space-between;background:transparent;border:none;color:var(--text3);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0;cursor:pointer;font-family:inherit;}
+.s-head-btn:hover{color:var(--text2);}
+.s-caret{font-size:13px;line-height:1;transition:transform 0.18s ease;color:var(--text2);}
+.s-section.collapsed .s-caret{transform:rotate(-90deg);}
+.s-content{margin-top:11px;}
+.s-section.collapsed .s-content{display:none;}
 
 /* Script */
 .script-box{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;padding:12px 14px;resize:none;min-height:115px;outline:none;transition:border-color 0.15s;}
@@ -230,10 +236,10 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
 
     <div class="s-section">
       <div class="s-label">Script</div>
-      <textarea class="script-box" id="scriptInput" placeholder="Type your script…">The future belongs to those who believe in the beauty of their dreams.</textarea>
+      <textarea class="script-box" id="scriptInput" placeholder="Type your script…">Meet Snoolink, your social media content management platform that helps you organize, manage, and automate your content workflow — so you can focus on what matters most.</textarea>
       <div class="script-meta">
-        <span id="wordCount">13 words</span>
-        <span id="charCount">67 / 500</span>
+        <span id="wordCount">24 words</span>
+        <span id="charCount">167 / 500</span>
       </div>
     </div>
 
@@ -264,6 +270,42 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
           <div class="sc-preview" style="background:#F5EDD8;color:#2C1810;font-family:'Courier New',monospace;font-size:9px">type_</div>
           <div class="sc-name">Paper</div>
         </div>
+        <div class="style-card" data-style="editorial" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#E6D3B5;color:#111;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;letter-spacing:.2px">editorial</div>
+          <div class="sc-name">Editorial Poster</div>
+        </div>
+        <div class="style-card" data-style="pulse" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#0C0E14;color:#FF2E63;font-family:Impact,sans-serif;font-size:15px;letter-spacing:.7px">PULSE</div>
+          <div class="sc-name">Beat Sync</div>
+        </div>
+        <div class="style-card" data-style="serene" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#e9f0ff;color:#3558a9;font-family:Georgia,serif;font-size:13px;font-style:italic">fluid</div>
+          <div class="sc-name">Fluid Organic</div>
+        </div>
+        <div class="style-card" data-style="blueprint" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#0B1E31;color:#7DE2FF;font-family:'Courier New',monospace;font-size:11px;letter-spacing:1px">GRID_SYS</div>
+          <div class="sc-name">Structural Info</div>
+        </div>
+        <div class="style-card" data-style="noir" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#070707;color:#F3E6C4;font-family:Georgia,serif;font-size:12px;letter-spacing:2px">TITLE</div>
+          <div class="sc-name">Cinematic Noir</div>
+        </div>
+        <div class="style-card" data-style="lyric" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#131329;color:#8DE4FF;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700">♪ lyric</div>
+          <div class="sc-name">Lyric Stage</div>
+        </div>
+        <div class="style-card" data-style="retro3d" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#101319;color:#F7D06D;font-family:Impact,sans-serif;font-size:13px;text-shadow:2px 2px 0 #F24E1E,4px 4px 0 #4C6FFF">retro</div>
+          <div class="sc-name">Retro 3D</div>
+        </div>
+        <div class="style-card" data-style="uihero" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#0E1726;color:#BDE0FF;font-family:'Space Grotesk',sans-serif;font-size:12px">ui.hero</div>
+          <div class="sc-name">Web Hero</div>
+        </div>
+        <div class="style-card" data-style="mono" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#EFEFEF;color:#111;font-family:'Courier New',monospace;font-size:11px;letter-spacing:1px">MONO</div>
+          <div class="sc-name">Monochrome</div>
+        </div>
       </div>
     </div>
 
@@ -274,6 +316,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <button class="ratio-chip" data-ratio="9:16" onclick="selRatio(this)">9∶16</button>
         <button class="ratio-chip" data-ratio="1:1" onclick="selRatio(this)">1∶1</button>
         <button class="ratio-chip" data-ratio="4:5" onclick="selRatio(this)">4∶5</button>
+        <button class="ratio-chip" data-ratio="21:9" onclick="selRatio(this)">21∶9</button>
+        <button class="ratio-chip" data-ratio="3:2" onclick="selRatio(this)">3∶2</button>
       </div>
     </div>
 
@@ -307,6 +351,33 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <div class="layout-card" data-layout="grid" onclick="selLayout(this)">
           <div class="layout-icon">▦</div><div class="layout-name">Grid</div>
         </div>
+        <div class="layout-card" data-layout="poster" onclick="selLayout(this)">
+          <div class="layout-icon">🅣</div><div class="layout-name">Poster Hero</div>
+        </div>
+        <div class="layout-card" data-layout="beat" onclick="selLayout(this)">
+          <div class="layout-icon">⧉</div><div class="layout-name">Beat Stack</div>
+        </div>
+        <div class="layout-card" data-layout="organic" onclick="selLayout(this)">
+          <div class="layout-icon">∞</div><div class="layout-name">Organic Flow</div>
+        </div>
+        <div class="layout-card" data-layout="info" onclick="selLayout(this)">
+          <div class="layout-icon">⌗</div><div class="layout-name">Info Grid</div>
+        </div>
+        <div class="layout-card" data-layout="crawl" onclick="selLayout(this)">
+          <div class="layout-icon">⇡</div><div class="layout-name">Title Crawl</div>
+        </div>
+        <div class="layout-card" data-layout="lyrics" onclick="selLayout(this)">
+          <div class="layout-icon">♫</div><div class="layout-name">Lyric Split</div>
+        </div>
+        <div class="layout-card" data-layout="radial" onclick="selLayout(this)">
+          <div class="layout-icon">◉</div><div class="layout-name">Radial Ring</div>
+        </div>
+        <div class="layout-card" data-layout="marquee" onclick="selLayout(this)">
+          <div class="layout-icon">▤</div><div class="layout-name">Marquee Strip</div>
+        </div>
+        <div class="layout-card" data-layout="path" onclick="selLayout(this)">
+          <div class="layout-icon">⌒</div><div class="layout-name">Path Curve</div>
+        </div>
       </div>
     </div>
 
@@ -326,6 +397,17 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <button class="anim-chip" data-anim="zoom" onclick="selAnim(this)">Zoom</button>
         <button class="anim-chip" data-anim="wave" onclick="selAnim(this)">Wave</button>
         <button class="anim-chip" data-anim="typewriter" onclick="selAnim(this)">Type</button>
+        <button class="anim-chip" data-anim="bounce" onclick="selAnim(this)">Bounce</button>
+        <button class="anim-chip" data-anim="whip" onclick="selAnim(this)">Whip</button>
+        <button class="anim-chip" data-anim="swing" onclick="selAnim(this)">Swing</button>
+        <button class="anim-chip" data-anim="orbit" onclick="selAnim(this)">Orbit</button>
+        <button class="anim-chip" data-anim="elastic" onclick="selAnim(this)">Elastic</button>
+        <button class="anim-chip" data-anim="drift" onclick="selAnim(this)">Drift</button>
+        <button class="anim-chip" data-anim="shutter" onclick="selAnim(this)">Shutter</button>
+        <button class="anim-chip" data-anim="handwrite" onclick="selAnim(this)">Handwrite</button>
+        <button class="anim-chip" data-anim="jitter" onclick="selAnim(this)">Jitter</button>
+        <button class="anim-chip" data-anim="reveal" onclick="selAnim(this)">Reveal</button>
+        <button class="anim-chip" data-anim="spiral" onclick="selAnim(this)">Spiral</button>
       </div>
     </div>
 
@@ -336,6 +418,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <button class="timing-chip sel" data-ms="450" onclick="selTiming(this)">Normal</button>
         <button class="timing-chip" data-ms="270" onclick="selTiming(this)">Fast</button>
         <button class="timing-chip" data-ms="150" onclick="selTiming(this)">Rapid</button>
+        <button class="timing-chip" data-ms="120" onclick="selTiming(this)">Beat 120</button>
+        <button class="timing-chip" data-ms="900" onclick="selTiming(this)">Ballad</button>
       </div>
     </div>
 
@@ -360,6 +444,13 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <div class="ctrl-right">
           <input type="range" min="0" max="45" value="12" id="rotRange" oninput="updateCtrl(this,'rrVal','°')">
           <span class="ctrl-val" id="rrVal">12°</span>
+        </div>
+      </div>
+      <div class="ctrl-row">
+        <span class="ctrl-lbl">Layout spread</span>
+        <div class="ctrl-right">
+          <input type="range" min="50" max="170" value="100" id="spreadRange" oninput="updateCtrl(this,'spVal','%')">
+          <span class="ctrl-val" id="spVal">100%</span>
         </div>
       </div>
       <div class="ctrl-row">
@@ -479,12 +570,13 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
 <div class="modal-bg" id="exportModal">
   <div class="modal">
     <h3>Download Video</h3>
-    <p>Choose your export format. The video will be rendered directly in your browser — no upload needed.</p>
+    <p>Choose your export format. MP4 is recommended for social media and is rendered directly in your browser.</p>
     <div class="modal-btns">
-      <button class="modal-btn primary" onclick="startExport('webm')">
+      <button class="modal-btn primary" onclick="startExport('mp4')">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1V9.5M7 9.5L4 6.5M7 9.5L10 6.5M1 12H13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Download WebM (Video)
+        Download MP4 (Social Ready)
       </button>
+      <button class="modal-btn secondary" onclick="startExport('webm')">Download WebM (Faster)</button>
       <button class="modal-btn secondary" onclick="startExport('frames')">
         🖼 Download Frame as PNG
       </button>
@@ -508,6 +600,78 @@ let phrases=[], wordMs=450, phraseGapMs=480;
 let currentStyle='neon', currentLayout='center', currentAnim='mix', currentRatio='16:9';
 let bgOverride=null;
 let playing=false, raf=null, startStamp=null, progress=0, totalDurMs=0, generated=false;
+let ffmpegInstance=null;
+
+function downloadBlob(blob, filename){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=filename;a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),5000);
+}
+
+async function ensureFfmpeg(){
+  if(ffmpegInstance) return ffmpegInstance;
+  if(!window.FFmpeg || !window.FFmpeg.createFFmpeg){
+    throw new Error('FFmpeg library failed to load.');
+  }
+  const { createFFmpeg } = window.FFmpeg;
+  ffmpegInstance=createFFmpeg({
+    log:false,
+    corePath:'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js'
+  });
+  await ffmpegInstance.load();
+  return ffmpegInstance;
+}
+
+async function transcodeWebmToMp4(webmBlob, statusEl, barEl){
+  const ff=await ensureFfmpeg();
+  statusEl.textContent='Converting WebM to MP4…';
+  barEl.style.width='96%';
+  const inputName='input.webm';
+  const outputName='output.mp4';
+  const webmData=new Uint8Array(await webmBlob.arrayBuffer());
+  try{ff.FS('unlink', inputName);}catch(e){}
+  try{ff.FS('unlink', outputName);}catch(e){}
+  ff.FS('writeFile', inputName, webmData);
+  let encoded=false;
+  try{
+    await ff.run(
+      '-i', inputName,
+      '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p',
+      '-c:v', 'libx264',
+      '-preset', 'veryfast',
+      '-movflags', '+faststart',
+      '-an',
+      outputName
+    );
+    encoded=true;
+  }catch(primaryErr){
+    // Some ffmpeg.wasm builds do not include libx264; fallback to native mpeg4 encoder.
+    await ff.run(
+      '-i', inputName,
+      '-vf', 'scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p',
+      '-c:v', 'mpeg4',
+      '-q:v', '2',
+      '-movflags', '+faststart',
+      '-an',
+      outputName
+    );
+    encoded=true;
+  }
+  if(!encoded){
+    throw new Error('FFmpeg could not encode MP4.');
+  }
+  const mp4Data=ff.FS('readFile', outputName);
+  try{ff.FS('unlink', inputName);}catch(e){}
+  try{ff.FS('unlink', outputName);}catch(e){}
+  return new Blob([mp4Data.buffer],{type:'video/mp4'});
+}
+
+function getErrorText(err){
+  if(!err) return 'Unknown error';
+  if(typeof err==='string') return err;
+  return err.message || 'Unknown error';
+}
 
 // ═══════════════════════════════════════════
 //  STYLES
@@ -519,6 +683,15 @@ const STYLES={
   graffiti: {bg:'#150a28',fills:['#FF2D78','#FFD700','#00FFCC'],          accent:'#FFD700', shadowColor:'#7C00FF',shadowBlur:0,sOX:5,sOY:5},
   hype:     {bg:'#FF6321',fills:['#FFFFFF','#FFE000','#111111'],          accent:'#FFE000', shadowColor:'rgba(0,0,0,0.5)',shadowBlur:0,sOX:3,sOY:3},
   paper:    {bg:'#F5EDD8',fills:['#2C1810','#8B0000','#4A3728'],          accent:'#8B0000', shadowColor:'transparent',shadowBlur:0,sOX:0,sOY:0},
+  editorial:{bg:'#E6D3B5',fills:['#111111','#2A2A2A','#8B0000'],          accent:'#8B0000', shadowColor:'transparent',shadowBlur:0,sOX:0,sOY:0},
+  pulse:    {bg:'#0C0E14',fills:['#FF2E63','#08D9D6','#FFFFFF','#FCE38A'],accent:'#FF2E63', shadowColor:'#FF2E63',shadowBlur:12,sOX:0,sOY:0},
+  serene:   {bg:'#E9F0FF',fills:['#3558A9','#2C3E66','#5D8BF4','#1E2A4A'],accent:'#5D8BF4', shadowColor:'rgba(93,139,244,0.18)',shadowBlur:8,sOX:0,sOY:0},
+  blueprint:{bg:'#0B1E31',fills:['#7DE2FF','#D9F7FF','#57B6D9','#A8ECFF'],accent:'#57B6D9', shadowColor:'#49C8F2',shadowBlur:7,sOX:0,sOY:0},
+  noir:     {bg:'#070707',fills:['#F3E6C4','#D6C29A','#FFFFFF','#A78A59'],accent:'#D6C29A', shadowColor:'rgba(215,194,154,0.35)',shadowBlur:10,sOX:0,sOY:1},
+  lyric:    {bg:'#131329',fills:['#8DE4FF','#F8A8FF','#FFFFFF','#7B9CFF'],accent:'#F8A8FF', shadowColor:'rgba(141,228,255,0.3)',shadowBlur:11,sOX:0,sOY:0},
+  retro3d:  {bg:'#101319',fills:['#F7D06D','#F24E1E','#4C6FFF','#FFFFFF'],accent:'#F24E1E', shadowColor:'rgba(76,111,255,0.35)',shadowBlur:9,sOX:2,sOY:2},
+  uihero:   {bg:'#0E1726',fills:['#BDE0FF','#64B5FF','#FFFFFF','#90F7EC'],accent:'#64B5FF', shadowColor:'rgba(100,181,255,0.25)',shadowBlur:8,sOX:0,sOY:0},
+  mono:     {bg:'#EFEFEF',fills:['#111111','#4A4A4A','#767676','#222222'],accent:'#111111', shadowColor:'transparent',shadowBlur:0,sOX:0,sOY:0},
 };
 
 // ═══════════════════════════════════════════
@@ -550,6 +723,17 @@ const ANIMS={
   zoom(t)      {const s=t<.35?2.8-(t/.35)*1.8:1;return{alpha:Math.min(1,t*6),sx:s,sy:s};},
   wave(t)      {return{alpha:Math.min(1,t*4.5),sx:1,sy:1,waveT:t};},
   typewriter(t){return{alpha:1,sx:1,sy:1,typeT:t};},
+  bounce(t)    {const amp=Math.max(0,1-t)*Math.min(H,W)*.12;const oy=-Math.abs(Math.sin(t*9.5))*amp;return{alpha:Math.min(1,t*8),sx:1,sy:1,oy};},
+  whip(t)      {const k=Math.max(0,1-t/.35);return{alpha:Math.min(1,t*10),sx:1,sy:1,ox:k*Math.min(W,H)*.22,rot:k*.45};},
+  swing(t)     {const damp=Math.max(0,1-t);return{alpha:Math.min(1,t*6),sx:1,sy:1,rot:Math.sin(t*9)*.32*damp};},
+  orbit(t)     {const r=Math.max(0,1-t)*Math.min(W,H)*.14;const a=t*Math.PI*2.2;return{alpha:Math.min(1,t*8),sx:1,sy:1,ox:Math.cos(a)*r,oy:Math.sin(a)*r,rot:(1-t)*.6};},
+  elastic(t)   {const e=Math.sin(t*18)*Math.max(0,1-t)*.55;return{alpha:Math.min(1,t*8),sx:1+e,sy:1-e};},
+  drift(t)     {const oy=(1-t)*Math.min(W,H)*.16;return{alpha:t<.5?t/.5:1,sx:1,sy:1,oy};},
+  shutter(t)   {const s=t<.25?0.15+(t/.25)*1.2:t<.45?1.35-((t-.25)/.2)*.35:1;const rot=t<.3?(1-t/.3)*.18:0;return{alpha:Math.min(1,t*9),sx:s,sy:1,rot};},
+  handwrite(t) {return{alpha:1,sx:1,sy:1,typeT:Math.min(1,t*1.15)};},
+  jitter(t)    {const j=Math.max(0,1-t/.45);return{alpha:Math.min(1,t*8),sx:1,sy:1,ox:(Math.sin(t*90)*7*j),oy:(Math.cos(t*84)*5*j)};},
+  reveal(t)    {const sx=t<.3?0.2+(t/.3)*0.8:1;return{alpha:Math.min(1,t*7),sx,sy:1};},
+  spiral(t)    {const r=Math.max(0,1-t)*Math.min(W,H)*.2;const a=(1-t)*Math.PI*2.8;return{alpha:Math.min(1,t*8),sx:1,sy:1,ox:Math.cos(a)*r,oy:Math.sin(a)*r,rot:(1-t)*.8};},
 };
 const ANIM_KEYS=Object.keys(ANIMS);
 
@@ -566,7 +750,7 @@ function seededRng(seed){
 // ═══════════════════════════════════════════
 function ratioWH(canvasMaxW, canvasMaxH, ratio){
   const [rw,rh]={
-    '16:9':[16,9],'9:16':[9,16],'1:1':[1,1],'4:5':[4,5]
+    '16:9':[16,9],'9:16':[9,16],'1:1':[1,1],'4:5':[4,5],'21:9':[21,9],'3:2':[3,2]
   }[ratio]||[16,9];
   let w=canvasMaxW, h=Math.round(canvasMaxW*rh/rw);
   if(h>canvasMaxH){h=canvasMaxH;w=Math.round(canvasMaxH*rw/rh);}
@@ -584,33 +768,47 @@ function computeLayouts(phraseWords,phraseIndex){
   const baseFz=Math.max(10, Math.round(userFz*scaleFactor));
   const sizeVar=parseInt(document.getElementById('sizeVar').value)/100;
   const rotMax=parseInt(document.getElementById('rotRange').value);
+  const spreadMul=(parseInt(document.getElementById('spreadRange')?.value||'100')/100);
   const fontMixP=parseInt(document.getElementById('fontMix').value)/100;
   const useMixFonts=document.getElementById('toggleFontMix').classList.contains('on');
   const useAccents=document.getElementById('toggleAccents').classList.contains('on');
   const st=STYLES[currentStyle];
   const n=phraseWords.length;
+  const heroIdx=currentLayout==='poster'
+    ? phraseWords.reduce((best,w,i)=>{
+        const len=(w.text||'').length;
+        const score=(w.isEmph?40:0)+len;
+        return score>best.score?{i,score}:best;
+      },{i:0,score:-1}).i
+    : -1;
 
   return phraseWords.map((w,wi)=>{
-    const emphMul=w.isEmph?(1+sizeVar*.6):(1-sizeVar*.15*rng());
+    const emphMul=currentLayout==='poster'
+      ? (wi===heroIdx?(1.9+sizeVar*.65):(0.68+sizeVar*.2*rng()))
+      : (w.isEmph?(1+sizeVar*.6):(1-sizeVar*.15*rng()));
     const sz=Math.round(baseFz*emphMul);
-    let fontIdx=0;
+    let fontIdx=currentStyle==='editorial'?6:0;
     if(useMixFonts&&rng()<fontMixP) fontIdx=Math.floor(rng()*FONTS.length);
-    let colorIdx=0;
-    if(useAccents&&(w.isEmph||rng()<.32)) colorIdx=1+Math.floor(rng()*(st.fills.length-1));
+    let colorIdx=(currentLayout==='poster'&&currentStyle==='editorial')?(wi===heroIdx?2:0):0;
+    if(currentLayout!=='poster' && useAccents&&(w.isEmph||rng()<.32)) colorIdx=1+Math.floor(rng()*(st.fills.length-1));
     let rot=0;
-    if(rotMax>0) rot=(rng()-.5)*2*(rotMax*Math.PI/180)*(w.isEmph?.5:1);
+    if(currentLayout==='poster'){
+      rot=(rng()-.5)*0.035;
+    }else if(rotMax>0){
+      rot=(rng()-.5)*2*(rotMax*Math.PI/180)*(w.isEmph?.5:1);
+    }
     let x,y;
     switch(currentLayout){
       case 'center':{
-        const lineH=sz*1.55;const totalH=n*lineH;
-        x=W/2+(rng()-.5)*W*.05;
+        const lineH=sz*1.55*spreadMul;const totalH=n*lineH;
+        x=W/2+(rng()-.5)*W*.05*spreadMul;
         y=H/2-totalH/2+wi*lineH+lineH/2;
         break;
       }
       case 'scattered':{
         const zones=[[.15,.2],[.5,.14],[.83,.2],[.1,.5],[.5,.5],[.88,.5],[.16,.78],[.5,.83],[.82,.75]];
         const z=zones[wi%zones.length];
-        x=(z[0]+(rng()-.5)*.1)*W; y=(z[1]+(rng()-.5)*.1)*H;
+        x=(z[0]+(rng()-.5)*.1*spreadMul)*W; y=(z[1]+(rng()-.5)*.1*spreadMul)*H;
         break;
       }
       case 'diagonal':{
@@ -651,7 +849,7 @@ function computeLayouts(phraseWords,phraseIndex){
         // Words follow a sine arc across canvas
         const t2=(wi+.5)/n;
         x=(.08+t2*.84)*W;
-        y=H/2+Math.sin(t2*Math.PI*1.5)*H*.28;
+        y=H/2+Math.sin(t2*Math.PI*1.5)*H*.28*spreadMul;
         rot=Math.cos(t2*Math.PI*1.5)*.18*(wi%2===0?1:-1);
         break;
       }
@@ -662,6 +860,97 @@ function computeLayouts(phraseWords,phraseIndex){
         x=cellW*ci+cellW/2+(rng()-.5)*cellW*.15;
         y=cellH*ri+cellH/2+(rng()-.5)*cellH*.15;
         rot=(rng()-.5)*rotMax*.5*Math.PI/180;
+        break;
+      }
+      case 'poster':{
+        const left=0.36*W;
+        const top=0.32*H;
+        const bottom=0.74*H;
+        if(wi===heroIdx){
+          x=left;
+          y=0.55*H;
+        }else{
+          const slots=[
+            [left-0.22*W, top],
+            [left-0.06*W, top-0.01*H],
+            [left+0.20*W, top-0.02*H],
+            [left-0.14*W, bottom],
+            [left+0.08*W, bottom-0.01*H],
+            [left+0.28*W, bottom+0.02*H],
+            [left+0.02*W, 0.18*H],
+            [left+0.22*W, 0.86*H]
+          ];
+          const slot=slots[(wi<heroIdx?wi:wi-1)%slots.length];
+          x=slot[0]+(rng()-.5)*W*.04;
+          y=slot[1]+(rng()-.5)*H*.035;
+        }
+        break;
+      }
+      case 'beat':{
+        const t2=(wi+.5)/Math.max(1,n);
+        const lane=(wi%2===0)?-1:1;
+        x=W/2 + lane*(W*(0.12 + (wi%3)*0.03)) + (rng()-.5)*W*.02;
+        y=H*(0.16 + t2*0.7);
+        rot=(rng()-.5)*0.14;
+        break;
+      }
+      case 'organic':{
+        const t2=(wi+.5)/Math.max(1,n);
+        x=W*(0.12+t2*0.76) + Math.sin(t2*Math.PI*2 + phraseIndex*0.35)*W*.08;
+        y=H*(0.5 + Math.sin(t2*Math.PI*1.3 + phraseIndex*0.28)*0.22);
+        rot=Math.sin(t2*Math.PI*2)*0.14;
+        break;
+      }
+      case 'info':{
+        const cols=n>6?3:2;
+        const rows=Math.ceil(n/cols);
+        const ci=wi%cols;
+        const ri=Math.floor(wi/cols);
+        const colSpan=cols===1?0:(ci/(cols-1));
+        x=W*(0.18 + colSpan*0.64);
+        y=H*(0.2 + ((ri+.5)/Math.max(1,rows))*0.62);
+        rot=0;
+        break;
+      }
+      case 'crawl':{
+        const t2=(wi+.5)/Math.max(1,n);
+        const depth=0.35 + t2*0.65;
+        x=W/2 + (rng()-.5)*W*.03*depth;
+        y=H*(0.9 - t2*0.74);
+        rot=0;
+        break;
+      }
+      case 'lyrics':{
+        const t2=(wi+.5)/Math.max(1,n);
+        x=(wi%2===0?W*0.34:W*0.66)+(rng()-.5)*W*.025;
+        y=H*(0.18 + t2*0.68);
+        rot=(wi%2===0?-1:1)*0.03;
+        break;
+      }
+      case 'path':{
+        const t2=(wi+.5)/Math.max(1,n);
+        x=W*(0.08+t2*0.84);
+        y=H*(0.46 + Math.sin((t2*1.5 + phraseIndex*0.07)*Math.PI)*0.2*spreadMul);
+        rot=Math.cos((t2*1.5 + phraseIndex*0.07)*Math.PI)*0.22;
+        break;
+      }
+      case 'radial':{
+        const t2=(wi)/Math.max(1,n);
+        const ring=Math.min(W,H)*(0.2+0.22*spreadMul);
+        const a=(Math.PI*2*t2)+(phraseIndex*0.35);
+        x=W/2+Math.cos(a)*ring;
+        y=H/2+Math.sin(a)*ring;
+        rot=a+Math.PI/2;
+        break;
+      }
+      case 'marquee':{
+        const cols=Math.max(2,Math.ceil(Math.sqrt(n*1.8)));
+        const rows=Math.ceil(n/cols);
+        const ci=wi%cols;const ri=Math.floor(wi/cols);
+        const rowShift=(ri%2===0?0.06:-0.06)*spreadMul;
+        x=W*(0.08 + (ci/(Math.max(1,cols-1)))*0.84 + rowShift);
+        y=H*(0.2 + ((ri+.5)/Math.max(1,rows))*0.62);
+        rot=(ri%2===0?1:-1)*0.025;
         break;
       }
       default:x=W/2;y=H/2;
@@ -695,7 +984,7 @@ function parseIntoPhrases(text){
         if(!clean)return null;
         const isEmph=EMPH.has(clean.toLowerCase())||/^[A-Z]{2,}$/.test(clean)||clean.length<=2;
         const animName=currentAnim==='mix'?ANIM_KEYS[Math.floor(Math.random()*ANIM_KEYS.length)]:currentAnim;
-        return{text:clean.toUpperCase(),isEmph,animName};
+        return{text:clean.toUpperCase(),raw:clean,isEmph,animName};
       }).filter(Boolean);
       if(words.length)result.push({words});
     }
@@ -727,8 +1016,9 @@ function initCanvas(){
 
 function sizeCanvas(){
   const area=document.getElementById('canvasArea');
-  const maxW=area.clientWidth-40;
-  const maxH=area.clientHeight-40;
+  if(!area)return;
+  const maxW=Math.max(220,area.clientWidth-40);
+  const maxH=Math.max(220,area.clientHeight-40);
   const dim=ratioWH(maxW,maxH,currentRatio);
   W=dim.w; H=dim.h;
   cv.width=W; cv.height=H;
@@ -802,9 +1092,27 @@ const GRAPHIC_MAP = {
   music:'music', sing:'music', sound:'music', beat:'music', rhythm:'music',
   // world / earth
   world:'world', earth:'world', globe:'world', life:'world', freedom:'world', free:'world',
+  // camera / content
+  camera:'camera', photo:'camera', video:'camera', creator:'camera', reel:'camera', edit:'camera',
+  // social / chat
+  chat:'chat', message:'chat', comment:'chat', social:'chat', community:'chat',
+  // target / focus
+  target:'target', goal:'target', focus:'target', aim:'target', mission:'target',
+  // shield / trust
+  shield:'shield', safe:'shield', security:'shield', protect:'shield', trust:'shield',
+  // crown / premium
+  crown:'crown', premium:'crown', elite:'crown', king:'crown', queen:'crown',
+  // gift / promo
+  gift:'gift', offer:'gift', sale:'gift', deal:'gift', bonus:'gift',
+  // clock / urgency
+  time:'clock', clock:'clock', deadline:'clock', urgent:'clock', now:'clock',
+  // cloud / web
+  cloud:'cloud', web:'cloud', upload:'cloud', download:'cloud', server:'cloud',
+  // flower / calm
+  flower:'flower', bloom:'flower', calm:'flower', relax:'flower', wellness:'flower',
 };
 
-const FALLBACK_GRAPHICS = ['stars','fire','lightning','rocket','heart'];
+const FALLBACK_GRAPHICS = ['stars','fire','lightning','rocket','heart','camera','chat','target','gift','cloud'];
 
 function getPhraseGraphicType(phrase, phIdx) {
   for (const w of phrase.words) {
@@ -1007,6 +1315,144 @@ function buildGraphicSVG(type, sz) {
       <path d="M22 52 Q28 48 32 54 Q30 62 24 60Z" fill="#22AA44" opacity="0.9"/>
     </svg>`;
 
+    case 'camera': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes camPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+        @keyframes flashBlink{0%,85%,100%{opacity:0}88%,92%{opacity:1}}
+        .cam{animation:camPulse 1.2s ease-in-out infinite;transform-origin:50px 50px;}
+        .fl{animation:flashBlink 1.8s linear infinite;}
+      </style>
+      <rect x="16" y="28" width="68" height="48" rx="10" fill="#1d2738" stroke="#8DE4FF" stroke-width="2" class="cam"/>
+      <rect x="26" y="22" width="20" height="10" rx="4" fill="#2c3b56"/>
+      <circle cx="50" cy="52" r="15" fill="#0b1526" stroke="#8DE4FF" stroke-width="3"/>
+      <circle cx="50" cy="52" r="7" fill="#64B5FF" opacity="0.85"/>
+      <circle cx="74" cy="40" r="4" fill="#90F7EC"/>
+      <circle cx="84" cy="18" r="9" fill="#fff" opacity="0" class="fl"/>
+    </svg>`;
+
+    case 'chat': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes bubbleIn{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        @keyframes dots{0%,100%{opacity:.35}50%{opacity:1}}
+        .b1{animation:bubbleIn 1.4s ease-in-out infinite;}
+        .b2{animation:bubbleIn 1.1s ease-in-out infinite .2s;}
+        .d1{animation:dots .9s ease-in-out infinite .0s;}
+        .d2{animation:dots .9s ease-in-out infinite .15s;}
+        .d3{animation:dots .9s ease-in-out infinite .3s;}
+      </style>
+      <path d="M16 30h48a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H42l-10 10v-10H16a8 8 0 0 1-8-8V38a8 8 0 0 1 8-8z" fill="#6C8CFF" class="b1"/>
+      <path d="M44 18h40a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8H68l-8 8v-8H44a8 8 0 0 1-8-8V26a8 8 0 0 1 8-8z" fill="#9BE7FF" class="b2"/>
+      <circle cx="28" cy="49" r="3" fill="#fff" class="d1"/><circle cx="38" cy="49" r="3" fill="#fff" class="d2"/><circle cx="48" cy="49" r="3" fill="#fff" class="d3"/>
+    </svg>`;
+
+    case 'target': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes ringPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:.6}}
+        @keyframes arrowHit{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+        .rg{animation:ringPulse 1.2s ease-in-out infinite;transform-origin:50px 50px;}
+        .ar{animation:arrowHit .9s ease-in-out infinite;}
+      </style>
+      <g class="rg">
+        <circle cx="50" cy="50" r="32" fill="#ffdfdf" stroke="#ff5e5e" stroke-width="3"/>
+        <circle cx="50" cy="50" r="22" fill="#fff" stroke="#ff5e5e" stroke-width="3"/>
+        <circle cx="50" cy="50" r="12" fill="#ff9c9c"/>
+        <circle cx="50" cy="50" r="5" fill="#c1121f"/>
+      </g>
+      <g class="ar" transform="translate(0,0)">
+        <line x1="66" y1="34" x2="86" y2="20" stroke="#2f3e46" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="86,20 82,30 93,26" fill="#2f3e46"/>
+      </g>
+    </svg>`;
+
+    case 'shield': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes shieldGlow{0%,100%{filter:drop-shadow(0 0 2px #6ee7b7)}50%{filter:drop-shadow(0 0 10px #6ee7b7)}}
+        @keyframes checkPop{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+        .sh{animation:shieldGlow 1.3s ease-in-out infinite;}
+        .ck{animation:checkPop 1s ease-in-out infinite;transform-origin:50px 54px;}
+      </style>
+      <path class="sh" d="M50 12l30 10v22c0 19-11 33-30 42C31 77 20 63 20 44V22l30-10z" fill="#0f3d2e" stroke="#6ee7b7" stroke-width="3"/>
+      <path class="ck" d="M37 54l9 9 18-20" fill="none" stroke="#b7ffe3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+    case 'crown': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes bobCrown{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        @keyframes shineCrown{0%,100%{opacity:.3}50%{opacity:1}}
+        .cr{animation:bobCrown 1.4s ease-in-out infinite;}
+        .gl{animation:shineCrown 1s ease-in-out infinite;}
+      </style>
+      <g class="cr">
+        <path d="M15 68l8-36 20 18 17-30 17 30 20-18 8 36H15z" fill="#ffd54a" stroke="#b67b00" stroke-width="3"/>
+        <rect x="15" y="68" width="70" height="12" rx="4" fill="#e6a700"/>
+        <circle cx="23" cy="32" r="5" fill="#fff3b0" class="gl"/>
+        <circle cx="50" cy="20" r="5" fill="#fff3b0" class="gl"/>
+        <circle cx="77" cy="32" r="5" fill="#fff3b0" class="gl"/>
+      </g>
+    </svg>`;
+
+    case 'gift': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes giftBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+        @keyframes ribbonPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+        .gb{animation:giftBounce 1.1s ease-in-out infinite;transform-origin:50px 60px;}
+        .rb{animation:ribbonPop .9s ease-in-out infinite;transform-origin:50px 44px;}
+      </style>
+      <g class="gb">
+        <rect x="20" y="42" width="60" height="42" rx="6" fill="#ff6b9d"/>
+        <rect x="20" y="42" width="60" height="10" fill="#ff8db4"/>
+        <rect x="46" y="42" width="8" height="42" fill="#fff"/>
+        <rect x="20" y="56" width="60" height="8" fill="#fff"/>
+        <path class="rb" d="M50 42c-9-12-19-8-16 0 2 5 9 6 16 0z" fill="#fff"/>
+        <path class="rb" d="M50 42c9-12 19-8 16 0-2 5-9 6-16 0z" fill="#fff"/>
+      </g>
+    </svg>`;
+
+    case 'clock': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes tickHand{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes tickHandSlow{from{transform:rotate(0deg)}to{transform:rotate(30deg)}}
+        .h1{animation:tickHand 4s linear infinite;transform-origin:50px 50px;}
+        .h2{animation:tickHandSlow 4s linear infinite;transform-origin:50px 50px;}
+      </style>
+      <circle cx="50" cy="50" r="34" fill="#f8fbff" stroke="#4a6fa5" stroke-width="4"/>
+      <line class="h2" x1="50" y1="50" x2="50" y2="30" stroke="#4a6fa5" stroke-width="4" stroke-linecap="round"/>
+      <line class="h1" x1="50" y1="50" x2="66" y2="50" stroke="#1d3557" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="3" fill="#1d3557"/>
+    </svg>`;
+
+    case 'cloud': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes cloudFloat{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+        @keyframes upDown{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        .cl{animation:cloudFloat 1.8s ease-in-out infinite;}
+        .ar{animation:upDown .9s ease-in-out infinite;}
+      </style>
+      <g class="cl">
+        <path d="M28 66h40a14 14 0 0 0 0-28 18 18 0 0 0-34-4 12 12 0 0 0-6 32z" fill="#d9efff" stroke="#78b8e6" stroke-width="3"/>
+      </g>
+      <g class="ar">
+        <path d="M50 60V44" stroke="#2d6a9f" stroke-width="4" stroke-linecap="round"/>
+        <path d="M44 50l6-6 6 6" fill="none" stroke="#2d6a9f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>`;
+
+    case 'flower': return `<svg width="${s}" height="${s}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes bloom{0%,100%{transform:scale(.9)}50%{transform:scale(1.08)}}
+        .flw{animation:bloom 1.4s ease-in-out infinite;transform-origin:50px 50px;}
+      </style>
+      <g class="flw">
+        <ellipse cx="50" cy="30" rx="10" ry="16" fill="#ff9ecf"/>
+        <ellipse cx="70" cy="40" rx="10" ry="16" fill="#ff9ecf" transform="rotate(45 70 40)"/>
+        <ellipse cx="30" cy="40" rx="10" ry="16" fill="#ff9ecf" transform="rotate(-45 30 40)"/>
+        <ellipse cx="66" cy="62" rx="10" ry="16" fill="#ff9ecf" transform="rotate(120 66 62)"/>
+        <ellipse cx="34" cy="62" rx="10" ry="16" fill="#ff9ecf" transform="rotate(-120 34 62)"/>
+        <circle cx="50" cy="50" r="10" fill="#ffd166"/>
+        <rect x="48" y="60" width="4" height="24" rx="2" fill="#4caf50"/>
+      </g>
+    </svg>`;
+
     default: return buildGraphicSVG('stars', sz);
   }
 }
@@ -1067,19 +1513,16 @@ function drawPhraseMotionGraphic(ph, phIdx, localMs) {
 }
 
 function getPhraseTextBounds(ph) {
-  if (!ph || !Array.isArray(ph.layout) || !ph.layout.length) {
+  const boxes = getPhraseWordBoxes(ph);
+  if (!boxes.length) {
     return { minX: W * 0.3, maxX: W * 0.7, minY: H * 0.35, maxY: H * 0.65 };
   }
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  ph.layout.forEach((lp, idx) => {
-    const word = ph.words[idx]?.text || '';
-    const chars = Math.max(3, word.length);
-    const estW = Math.max(lp.sz * 2.1, lp.sz * 0.58 * chars);
-    const estH = lp.sz * 1.2;
-    minX = Math.min(minX, lp.x - estW / 2);
-    maxX = Math.max(maxX, lp.x + estW / 2);
-    minY = Math.min(minY, lp.y - estH / 2);
-    maxY = Math.max(maxY, lp.y + estH / 2);
+  boxes.forEach(b => {
+    minX = Math.min(minX, b.minX);
+    maxX = Math.max(maxX, b.maxX);
+    minY = Math.min(minY, b.minY);
+    maxY = Math.max(maxY, b.maxY);
   });
   return {
     minX: Math.max(0, minX),
@@ -1089,40 +1532,107 @@ function getPhraseTextBounds(ph) {
   };
 }
 
+function getPhraseWordBoxes(ph) {
+  if (!ph || !Array.isArray(ph.layout) || !ph.layout.length) return [];
+  const boxes = [];
+  ph.layout.forEach((lp, idx) => {
+    const fallbackWord = ph.words[idx]?.text || '';
+    const drawWord = currentStyle === 'editorial'
+      ? ((ph.words[idx]?.raw || fallbackWord).toLowerCase())
+      : fallbackWord;
+
+    let textW = Math.max(lp.sz * 0.45, lp.sz * 0.56 * Math.max(1, drawWord.length));
+    let textH = lp.sz * 0.95;
+    if (ctx) {
+      const font = FONTS[lp.fontIdx] || FONTS[0];
+      ctx.save();
+      ctx.font = font.f(lp.sz);
+      const m = ctx.measureText(drawWord);
+      const asc = m.actualBoundingBoxAscent || lp.sz * 0.72;
+      const desc = m.actualBoundingBoxDescent || lp.sz * 0.22;
+      textW = Math.max(1, m.width);
+      textH = Math.max(1, asc + desc);
+      ctx.restore();
+    }
+
+    boxes.push({
+      minX: lp.x - textW / 2,
+      maxX: lp.x + textW / 2,
+      minY: lp.y - textH / 2,
+      maxY: lp.y + textH / 2
+    });
+  });
+  return boxes;
+}
+
 function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
+  const boxes = getPhraseWordBoxes(ph);
   const bounds = getPhraseTextBounds(ph);
   const cx = (bounds.minX + bounds.maxX) / 2;
   const cy = (bounds.minY + bounds.maxY) / 2;
 
   const halfW = mediaW / 2;
   const halfH = mediaH / 2;
-  const m = 12;
+  const m = 2;
   const xL = halfW + m;
   const xR = W - halfW - m;
   const yT = halfH + m;
   const yB = H - halfH - m;
-  const xC = W / 2;
-  const yC = H / 2;
 
-  const candidates = [
-    { x: xR, y: yT }, { x: xL, y: yT }, { x: xR, y: yB }, { x: xL, y: yB },
-    { x: xC, y: yT }, { x: xC, y: yB }, { x: xL, y: yC }, { x: xR, y: yC }
+  const anchors = [
+    { x: bounds.maxX + halfW, y: cy },
+    { x: bounds.minX - halfW, y: cy },
+    { x: cx, y: bounds.minY - halfH },
+    { x: cx, y: bounds.maxY + halfH },
+    { x: bounds.maxX + halfW, y: bounds.minY - halfH },
+    { x: bounds.minX - halfW, y: bounds.minY - halfH },
+    { x: bounds.maxX + halfW, y: bounds.maxY + halfH },
+    { x: bounds.minX - halfW, y: bounds.maxY + halfH }
   ];
 
-  const avoid = {
-    minX: bounds.minX - halfW - 12,
-    maxX: bounds.maxX + halfW + 12,
-    minY: bounds.minY - halfH - 10,
-    maxY: bounds.maxY + halfH + 10
-  };
+  const clampCandidate = (p) => ({
+    x: Math.max(xL, Math.min(xR, p.x)),
+    y: Math.max(yT, Math.min(yB, p.y))
+  });
+
+  const candidates = [];
+  anchors.forEach((a) => {
+    const dx = a.x - cx;
+    const dy = a.y - cy;
+    const len = Math.hypot(dx, dy) || 1;
+    const ux = dx / len;
+    const uy = dy / len;
+    // Deterministic outward sweep from closest touch position.
+    for (let step = 0; step <= 20; step++) {
+      const d = step * 10;
+      candidates.push(clampCandidate({ x: a.x + ux * d, y: a.y + uy * d }));
+    }
+  });
+
+  function overlapAreaWithPhraseBox(left, top, right, bottom) {
+    if (!boxes.length) return 0;
+    let area = 0;
+    boxes.forEach((b) => {
+      const w = Math.max(0, Math.min(right, b.maxX) - Math.max(left, b.minX));
+      const h = Math.max(0, Math.min(bottom, b.maxY) - Math.max(top, b.minY));
+      area += w * h;
+    });
+    return area;
+  }
 
   let best = null;
   let bestScore = -Infinity;
-  candidates.forEach((p, idx) => {
-    const overlaps = p.x >= avoid.minX && p.x <= avoid.maxX && p.y >= avoid.minY && p.y <= avoid.maxY;
+  candidates.forEach((p) => {
+    const left = p.x - halfW;
+    const right = p.x + halfW;
+    const top = p.y - halfH;
+    const bottom = p.y + halfH;
+
+    const overlapArea = overlapAreaWithPhraseBox(left, top, right, bottom);
+    const overlaps = overlapArea > 0;
     const dist = Math.hypot(p.x - cx, p.y - cy);
-    const variation = ((idx + phIdx) % candidates.length === 0) ? 8 : 0;
-    const score = (overlaps ? -10000 : 0) + dist + variation;
+    // Prefer the closest valid slot; no extra padding between text boxes and media.
+    const score = overlaps ? (-1e9 - overlapArea - dist) : (-dist);
     if (score > bestScore) {
       bestScore = score;
       best = p;
@@ -1152,6 +1662,7 @@ function drawMotionGraphic() {}
 
 
 function drawWord(w,lp,t,st){
+  const wordText=currentStyle==='editorial'?(w.raw||w.text).toLowerCase():w.text;
   const anim=(ANIMS[w.animName]||ANIMS.pop)(t);
   const alpha=Math.max(0,Math.min(1,anim.alpha??1));
   if(alpha<=0)return;
@@ -1170,12 +1681,12 @@ function drawWord(w,lp,t,st){
   const color=st.fills[lp.colorIdx]||st.fills[0];
   if(anim.glitch){
     ctx.save();ctx.shadowColor='transparent';ctx.globalAlpha=.4;
-    ctx.fillStyle='#FF00FF';ctx.fillText(w.text,3,2);
-    ctx.fillStyle='#00FFFF';ctx.fillText(w.text,-3,-2);
+    ctx.fillStyle='#FF00FF';ctx.fillText(wordText,3,2);
+    ctx.fillStyle='#00FFFF';ctx.fillText(wordText,-3,-2);
     ctx.restore();
   }
   if(anim.waveT!==undefined){
-    const chars=w.text.split('');
+    const chars=wordText.split('');
     ctx.font=font.f(lp.sz);
     const ws=chars.map(c=>ctx.measureText(c).width);
     const tw=ws.reduce((a,b)=>a+b,0);
@@ -1186,11 +1697,11 @@ function drawWord(w,lp,t,st){
     });
   } else if(anim.typeT!==undefined){
     ctx.font=font.f(lp.sz);
-    const fw=ctx.measureText(w.text).width;
+    const fw=ctx.measureText(wordText).width;
     ctx.save();ctx.beginPath();ctx.rect(-fw/2-2,-lp.sz,fw*anim.typeT+4,lp.sz*2.2);ctx.clip();
-    ctx.fillStyle=color;ctx.fillText(w.text,0,0);ctx.restore();
+    ctx.fillStyle=color;ctx.fillText(wordText,0,0);ctx.restore();
   } else {
-    ctx.fillStyle=color;ctx.fillText(w.text,0,0);
+    ctx.fillStyle=color;ctx.fillText(wordText,0,0);
   }
   ctx.restore();
   // Draw motion graphic emoji (needs access to word & layout — passed via w._mg, w._wi, w._phLocalMs)
@@ -1336,20 +1847,26 @@ function startExport(type){
     return;
   }
 
-  // WebM via MediaRecorder
+  // Video via MediaRecorder (WebM capture, optional MP4 transcode)
   if(!window.MediaRecorder){
     toast('MediaRecorder not supported in this browser.',true);
     closeExportModal();return;
   }
 
-  const mimeType=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+  const requestedMp4Mime =
+    MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.42E01E')
+      ? 'video/mp4;codecs=avc1.42E01E'
+      : MediaRecorder.isTypeSupported('video/mp4')
+      ? 'video/mp4'
+      : null;
+  const webmMime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
     ?'video/webm;codecs=vp9'
     :MediaRecorder.isTypeSupported('video/webm')
     ?'video/webm':null;
+  const mimeType=(type==='mp4' && requestedMp4Mime) ? requestedMp4Mime : webmMime;
 
   if(!mimeType){
-    // Fallback: offer PNG sequence instruction
-    toast('WebM not supported. Try PNG frame export.',true);
+    toast('Video recording not supported. Try PNG frame export.',true);
     closeExportModal();return;
   }
 
@@ -1367,16 +1884,47 @@ function startExport(type){
   const stream=cv.captureStream(30);
   const recorder=new MediaRecorder(stream,{mimeType,videoBitsPerSecond:6_000_000});
   recorder.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
-  recorder.onstop=()=>{
+  recorder.onstop=async ()=>{
     const blob=new Blob(chunks,{type:mimeType});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;a.download='kinetic-typography.webm';a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),5000);
-    statusEl.textContent='Done! File downloaded.';
-    barEl.style.width='100%';
-    setTimeout(closeExportModal,1500);
-    toast('WebM video downloaded!');
+    try{
+      if(type==='mp4'){
+        if((mimeType||'').startsWith('video/mp4')){
+          downloadBlob(blob,'kinetic-typography.mp4');
+          statusEl.textContent='Done! MP4 downloaded.';
+          barEl.style.width='100%';
+          setTimeout(closeExportModal,1500);
+          toast('MP4 video downloaded!');
+        }else{
+          statusEl.textContent='Preparing MP4 encoder…';
+          barEl.style.width='92%';
+          const mp4Blob=await transcodeWebmToMp4(blob,statusEl,barEl);
+          downloadBlob(mp4Blob,'kinetic-typography.mp4');
+          statusEl.textContent='Done! MP4 downloaded.';
+          barEl.style.width='100%';
+          setTimeout(closeExportModal,1500);
+          toast('MP4 video downloaded!');
+        }
+      }else{
+        downloadBlob(blob,'kinetic-typography.webm');
+        statusEl.textContent='Done! File downloaded.';
+        barEl.style.width='100%';
+        setTimeout(closeExportModal,1500);
+        toast('WebM video downloaded!');
+      }
+    }catch(err){
+      console.error(err);
+      const reason=getErrorText(err);
+      if(type==='mp4'){
+        downloadBlob(blob,'kinetic-typography.webm');
+        statusEl.textContent='MP4 unavailable. Downloaded WebM instead.';
+        barEl.style.width='100%';
+        toast('MP4 conversion failed ('+reason+'). WebM downloaded instead.',true);
+      }else{
+        statusEl.textContent='Export failed.';
+        toast('Export failed ('+reason+').',true);
+      }
+      setTimeout(closeExportModal,1800);
+    }
   };
 
   recorder.start();
@@ -1406,9 +1954,72 @@ function startExport(type){
 function regenLayouts(){
   if(generated){phrases=buildTimeline(phrases.map(p=>({words:p.words})));drawAtTime(progress*totalDurMs);}
 }
+
+const STYLE_DEFAULTS={
+  pulse:{layout:'beat',anim:'whip',timing:270},
+  serene:{layout:'organic',anim:'drift',timing:700},
+  blueprint:{layout:'info',anim:'shutter',timing:450},
+  noir:{layout:'crawl',anim:'drift',timing:700},
+  lyric:{layout:'lyrics',anim:'bounce',timing:450},
+  retro3d:{layout:'radial',anim:'spiral',timing:270},
+  uihero:{layout:'path',anim:'reveal',timing:450},
+  mono:{layout:'info',anim:'handwrite',timing:700},
+  editorial:{layout:'poster',anim:'slam',timing:450}
+};
+
+function applyStyleDefaults(styleKey){
+  const defaults=STYLE_DEFAULTS[styleKey];
+  if(!defaults)return;
+  if(defaults.layout){
+    const layoutEl=document.querySelector(`.layout-card[data-layout="${defaults.layout}"]`);
+    if(layoutEl) selLayout(layoutEl);
+  }
+  if(defaults.anim){
+    const animEl=document.querySelector(`.anim-chip[data-anim="${defaults.anim}"]`);
+    if(animEl) selAnim(animEl);
+  }
+  if(defaults.timing){
+    const timingEl=document.querySelector(`.timing-chip[data-ms="${defaults.timing}"]`);
+    if(timingEl) selTiming(timingEl);
+  }
+}
+
+function initSidebarSectionCollapse(){
+  const sections=document.querySelectorAll('.sidebar .s-section');
+  sections.forEach((section,idx)=>{
+    if(section.dataset.collapsible==='ready')return;
+    const existingLabel=section.querySelector(':scope > .s-label');
+    const title=existingLabel?existingLabel.textContent.trim():'Generate';
+    if(existingLabel) existingLabel.remove();
+
+    const content=document.createElement('div');
+    content.className='s-content';
+    while(section.firstChild){content.appendChild(section.firstChild);}
+
+    const headBtn=document.createElement('button');
+    headBtn.type='button';
+    headBtn.className='s-head-btn';
+    headBtn.innerHTML=`<span>${title}</span><span class="s-caret">▾</span>`;
+
+    section.appendChild(headBtn);
+    section.appendChild(content);
+    section.dataset.collapsible='ready';
+
+    const shouldStartOpen=idx===0 || title==='Generate';
+    if(!shouldStartOpen)section.classList.add('collapsed');
+    headBtn.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
+
+    headBtn.addEventListener('click',()=>{
+      section.classList.toggle('collapsed');
+      headBtn.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
+    });
+  });
+}
+
 function selStyle(el){
   document.querySelectorAll('.style-card').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');currentStyle=el.dataset.style;
+  applyStyleDefaults(currentStyle);
   regenLayouts();if(!generated)drawIdle();
 }
 function selLayout(el){
@@ -2274,6 +2885,7 @@ async function pixabaySearchFirstHit(keyword) {
   const targetAspect = (W && H) ? (W / H) : 16 / 9;
   const preferredOrientation = targetAspect >= 1.12 ? 'horizontal' : (targetAspect <= 0.9 ? 'vertical' : 'all');
   const endpointFor = (orientation) => `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_API_KEY.trim())}&q=${encodeURIComponent(q)}&image_type=photo&safesearch=true&order=popular&per_page=40&orientation=${orientation}`;
+  // const endpointFor = (orientation) => `https://pixabay.com/api/?key=${encodeURIComponent(PIXABAY_API_KEY.trim())}&q=${encodeURIComponent(q)}&image_type=illustration&safesearch=true&order=popular&per_page=40&orientation=${orientation}`;
 
   const pickBestHit = (hits, preferredAspect) => {
     if (!Array.isArray(hits) || !hits.length) return null;
@@ -2481,6 +3093,7 @@ function updateSearchKeywordsDisplay(keywords) {
 //  INIT
 // ═══════════════════════════════════════════
 window.addEventListener('load',()=>{
+  initSidebarSectionCollapse();
   initCanvas();
   syncLottieLayer();
   syncLottieSearchLayer();
