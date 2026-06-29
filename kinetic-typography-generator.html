@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snoolink Kinetic Typography Generator - Dashboard</title>
-<meta name="description" content="Create high-impact kinetic typography videos with Snoolink. Animate scripts, customize layout, style, timing, and export directly from your browser.">
+<title>Snoolink Kinetic Typography Studio - Dashboard App</title>
+<meta name="description" content="Dashboard app for creating kinetic typography videos. Configure styles, layouts, timing, overlays, and export social-ready MP4 from your browser.">
 <link rel="canonical" href="https://snoolink.com/kinetic-typography-generator.html">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#5D1EF4">
 <meta name="msapplication-TileColor" content="#5D1EF4">
-<meta property="og:title" content="Snoolink Kinetic Typography Generator">
-<meta property="og:description" content="Generate dynamic kinetic typography videos in-browser with styles, motion graphics, Lottie search, and one-click export.">
+<meta property="og:title" content="Snoolink Kinetic Typography Studio">
+<meta property="og:description" content="Dashboard app with style presets, phrase-aware motion graphics, and MP4 export.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://snoolink.com/kinetic-typography-generator.html">
 <meta property="og:image" content="https://snoolink.com/assets/social-preview.png">
 <meta property="og:site_name" content="snoolink">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@snoolink">
-<meta name="twitter:title" content="Snoolink Kinetic Typography Generator">
-<meta name="twitter:description" content="Build and export kinetic typography videos from your script in minutes.">
+<meta name="twitter:title" content="Snoolink Kinetic Typography Studio">
+<meta name="twitter:description" content="Create and export kinetic typography videos in the dashboard app.">
 <meta name="twitter:image" content="https://snoolink.com/assets/social-preview.png">
 <link rel="icon" type="image/png" href="assets/favicon.ico">
 <link rel="manifest" href="/manifest.json">
@@ -86,10 +86,30 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
 .s-section.collapsed .s-content{display:none;}
 
 /* Script */
-.script-box{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;padding:12px 14px;resize:none;min-height:115px;outline:none;transition:border-color 0.15s;}
-.script-box:focus{border-color:var(--accent);}
+.script-section{
+  position:relative;
+  border:1px solid rgba(93,30,244,0.2);
+  border-radius:12px;
+  margin:12px 12px 10px;
+  padding:16px 16px 14px;
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(93,30,244,0.12) 0%, rgba(93,30,244,0) 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  box-shadow:0 8px 20px rgba(0,0,0,0.22);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.script-section:focus-within{
+  border-color:rgba(93,30,244,0.45);
+  box-shadow:0 10px 26px rgba(0,0,0,0.3), 0 0 0 1px rgba(93,30,244,0.28) inset;
+  transform:translateY(-1px);
+}
+.script-section .s-head-btn{color:#A9A6BC;}
+.script-section .s-head-btn:hover{color:#D1CFF0;}
+.script-box{width:100%;background:rgba(12,12,14,0.46);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;padding:14px 15px;resize:vertical;min-height:176px;max-height:320px;outline:none;transition:border-color .18s,box-shadow .18s,background-color .18s;}
+.script-box:focus{border-color:var(--accent);background:rgba(12,12,14,0.65);box-shadow:0 0 0 3px rgba(93,30,244,0.18);}
 .script-box::placeholder{color:var(--text3);}
-.script-meta{display:flex;justify-content:space-between;margin-top:7px;font-size:12.5px;color:var(--text3);}
+.script-meta{display:flex;justify-content:space-between;align-items:center;margin-top:9px;font-size:12.5px;color:#9E9BB2;}
+.script-meta span{padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);}
 
 /* Grid pickers */
 .style-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
@@ -97,8 +117,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
 .style-card:hover{border-color:var(--border2);transform:scale(1.02);}
 .style-card.sel{border-color:var(--accent);}
 .sc-preview{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13.5px;overflow:hidden;}
-.sc-name{padding:6px 8px;font-size:12px;font-weight:500;color:var(--text2);background:var(--surface2);}
+.sc-name{padding:6px 8px;font-size:12px;font-weight:500;color:var(--text2);background:var(--surface2);display:flex;align-items:center;gap:8px;min-width:0;}
 .style-card.sel .sc-name{color:#fff;}
+.style-variants{display:flex;gap:5px;align-items:center;margin-left:auto;flex-shrink:0;}
+.style-vdot{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,0.35);cursor:pointer;opacity:.75;transition:transform .1s,opacity .1s,border-color .1s;}
+.style-vdot:hover{transform:scale(1.15);opacity:1;}
+.style-vdot.sel{opacity:1;border-color:#fff;box-shadow:0 0 0 1px rgba(0,0,0,0.45) inset;}
 
 .layout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
 .layout-card{border:2px solid var(--border);border-radius:8px;padding:9px 6px;cursor:pointer;text-align:center;transition:border-color 0.15s;background:var(--surface2);}
@@ -150,16 +174,42 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 
 /* ── RIGHT PANEL ── */
 .right{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
-.preview-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:8px;}
-.pb-left{display:flex;align-items:center;gap:10px;}
+.preview-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:8px;position:sticky;top:0;z-index:30;}
+.pb-left{display:flex;align-items:center;gap:10px;min-width:0;}
 .pb-title{font-size:12.5px;font-weight:600;color:var(--text2);}
 .ratio-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);}
 .pb-actions{display:flex;gap:6px;flex-shrink:0;}
+.preview-gen{
+  width:auto;
+  padding:11px 16px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.01em;
+  white-space:nowrap;
+  flex-shrink:0;
+  min-height:40px;
+  background:linear-gradient(135deg,#6B2CF6,#5D1EF4 55%,#7C4DFF);
+  box-shadow:0 8px 20px rgba(93,30,244,0.35), inset 0 0 0 1px rgba(255,255,255,0.14);
+}
+.preview-gen:hover{
+  transform:translateY(-1px) scale(1.01);
+  box-shadow:0 12px 26px rgba(93,30,244,0.45), inset 0 0 0 1px rgba(255,255,255,0.18);
+  filter:brightness(1.04);
+}
+.preview-gen:active{
+  transform:translateY(0) scale(0.99);
+  box-shadow:0 6px 14px rgba(93,30,244,0.35), inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.preview-gen:focus-visible{outline:2px solid #A78BFA;outline-offset:2px;}
 .btn-ghost{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:5px 11px;border-radius:var(--rs);font-size:12px;cursor:pointer;font-family:inherit;transition:all 0.12s;white-space:nowrap;}
 .btn-ghost:hover{color:var(--text);border-color:var(--border2);}
 .btn-dl{background:var(--accent);border:none;color:#fff;padding:5px 13px;border-radius:var(--rs);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.12s;display:flex;align-items:center;gap:5px;white-space:nowrap;}
 .btn-dl:hover{background:var(--ahov);}
 .btn-dl:disabled{background:#3f22a6;pointer-events:none;}
+@media(max-width:768px){
+  .preview-gen{padding:10px 13px;font-size:12px;min-height:38px;}
+}
 
 /* ── CANVAS AREA ── */
 .canvas-area{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;background:#060607;position:relative;overflow:hidden;min-height:0;}
@@ -201,8 +251,8 @@ canvas{display:block;}
 .dl-status{font-size:12px;color:var(--text2);text-align:center;}
 
 /* Toast */
-.toast{position:fixed;bottom:18px;right:18px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);padding:10px 15px;font-size:12.5px;box-shadow:0 8px 32px rgba(0,0,0,0.5);transform:translateY(60px);opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);z-index:999;display:flex;align-items:center;gap:8px;max-width:300px;}
-.toast.show{transform:translateY(0);opacity:1;}
+.toast{position:fixed;top:18px;left:50%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);padding:10px 15px;font-size:12.5px;box-shadow:0 8px 32px rgba(0,0,0,0.5);transform:translate(-50%,-60px);opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);z-index:999;display:flex;align-items:center;gap:8px;max-width:300px;}
+.toast.show{transform:translate(-50%,0);opacity:1;}
 .toast-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;}
 .toast-dot.err{background:#ef4444;}
 
@@ -221,9 +271,9 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
     <a class="nav-logo" href="#">Snoolink Kinetic Typography</a>
   </div>
   <div class="nav-right">
-    <a class="nav-cta" href="index.html" aria-label="Try desktop app now">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 2.5h9v6.2h-9zM4.5 10.2h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Try Desktop App Now
+    <a class="nav-cta" href="kinetic-typography.html" aria-label="View guide and examples">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 1.8h8v8.4H2zM4 3.8h4M4 5.8h4M4 7.8h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Guide & Examples
     </a>
   </div>
 </nav>
@@ -234,7 +284,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
   <!-- ── SIDEBAR ── -->
   <aside class="sidebar" id="sidebar">
 
-    <div class="s-section">
+    <div class="s-section script-section">
       <div class="s-label">Script</div>
       <textarea class="script-box" id="scriptInput" placeholder="Type your script…">Meet Snoolink, your social media content management platform that helps you organize, manage, and automate your content workflow — so you can focus on what matters most.</textarea>
       <div class="script-meta">
@@ -305,6 +355,57 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <div class="style-card" data-style="mono" onclick="selStyle(this)">
           <div class="sc-preview" style="background:#EFEFEF;color:#111;font-family:'Courier New',monospace;font-size:11px;letter-spacing:1px">MONO</div>
           <div class="sc-name">Monochrome</div>
+        </div>
+        <div class="style-card" data-style="quotes" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:#000;color:#F2F2F2;font-family:Impact,'Arial Black',sans-serif;font-size:12px;letter-spacing:.2px;text-shadow:2px 2px 0 #4a4a4a">QUOTE</div>
+          <div class="sc-name">Quotes</div>
+        </div>
+        <div class="style-card" data-style="newspaper" onclick="selStyle(this)">
+          <div class="sc-preview" style="background:linear-gradient(180deg,#efe5c9 0%,#e2d6b3 100%);color:#171319;font-family:Impact,'Arial Black',sans-serif;font-size:12px;letter-spacing:.8px;box-shadow:inset 0 0 0 1px rgba(23,19,25,0.12)">NEWS</div>
+          <div class="sc-name">Newspaper</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-label">Graphics</div>
+      <div class="ctrl-row" style="margin-top:2px;">
+        <span class="ctrl-lbl">Motion graphics 🎭</span>
+        <button class="toggle on" id="toggleMotion" onclick="this.classList.toggle('on');if(generated)drawAtTime(progress*totalDurMs);"></button>
+      </div>
+      <div class="ctrl-row">
+        <span class="ctrl-lbl">Lottie search ✨</span>
+        <button class="toggle" id="toggleLottie" onclick="toggleLottieMode(this)"></button>
+      </div>
+      <div id="lottieStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
+        <span class="ctrl-lbl" id="lottieStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Enable &amp; hit Generate to fetch Lottie animations per line</span>
+      </div>
+      <div class="ctrl-row" style="margin-top:4px;">
+        <span class="ctrl-lbl">unDraw illustrations 🖼</span>
+        <button class="toggle" id="toggleUndraw" onclick="toggleUndrawMode(this)"></button>
+      </div>
+      <div id="undrawStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
+        <span class="ctrl-lbl" id="undrawStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Enable &amp; hit Generate to fetch illustrations</span>
+      </div>
+      <div class="ctrl-row" style="margin-top:4px;">
+        <span class="ctrl-lbl">Pixabay photos 📷</span>
+        <button class="toggle" id="togglePixabay" onclick="togglePixabayMode(this)"></button>
+      </div>
+      <div id="pixabayStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
+        <span class="ctrl-lbl" id="pixabayStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Add API key and hit Generate to fetch photos</span>
+      </div>
+      <div class="ctrl-row" style="margin-top:4px;">
+        <span class="ctrl-lbl">Emoji search 😀</span>
+        <button class="toggle" id="toggleEmoji" onclick="toggleEmojiMode(this)"></button>
+      </div>
+      <div id="emojiStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
+        <span class="ctrl-lbl" id="emojiStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Enable &amp; hit Generate to fetch emojis by keyword</span>
+      </div>
+      <div class="ctrl-row">
+        <span class="ctrl-lbl">Graphic size</span>
+        <div class="ctrl-right">
+          <input type="range" min="20" max="120" value="56" id="graphicSize" oninput="updateCtrl(this,'gsVal','p')">
+          <span class="ctrl-val" id="gsVal">56p</span>
         </div>
       </div>
     </div>
@@ -389,6 +490,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <button class="anim-chip" data-anim="slam" onclick="selAnim(this)">Slam</button>
         <button class="anim-chip" data-anim="rise" onclick="selAnim(this)">Rise</button>
         <button class="anim-chip" data-anim="drop" onclick="selAnim(this)">Drop</button>
+        <button class="anim-chip" data-anim="slide" onclick="selAnim(this)">Slide R→L</button>
+        <button class="anim-chip" data-anim="slideLtr" onclick="selAnim(this)">Slide L→R</button>
         <button class="anim-chip" data-anim="glitch" onclick="selAnim(this)">Glitch</button>
         <button class="anim-chip" data-anim="flip" onclick="selAnim(this)">Flip</button>
         <button class="anim-chip" data-anim="fade" onclick="selAnim(this)">Fade</button>
@@ -408,6 +511,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <button class="anim-chip" data-anim="jitter" onclick="selAnim(this)">Jitter</button>
         <button class="anim-chip" data-anim="reveal" onclick="selAnim(this)">Reveal</button>
         <button class="anim-chip" data-anim="spiral" onclick="selAnim(this)">Spiral</button>
+        <button class="anim-chip" data-anim="quote" onclick="selAnim(this)">Quote</button>
       </div>
     </div>
 
@@ -428,8 +532,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
       <div class="ctrl-row">
         <span class="ctrl-lbl">Base font size</span>
         <div class="ctrl-right">
-          <input type="range" min="14" max="90" value="46" id="fontSize" oninput="updateCtrl(this,'fsVal','px')">
-          <span class="ctrl-val" id="fsVal">46px</span>
+          <input type="range" min="14" max="220" value="150" id="fontSize" oninput="updateCtrl(this,'fsVal','px')">
+          <span class="ctrl-val" id="fsVal">150px</span>
         </div>
       </div>
       <div class="ctrl-row">
@@ -460,18 +564,6 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
           <span class="ctrl-val" id="fmVal">80%</span>
         </div>
       </div>
-      <div class="ctrl-row" style="margin-top:6px;">
-        <span class="ctrl-lbl">BG color</span>
-        <div class="color-row">
-          <div class="swatch sel" style="background:#000" data-color="#000000" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#0d0d1a" data-color="#0d0d1a" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#150a28" data-color="#150a28" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#f7f7f7" data-color="#f7f7f7" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#f5edd8" data-color="#f5edd8" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#ff6321" data-color="#ff6321" onclick="selBg(this)"></div>
-          <div class="swatch" style="background:#1a1a2e" data-color="#1a1a2e" onclick="selBg(this)"></div>
-        </div>
-      </div>
       <div class="ctrl-row" style="margin-top:9px;">
         <span class="ctrl-lbl">Mixed fonts</span>
         <button class="toggle on" id="toggleFontMix" onclick="this.classList.toggle('on');regenLayouts();"></button>
@@ -480,48 +572,12 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <span class="ctrl-lbl">Color accents</span>
         <button class="toggle on" id="toggleAccents" onclick="this.classList.toggle('on');regenLayouts();"></button>
       </div>
-      <div class="ctrl-row" style="margin-top:2px;">
-        <span class="ctrl-lbl">Motion graphics 🎭</span>
-        <button class="toggle on" id="toggleMotion" onclick="this.classList.toggle('on');if(generated)drawAtTime(progress*totalDurMs);"></button>
-      </div>
-      <div class="ctrl-row">
-        <span class="ctrl-lbl">Lottie search ✨</span>
-        <button class="toggle" id="toggleLottie" onclick="toggleLottieMode(this)"></button>
-      </div>
-      <div id="lottieStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
-        <span class="ctrl-lbl" id="lottieStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Enable &amp; hit Generate to fetch Lottie animations per line</span>
-      </div>
-      <div class="ctrl-row" style="margin-top:4px;">
-        <span class="ctrl-lbl">unDraw illustrations 🖼</span>
-        <button class="toggle" id="toggleUndraw" onclick="toggleUndrawMode(this)"></button>
-      </div>
-      <div id="undrawStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
-        <span class="ctrl-lbl" id="undrawStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Enable &amp; hit Generate to fetch illustrations</span>
-      </div>
-      <div class="ctrl-row" style="margin-top:4px;">
-        <span class="ctrl-lbl">Pixabay photos 📷</span>
-        <button class="toggle" id="togglePixabay" onclick="togglePixabayMode(this)"></button>
-      </div>
-      <div id="pixabayStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
-        <span class="ctrl-lbl" id="pixabayStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Add API key and hit Generate to fetch photos</span>
-      </div>
-      <div class="ctrl-row">
-        <span class="ctrl-lbl">Graphic size</span>
-        <div class="ctrl-right">
-          <input type="range" min="20" max="120" value="56" id="graphicSize" oninput="updateCtrl(this,'gsVal','px')">
-          <span class="ctrl-val" id="gsVal">56px</span>
-        </div>
-      </div>
     </div>
 
     <div class="s-section">
       <div id="searchKeywordsRow" class="ctrl-row" style="align-items:flex-start;margin-bottom:10px;">
         <span class="ctrl-lbl" style="font-size:10.5px;color:var(--text3);line-height:1.45;max-width:100%;white-space:normal;">Search keywords: <span id="searchKeywordsText" style="color:var(--text2);font-style:italic;">—</span></span>
       </div>
-      <button class="btn-gen" id="genBtn" onclick="generate()">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.2L13 7L8.5 8.8L7 13L5.5 8.8L1 7L5.5 5.2L7 1Z" fill="white"/></svg>
-        Generate Video
-      </button>
     </div>
 
   </aside><!-- /sidebar -->
@@ -530,6 +586,10 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
   <div class="right">
     <div class="preview-bar">
       <div class="pb-left">
+        <button class="btn-gen preview-gen" id="genBtn" onclick="generate()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.2L13 7L8.5 8.8L7 13L5.5 8.8L1 7L5.5 5.2L7 1Z" fill="white"/></svg>
+          Generate Video
+        </button>
         <span class="pb-title">Kinetic Preview</span>
         <span class="ratio-badge" id="ratioBadge">16:9</span>
       </div>
@@ -598,7 +658,6 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
 let cv, ctx, W, H;
 let phrases=[], wordMs=450, phraseGapMs=480;
 let currentStyle='neon', currentLayout='center', currentAnim='mix', currentRatio='16:9';
-let bgOverride=null;
 let playing=false, raf=null, startStamp=null, progress=0, totalDurMs=0, generated=false;
 let ffmpegInstance=null;
 let isExporting=false;
@@ -693,7 +752,129 @@ const STYLES={
   retro3d:  {bg:'#101319',fills:['#F7D06D','#F24E1E','#4C6FFF','#FFFFFF'],accent:'#F24E1E', shadowColor:'rgba(76,111,255,0.35)',shadowBlur:9,sOX:2,sOY:2},
   uihero:   {bg:'#0E1726',fills:['#BDE0FF','#64B5FF','#FFFFFF','#90F7EC'],accent:'#64B5FF', shadowColor:'rgba(100,181,255,0.25)',shadowBlur:8,sOX:0,sOY:0},
   mono:     {bg:'#EFEFEF',fills:['#111111','#4A4A4A','#767676','#222222'],accent:'#111111', shadowColor:'transparent',shadowBlur:0,sOX:0,sOY:0},
+  quotes:   {bg:'#000000',fills:['#F2F2F2','#D8D8D8','#FFFFFF','#CFCFCF'],accent:'#FFFFFF', shadowColor:'#4A4A4A',shadowBlur:0,sOX:2,sOY:2},
+  newspaper:{bg:'#E8DFC2',fills:['#171319','#26212A','#0E0B10','#3A313F'],accent:'#171319', shadowColor:'rgba(23,19,25,0.12)',shadowBlur:0,sOX:0,sOY:0},
 };
+
+const STYLE_VARIANTS={
+  neon:[
+    {id:'neon-night',bg:'#000000',fills:['#00FFFF','#FF00FF','#FFFFFF','#00FF88']},
+    {id:'neon-violet',bg:'#0D0D1A',fills:['#C4B5FD','#F0ABFC','#FFFFFF','#A7F3D0']},
+    {id:'neon-teal',bg:'#001A1A',fills:['#00F5D4','#7FFFD4','#FFFFFF','#00BBF9']},
+    {id:'neon-crimson',bg:'#1A000F',fills:['#FF4D8D','#FF9E00','#FFFFFF','#FF5C8A']}
+  ],
+  cinematic:[
+    {id:'cine-charcoal',bg:'#080808',fills:['#E8D5B0','#FFFFFF','#C8A96E']},
+    {id:'cine-plum',bg:'#1A1420',fills:['#F5E6C7','#EADBC8','#D9B77A']},
+    {id:'cine-navy',bg:'#0A1424',fills:['#F2E8D5','#D9E6F2','#C9A96E']},
+    {id:'cine-amber',bg:'#2A1B0C',fills:['#F4E3C3','#FFF8E8','#E0A13A']}
+  ],
+  minimal:[
+    {id:'min-paper',bg:'#F7F7F7',fills:['#111111','#333333','#FF6321']},
+    {id:'min-cool',bg:'#EEF1F6',fills:['#1F2937','#374151','#2563EB']},
+    {id:'min-sand',bg:'#F5EFE4',fills:['#1E1B16','#403A30','#D97706']},
+    {id:'min-mint',bg:'#EAF7F2',fills:['#102A23','#1F4F46','#10B981']}
+  ],
+  graffiti:[
+    {id:'graf-purple',bg:'#150a28',fills:['#FF2D78','#FFD700','#00FFCC']},
+    {id:'graf-ink',bg:'#0F1014',fills:['#FF4D6D','#FFD166','#4ECDC4']},
+    {id:'graf-green',bg:'#0A1A0A',fills:['#B8FF3B','#00E5FF','#FF5CA8']},
+    {id:'graf-rust',bg:'#2A130B',fills:['#FF7A00','#FFE066','#6EF3D6']}
+  ],
+  hype:[
+    {id:'hype-orange',bg:'#FF6321',fills:['#FFFFFF','#FFE000','#111111']},
+    {id:'hype-red',bg:'#E7472B',fills:['#FFFFFF','#FFE27A','#101010']},
+    {id:'hype-blue',bg:'#1D4ED8',fills:['#FFFFFF','#FDE047','#0B1220']},
+    {id:'hype-lime',bg:'#65A30D',fills:['#0F172A','#FFFFFF','#F97316']}
+  ],
+  paper:[
+    {id:'paper-cream',bg:'#F5EDD8',fills:['#2C1810','#8B0000','#4A3728']},
+    {id:'paper-ivory',bg:'#EFE3C8',fills:['#2F241A','#7D2A2A','#5B4634']},
+    {id:'paper-sage',bg:'#E5E9D8',fills:['#1F2A1F','#3D4B3D','#8B5E3C']},
+    {id:'paper-rose',bg:'#F0DDD8',fills:['#2B1C1A','#6E2A2A','#7A4A3A']}
+  ],
+  editorial:[
+    {id:'edit-tan',bg:'#E6D3B5',fills:['#111111','#2A2A2A','#8B0000']},
+    {id:'edit-warm',bg:'#DCC8A6',fills:['#171319','#2E2A2F','#7A1F1F']},
+    {id:'edit-slate',bg:'#DDE3EA',fills:['#101418','#2A3440','#B91C1C']},
+    {id:'edit-olive',bg:'#D9D9C4',fills:['#161A12','#303826','#8C3A1E']}
+  ],
+  pulse:[
+    {id:'pulse-deep',bg:'#0C0E14',fills:['#FF2E63','#08D9D6','#FFFFFF','#FCE38A']},
+    {id:'pulse-indigo',bg:'#0E1020',fills:['#FF5D8F','#67E8F9','#FFFFFF','#FDE68A']},
+    {id:'pulse-emerald',bg:'#05211A',fills:['#34D399','#A7F3D0','#FFFFFF','#FDE68A']},
+    {id:'pulse-burgundy',bg:'#2A0C18',fills:['#FB7185','#FBCFE8','#FFFFFF','#F59E0B']}
+  ],
+  serene:[
+    {id:'serene-sky',bg:'#E9F0FF',fills:['#3558A9','#2C3E66','#5D8BF4','#1E2A4A']},
+    {id:'serene-mint',bg:'#EAF8F2',fills:['#1E4F59','#2C6E7A','#34A0A4','#16323A']},
+    {id:'serene-lilac',bg:'#F1ECFF',fills:['#4A3F7A','#5E4FA2','#8B7EDB','#2B2450']},
+    {id:'serene-sand',bg:'#F6EEDD',fills:['#5B4A2E','#7A6540','#B08A57','#3A2E1D']}
+  ],
+  blueprint:[
+    {id:'blueprint-navy',bg:'#0B1E31',fills:['#7DE2FF','#D9F7FF','#57B6D9','#A8ECFF']},
+    {id:'blueprint-slate',bg:'#11263E',fills:['#8FDDF2','#E3F6FB','#64BCD9','#B4ECF7']},
+    {id:'blueprint-green',bg:'#0B2A2A',fills:['#8AF5E3','#E6FFFA','#4CC9B0','#BDF7EC']},
+    {id:'blueprint-purple',bg:'#1C1C3A',fills:['#A9D1FF','#EEF4FF','#7AA2F7','#C7DAFF']}
+  ],
+  noir:[
+    {id:'noir-black',bg:'#070707',fills:['#F3E6C4','#D6C29A','#FFFFFF','#A78A59']},
+    {id:'noir-smoke',bg:'#121212',fills:['#F1E5C7','#D9C6A0','#FDFDFD','#B49A70']},
+    {id:'noir-navy',bg:'#0B1320',fills:['#EFE3C8','#D6C7A8','#FFFFFF','#8BA3C7']},
+    {id:'noir-wine',bg:'#1B0C12',fills:['#F3E6C4','#E6C9B8','#FFFFFF','#C18F6A']}
+  ],
+  lyric:[
+    {id:'lyric-night',bg:'#131329',fills:['#8DE4FF','#F8A8FF','#FFFFFF','#7B9CFF']},
+    {id:'lyric-berry',bg:'#1A1533',fills:['#A5E9FF','#F9B7FF','#FFFFFF','#9AAEFF']},
+    {id:'lyric-ocean',bg:'#0B1D35',fills:['#7DD3FC','#C4B5FD','#FFFFFF','#38BDF8']},
+    {id:'lyric-sunset',bg:'#32162A',fills:['#FDBA74','#F9A8D4','#FFFFFF','#F472B6']}
+  ],
+  retro3d:[
+    {id:'retro-midnight',bg:'#101319',fills:['#F7D06D','#F24E1E','#4C6FFF','#FFFFFF']},
+    {id:'retro-denim',bg:'#1A1F2A',fills:['#FFD56A','#FF6A3D','#6E86FF','#FFFFFF']},
+    {id:'retro-teal',bg:'#0E2B2F',fills:['#FDE68A','#FB7185','#22D3EE','#FFFFFF']},
+    {id:'retro-plum',bg:'#2A1730',fills:['#FCD34D','#FB923C','#60A5FA','#FFFFFF']}
+  ],
+  uihero:[
+    {id:'uihero-dark',bg:'#0E1726',fills:['#BDE0FF','#64B5FF','#FFFFFF','#90F7EC']},
+    {id:'uihero-mid',bg:'#15243A',fills:['#C7E6FF','#78C2FF','#FFFFFF','#A4F9EE']},
+    {id:'uihero-indigo',bg:'#1F2350',fills:['#D6DCFF','#8EA2FF','#FFFFFF','#A7F3D0']},
+    {id:'uihero-emerald',bg:'#14302B',fills:['#C8FFF1','#5EEAD4','#FFFFFF','#93C5FD']}
+  ],
+  mono:[
+    {id:'mono-light',bg:'#EFEFEF',fills:['#111111','#4A4A4A','#767676','#222222']},
+    {id:'mono-dark',bg:'#1A1A1A',fills:['#F5F5F5','#D4D4D4','#B8B8B8','#FFFFFF']},
+    {id:'mono-blue',bg:'#DCE4F2',fills:['#0F172A','#334155','#475569','#1E293B']},
+    {id:'mono-sepia',bg:'#E8DFD1',fills:['#1F1A16','#4A3F35','#6B5E52','#2A241F']}
+  ],
+  quotes:[
+    {id:'quotes-black',bg:'#000000',fills:['#F2F2F2','#D8D8D8','#FFFFFF','#CFCFCF']},
+    {id:'quotes-charcoal',bg:'#121212',fills:['#F6F6F6','#E2E2E2','#FFFFFF','#D2D2D2']},
+    {id:'quotes-navy',bg:'#111827',fills:['#E5E7EB','#CBD5E1','#FFFFFF','#93C5FD']},
+    {id:'quotes-forest',bg:'#0F1F1A',fills:['#E7F7EF','#BFE7D1','#FFFFFF','#7DD3A7']}
+  ],
+  newspaper:[
+    {id:'news-cream',bg:'#E8DFC2',fills:['#171319','#26212A','#0E0B10','#3A313F']},
+    {id:'news-sepia',bg:'#DCCFAA',fills:['#1A141B','#2D2530','#120D14','#463A46']},
+    {id:'news-slate',bg:'#D6D9DC',fills:['#12151A','#2A2F36','#0D1014','#3D454F']},
+    {id:'news-sage',bg:'#D8D9C8',fills:['#161913','#2E3427','#10130D','#424B3A']}
+  ]
+};
+
+const styleVariantSelection={};
+
+function getActiveStyleConfig(styleKey=currentStyle){
+  const base=STYLES[styleKey]||STYLES.neon;
+  const variants=STYLE_VARIANTS[styleKey]||[];
+  if(!variants.length) return base;
+  const selectedId=styleVariantSelection[styleKey]||variants[0].id;
+  const variant=variants.find(v=>v.id===selectedId)||variants[0];
+  return {
+    ...base,
+    bg:variant.bg||base.bg,
+    fills:Array.isArray(variant.fills)&&variant.fills.length?variant.fills:base.fills
+  };
+}
 
 // ═══════════════════════════════════════════
 //  FONTS
@@ -716,6 +897,8 @@ const ANIMS={
   slam(t)      {const slide=Math.min(H,W)*.35;let oy=t<.2?-(1-(t/.2)**2)*slide:t<.35?-Math.sin(((t-.2)/.15)*Math.PI)*12:0;return{alpha:Math.min(1,t*9),sx:1,sy:1,oy};},
   rise(t)      {const slide=Math.min(H,W)*.25;const e=t<.5?2*t*t:-1+(4-2*t)*t;return{alpha:Math.min(1,t*3.5),sx:1,sy:1,oy:(1-e)*slide};},
   drop(t)      {const slide=Math.min(H,W)*.25;const e=t<.5?2*t*t:-1+(4-2*t)*t;return{alpha:Math.min(1,t*3.5),sx:1,sy:1,oy:-(1-e)*slide};},
+  slide(t)     {const d=Math.min(H,W)*.35;const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;return{alpha:Math.min(1,t*4.5),sx:1,sy:1,ox:(1-e)*d};},
+  slideLtr(t)  {const d=Math.min(H,W)*.35;const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;return{alpha:Math.min(1,t*4.5),sx:1,sy:1,ox:-(1-e)*d};},
   glitch(t)    {const ox=t<.4?Math.sin(t*130)*13*(1-t/.4):0;return{alpha:Math.min(1,t*6),sx:1,sy:1,ox,glitch:t<.4};},
   fade(t)      {return{alpha:t<.4?t/.4:t>.85?(1-t)/.15:1,sx:1,sy:1};},
   stretch(t)   {let sx=1,sy=1;if(t<.2){sx=.1+(t/.2)*1.6;sy=.5+(t/.2)*.5;}else if(t<.35){const tt=(t-.2)/.15;sx=1.7-tt*.7;sy=1;}return{alpha:Math.min(1,t*7),sx,sy};},
@@ -735,6 +918,7 @@ const ANIMS={
   jitter(t)    {const j=Math.max(0,1-t/.45);return{alpha:Math.min(1,t*8),sx:1,sy:1,ox:(Math.sin(t*90)*7*j),oy:(Math.cos(t*84)*5*j)};},
   reveal(t)    {const sx=t<.3?0.2+(t/.3)*0.8:1;return{alpha:Math.min(1,t*7),sx,sy:1};},
   spiral(t)    {const r=Math.max(0,1-t)*Math.min(W,H)*.2;const a=(1-t)*Math.PI*2.8;return{alpha:Math.min(1,t*8),sx:1,sy:1,ox:Math.cos(a)*r,oy:Math.sin(a)*r,rot:(1-t)*.8};},
+  quote(t)     {const e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;const oy=(1-e)*Math.min(H,W)*.045;const sx=0.97+0.03*e;return{alpha:Math.min(1,t*5.5),sx,sy:1,oy};},
 };
 const ANIM_KEYS=Object.keys(ANIMS);
 
@@ -773,7 +957,7 @@ function computeLayouts(phraseWords,phraseIndex){
   const fontMixP=parseInt(document.getElementById('fontMix').value)/100;
   const useMixFonts=document.getElementById('toggleFontMix').classList.contains('on');
   const useAccents=document.getElementById('toggleAccents').classList.contains('on');
-  const st=STYLES[currentStyle];
+  const st=getActiveStyleConfig();
   const n=phraseWords.length;
   const heroIdx=currentLayout==='poster'
     ? phraseWords.reduce((best,w,i)=>{
@@ -788,7 +972,7 @@ function computeLayouts(phraseWords,phraseIndex){
       ? (wi===heroIdx?(1.9+sizeVar*.65):(0.68+sizeVar*.2*rng()))
       : (w.isEmph?(1+sizeVar*.6):(1-sizeVar*.15*rng()));
     const sz=Math.round(baseFz*emphMul);
-    let fontIdx=currentStyle==='editorial'?6:0;
+    let fontIdx=(currentStyle==='editorial' || currentStyle==='newspaper')?6:0;
     if(useMixFonts&&rng()<fontMixP) fontIdx=Math.floor(rng()*FONTS.length);
     let colorIdx=(currentLayout==='poster'&&currentStyle==='editorial')?(wi===heroIdx?2:0):0;
     if(currentLayout!=='poster' && useAccents&&(w.isEmph||rng()<.32)) colorIdx=1+Math.floor(rng()*(st.fills.length-1));
@@ -1027,12 +1211,56 @@ function sizeCanvas(){
 }
 
 function drawIdle(){
-  const st=STYLES[currentStyle];
-  ctx.fillStyle=bgOverride||st.bg;
-  ctx.fillRect(0,0,W,H);
+  const st=getActiveStyleConfig();
+  if(currentStyle==='newspaper'){
+    drawNewspaperBackground(st);
+  }else{
+    ctx.fillStyle=st.bg;
+    ctx.fillRect(0,0,W,H);
+  }
   ctx.save();ctx.globalAlpha=.18;ctx.fillStyle=st.fills[0];
-  ctx.font='500 13px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='500 24px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText('Enter a script and hit Generate ✦',W/2,H/2);
+  ctx.restore();
+}
+
+function drawNewspaperBackground(st){
+  ctx.save();
+  ctx.fillStyle=(st&&st.bg)||'#E8DFC2';
+  ctx.fillRect(0,0,W,H);
+
+  const g=ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,'rgba(255,252,242,0.34)');
+  g.addColorStop(0.45,'rgba(232,223,194,0.0)');
+  g.addColorStop(1,'rgba(210,197,160,0.24)');
+  ctx.fillStyle=g;
+  ctx.fillRect(0,0,W,H);
+
+  // Subtle column-guide lines to emulate print layout texture.
+  ctx.strokeStyle='rgba(34,27,36,0.12)';
+  ctx.lineWidth=1;
+  ctx.globalAlpha=0.5;
+  const lineStep=Math.max(16,Math.round(H/42));
+  for(let y=lineStep;y<H;y+=lineStep){
+    ctx.beginPath();
+    ctx.moveTo(0,y);
+    ctx.lineTo(W,y);
+    ctx.stroke();
+  }
+
+  // Deterministic grain dots to avoid flicker across frames.
+  ctx.globalAlpha=0.18;
+  ctx.fillStyle='rgba(36,30,38,0.22)';
+  const grains=Math.max(140,Math.round((W*H)/4200));
+  for(let i=0;i<grains;i++){
+    const x=((i*73)%W)+0.5;
+    const y=((i*97)%H)+0.5;
+    ctx.fillRect(x,y,1,1);
+  }
+
+  ctx.globalAlpha=0.12;
+  ctx.strokeStyle='rgba(20,15,18,0.35)';
+  ctx.strokeRect(1,1,Math.max(0,W-2),Math.max(0,H-2));
   ctx.restore();
 }
 
@@ -1041,9 +1269,13 @@ function drawIdle(){
 // ═══════════════════════════════════════════
 function drawAtTime(ms){
   if(!ctx||!phrases.length){drawIdle();return;}
-  const st=STYLES[currentStyle];
-  ctx.fillStyle=bgOverride||st.bg;
-  ctx.fillRect(0,0,W,H);
+  const st=getActiveStyleConfig();
+  if(currentStyle==='newspaper'){
+    drawNewspaperBackground(st);
+  }else{
+    ctx.fillStyle=st.bg;
+    ctx.fillRect(0,0,W,H);
+  }
   // Hard clip — nothing can draw outside the canvas bounds
   ctx.save();
   ctx.beginPath();ctx.rect(0,0,W,H);ctx.clip();
@@ -1514,6 +1746,36 @@ function drawPhraseMotionGraphic(ph, phIdx, localMs) {
   if (undrawEnabled) showUndrawForPhrase(ph, phIdx, localMs);
   // Also show Pixabay image if enabled
   if (pixabayEnabled) showPixabayForPhrase(ph, phIdx, localMs);
+  // Also draw searched emoji in-canvas if enabled
+  if (emojiEnabled) drawEmojiForPhrase(ph, phIdx, localMs);
+}
+
+function getEmojiSizePx() {
+  const base = parseInt(document.getElementById('graphicSize').value, 10) || 56;
+  const scale = Math.min(1, W / 480, H / 320);
+  return Math.max(24, Math.round(base * scale * 0.92));
+}
+
+function drawEmojiForPhrase(ph, phIdx, localMs) {
+  const data = emojiPhraseData[phIdx];
+  if (!data || !data.emoji) return;
+
+  const size = getEmojiSizePx();
+  const pos = getMediaSafeSlot(ph, phIdx, size, size);
+  if (!pos) return;
+
+  const pulse = 1 + 0.06 * Math.sin((localMs || 0) / 170);
+  const drawSize = Math.max(20, Math.round(size * pulse));
+
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.globalAlpha = 0.95;
+  ctx.shadowColor = 'rgba(0,0,0,0.28)';
+  ctx.shadowBlur = 8;
+  ctx.font = `${drawSize}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`;
+  ctx.fillText(data.emoji, pos.x, pos.y);
+  ctx.restore();
 }
 
 function getPhraseTextBounds(ph) {
@@ -1666,7 +1928,11 @@ function drawMotionGraphic() {}
 
 
 function drawWord(w,lp,t,st){
-  const wordText=currentStyle==='editorial'?(w.raw||w.text).toLowerCase():w.text;
+  const wordText=currentStyle==='editorial'
+    ? (w.raw||w.text).toLowerCase()
+    : currentStyle==='newspaper'
+      ? (w.raw||w.text).toUpperCase()
+      : w.text;
   const anim=(ANIMS[w.animName]||ANIMS.pop)(t);
   const alpha=Math.max(0,Math.min(1,anim.alpha??1));
   if(alpha<=0)return;
@@ -1750,6 +2016,7 @@ function generate(){
     hideAllLottieSearch();
     hideAllUndraw();
     hideAllPixabay();
+    emojiPhraseData = {};
     phrases=buildTimeline(parsed);
     selectedSearchKeywords = phrases.map(ph => extractUniversalSearchKeyword(ph));
     updateSearchKeywordsDisplay(selectedSearchKeywords);
@@ -1778,6 +2045,11 @@ function generate(){
     if (pixabayEnabled) {
       document.getElementById('pixabayStatus').textContent = 'Searching Pixabay…';
       preloadPixabayImages(phrases, selectedSearchKeywords);
+    }
+    // Emoji API: preload if enabled
+    if (emojiEnabled) {
+      document.getElementById('emojiStatus').textContent = 'Searching emojis…';
+      preloadPhraseEmojis(phrases, selectedSearchKeywords);
     }
   },600);
 }
@@ -1976,6 +2248,8 @@ const STYLE_DEFAULTS={
   retro3d:{layout:'radial',anim:'spiral',timing:270},
   uihero:{layout:'path',anim:'reveal',timing:450},
   mono:{layout:'info',anim:'handwrite',timing:700},
+  quotes:{layout:'stack',anim:'quote',timing:700},
+  newspaper:{layout:'info',anim:'shutter',timing:700},
   editorial:{layout:'poster',anim:'slam',timing:450}
 };
 
@@ -2017,7 +2291,7 @@ function initSidebarSectionCollapse(){
     section.appendChild(content);
     section.dataset.collapsible='ready';
 
-    const shouldStartOpen=idx===0 || title==='Generate';
+    const shouldStartOpen=true;
     if(!shouldStartOpen)section.classList.add('collapsed');
     headBtn.setAttribute('aria-expanded', String(!section.classList.contains('collapsed')));
 
@@ -2031,6 +2305,7 @@ function initSidebarSectionCollapse(){
 function selStyle(el){
   document.querySelectorAll('.style-card').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');currentStyle=el.dataset.style;
+  refreshStyleVariantUI();
   applyStyleDefaults(currentStyle);
   regenLayouts();if(!generated)drawIdle();
 }
@@ -2073,10 +2348,67 @@ function selTiming(el){
   document.querySelectorAll('.timing-chip').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');wordMs=parseInt(el.dataset.ms);
 }
-function selBg(el){
-  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('sel'));
-  el.classList.add('sel');bgOverride=el.dataset.color;
-  if(generated)drawAtTime(progress*totalDurMs);else drawIdle();
+function ensureStyleVariantDefaults(){
+  Object.keys(STYLE_VARIANTS).forEach(styleKey=>{
+    const variants=STYLE_VARIANTS[styleKey];
+    if(variants&&variants.length&&!styleVariantSelection[styleKey]){
+      styleVariantSelection[styleKey]=variants[0].id;
+    }
+  });
+}
+
+function refreshStyleVariantUI(){
+  document.querySelectorAll('.style-card').forEach(card=>{
+    const styleKey=card.dataset.style;
+    const selectedId=styleVariantSelection[styleKey];
+    card.querySelectorAll('.style-vdot').forEach(dot=>{
+      dot.classList.toggle('sel',dot.dataset.variantId===selectedId);
+    });
+  });
+}
+
+function setStyleVariant(styleKey,variantId,selectStyle){
+  styleVariantSelection[styleKey]=variantId;
+  refreshStyleVariantUI();
+  if(selectStyle){
+    const card=document.querySelector(`.style-card[data-style="${styleKey}"]`);
+    if(card && currentStyle!==styleKey) selStyle(card);
+  }
+  if(currentStyle===styleKey){
+    if(generated)drawAtTime(progress*totalDurMs);else drawIdle();
+  }
+}
+
+function initStyleVariantSwatches(){
+  ensureStyleVariantDefaults();
+  document.querySelectorAll('.style-card').forEach(card=>{
+    const styleKey=card.dataset.style;
+    const variants=STYLE_VARIANTS[styleKey]||[];
+    if(variants.length<2) return;
+    const nameEl=card.querySelector('.sc-name');
+    if(!nameEl) return;
+
+    const existing=card.querySelector('.style-variants');
+    if(existing) existing.remove();
+
+    const row=document.createElement('div');
+    row.className='style-variants';
+    variants.forEach(v=>{
+      const dot=document.createElement('button');
+      dot.type='button';
+      dot.className='style-vdot';
+      dot.dataset.variantId=v.id;
+      dot.style.background=v.bg;
+      dot.title=v.id;
+      dot.addEventListener('click',(e)=>{
+        e.stopPropagation();
+        setStyleVariant(styleKey,v.id,true);
+      });
+      row.appendChild(dot);
+    });
+    nameEl.appendChild(row);
+  });
+  refreshStyleVariantUI();
 }
 function updateCtrl(el,valId,suffix){
   document.getElementById(valId).textContent=el.value+suffix;regenLayouts();
@@ -2119,6 +2451,9 @@ let currentLottiePhIdx = -1;
 // Loaded JSON data per phrase (fetched once on generate)
 let lottieDataCache = {}; // phIdx → animationJSON | null
 let selectedSearchKeywords = [];
+let emojiEnabled = false;
+let emojiPhraseData = {}; // phIdx -> { emoji, keyword, unicodeName } | null
+const EMOJI_API_KEY = 'aeb20aa0231a8b96173ef4a13225e9b8dd53d21c';
 
 // Pixabay configuration:
 // 1) Create an API key from https://pixabay.com/api/docs/
@@ -2831,7 +3166,7 @@ function showUndrawForPhrase(ph, phIdx, localMs) {
   const sz = getUndrawSizePx();
 
   // Determine accent color from current style
-  const st = STYLES[currentStyle];
+  const st = getActiveStyleConfig();
   const accentHex = (st.fills[1] || st.fills[0] || '#FF6321').replace('#','');
 
   // For remote SVGs, append unDraw color param; for data URIs, use as-is.
@@ -3023,6 +3358,154 @@ function togglePixabayMode(btn) {
     : 'Hit Generate to fetch Pixabay photos';
 }
 
+function toggleEmojiMode(btn) {
+  btn.classList.toggle('on');
+  emojiEnabled = btn.classList.contains('on');
+  const row = document.getElementById('emojiStatusRow');
+  row.style.display = emojiEnabled ? '' : 'none';
+
+  if (!emojiEnabled) {
+    emojiPhraseData = {};
+    const status = document.getElementById('emojiStatus');
+    if (status) status.textContent = 'Off';
+    if (generated) drawAtTime(progress * totalDurMs);
+    return;
+  }
+
+  const status = document.getElementById('emojiStatus');
+  if (status) {
+    status.textContent = generated
+      ? 'Ready - hit Generate to refresh emojis'
+      : 'Hit Generate to fetch emojis by keyword';
+  }
+}
+
+async function searchEmojiByKeyword(keyword) {
+  const q = String(keyword || '').trim();
+  if (!q) return [];
+  const endpoint = `https://emoji-api.com/emojis?search=${encodeURIComponent(q)}&access_key=${encodeURIComponent(EMOJI_API_KEY)}`;
+  try {
+    const res = await fetch(endpoint);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function getEmojiKeywordCandidates(phrase, preferredKeyword) {
+  const unique = new Set();
+  const out = [];
+  const push = (k) => {
+    const key = String(k || '').toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+    if (!key || key.length < 2 || unique.has(key)) return;
+    unique.add(key);
+    out.push(key);
+  };
+
+  // 1) Try the selected keyword first.
+  push(preferredKeyword);
+
+  if (!phrase || !Array.isArray(phrase.words)) return out;
+
+  // 2) Score phrase words to derive second-best, third-best, etc.
+  const scored = phrase.words.map((w, idx) => {
+    const raw = String(w.raw || w.text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const base = normalizeKeywordBase(raw);
+    if (!raw || raw.length < 2) return null;
+    const score = (w.isEmph ? 14 : 0) + Math.min(8, raw.length) - (idx * 0.6);
+    return { raw, base, score };
+  }).filter(Boolean).sort((a, b) => b.score - a.score);
+
+  scored.forEach(item => {
+    push(item.raw);
+    if (item.base && item.base !== item.raw) push(item.base);
+  });
+
+  return out;
+}
+
+function pickRandomEmojiFromList(list) {
+  if (!Array.isArray(list) || !list.length) return null;
+  const valid = list.filter(item => item && item.character);
+  if (!valid.length) return null;
+  return valid[Math.floor(Math.random() * valid.length)];
+}
+
+async function getRandomEmojiFallback(cache) {
+  const randomSeeds = ['smile', 'party', 'rocket', 'fire', 'music', 'star', 'heart', 'sparkle', 'sun', 'cat'];
+  const start = Math.floor(Math.random() * randomSeeds.length);
+  for (let i = 0; i < randomSeeds.length; i++) {
+    const kw = randomSeeds[(start + i) % randomSeeds.length];
+    if (!cache.has(kw)) {
+      const list = await searchEmojiByKeyword(kw);
+      cache.set(kw, list);
+    }
+    const picked = pickRandomEmojiFromList(cache.get(kw));
+    if (picked) {
+      return { hit: picked, keyword: kw };
+    }
+  }
+  const localFallback = ['😀', '🚀', '✨', '🔥', '🎯', '💡', '🎵', '🌟', '❤️', '🎬'];
+  return {
+    hit: { character: localFallback[Math.floor(Math.random() * localFallback.length)], unicodeName: 'local fallback' },
+    keyword: 'fallback'
+  };
+}
+
+async function preloadPhraseEmojis(phrasesArr, phraseKeywords = []) {
+  emojiPhraseData = {};
+  const statusEl = document.getElementById('emojiStatus');
+  const setStatus = (t) => { if (statusEl) statusEl.textContent = t; };
+
+  const resolvedKeywords = (phraseKeywords.length === phrasesArr.length)
+    ? phraseKeywords
+    : phrasesArr.map(ph => extractUniversalSearchKeyword(ph));
+
+  let done = 0;
+  let matched = 0;
+  let randomAssigned = 0;
+  const cache = new Map();
+  setStatus(`Searching emojis... 0/${phrasesArr.length}`);
+
+  await Promise.all(phrasesArr.map(async (ph, idx) => {
+    const kw = resolvedKeywords[idx] || 'creative';
+    const candidates = getEmojiKeywordCandidates(ph, kw);
+
+    let hit = null;
+    let usedKeyword = kw;
+    for (const candidate of candidates) {
+      if (!cache.has(candidate)) {
+        const list = await searchEmojiByKeyword(candidate);
+        cache.set(candidate, list);
+      }
+      hit = pickRandomEmojiFromList(cache.get(candidate));
+      if (hit) {
+        usedKeyword = candidate;
+        break;
+      }
+    }
+
+    if (!hit) {
+      const random = await getRandomEmojiFallback(cache);
+      hit = random?.hit || null;
+      usedKeyword = random?.keyword || 'fallback';
+      if (hit) randomAssigned++;
+    }
+
+    emojiPhraseData[idx] = hit
+      ? { emoji: hit.character, keyword: usedKeyword, unicodeName: hit.unicodeName || '' }
+      : null;
+
+    if (hit) matched++;
+    done++;
+    setStatus(`Searching emojis... ${done}/${phrasesArr.length} (${kw})`);
+  }));
+
+  setStatus(`✓ ${matched}/${phrasesArr.length} emoji ready · random ${randomAssigned}`);
+}
+
 async function preloadPixabayImages(phrasesArr, phraseKeywords = []) {
   pixabayPhraseData = {};
   pixabayCanvasImageCache = {};
@@ -3161,6 +3644,7 @@ function updateSearchKeywordsDisplay(keywords) {
 // ═══════════════════════════════════════════
 window.addEventListener('load',()=>{
   initSidebarSectionCollapse();
+  initStyleVariantSwatches();
   initCanvas();
   syncLottieLayer();
   syncLottieSearchLayer();
@@ -3183,3 +3667,5 @@ window.addEventListener('load',()=>{
 </script>
 </body>
 </html>
+
+<!-- https://emoji-api.com/emojis?search=computer&access_key=aeb20aa0231a8b96173ef4a13225e9b8dd53d21c -->
