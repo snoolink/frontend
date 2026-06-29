@@ -70,6 +70,7 @@
   function buildNav(currentPage) {
     var links = [
       { href: 'index.html#features', label: 'Features' },
+      { href: 'kinetic-typography.html', label: 'Kinetic Typography' },
       { href: 'snoolink-lens-desktop.html', label: 'Desktop App' },
       { href: 'pricing.html', label: 'Pricing' },
       { href: 'use-cases.html', label: 'Use Cases' },
@@ -140,6 +141,7 @@
       '    <div>',
       '      <h5 class="font-semibold mb-4 text-white">MicroTools</h5>',
       '      <ul class="space-y-3 text-gray-400 text-sm">',
+      '        <li><a href="kinetic-typography.html" class="hover:text-white transition-colors duration-200">Kinetic Typography</a></li>',
       '        <li><a href="download-instagram-reel.html" class="hover:text-white transition-colors duration-200">Download Instagram Reel</a></li>',
       '        <li><a href="instagram-reel-analyzer.html" class="hover:text-white transition-colors duration-200">Analyze Instagram Reel</a></li>',
       '        <li><a href="viral-hook-generator.html" class="hover:text-white transition-colors duration-200">Viral Hook Generator</a></li>',
