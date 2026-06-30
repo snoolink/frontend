@@ -271,9 +271,9 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
     <a class="nav-logo" href="#">Snoolink Kinetic Typography</a>
   </div>
   <div class="nav-right">
-    <a class="nav-cta" href="kinetic-typography.html" aria-label="View guide and examples">
+    <a class="nav-cta" href="snoolink-lens-desktop.html" aria-label="Use your own photos in desktop app">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 1.8h8v8.4H2zM4 3.8h4M4 5.8h4M4 7.8h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Guide & Examples
+      Use your Own Photos
     </a>
   </div>
 </nav>
@@ -296,7 +296,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
     <div class="s-section">
       <div class="s-label">Visual Style</div>
       <div class="style-grid">
-        <div class="style-card sel" data-style="neon" onclick="selStyle(this)">
+        <div class="style-card" data-style="neon" onclick="selStyle(this)">
           <div class="sc-preview" style="background:#000;color:#0FF;text-shadow:0 0 12px #0FF;font-family:'Space Grotesk',sans-serif">NEON</div>
           <div class="sc-name">Neon Glow</div>
         </div>
@@ -320,7 +320,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
           <div class="sc-preview" style="background:#F5EDD8;color:#2C1810;font-family:'Courier New',monospace;font-size:9px">type_</div>
           <div class="sc-name">Paper</div>
         </div>
-        <div class="style-card" data-style="editorial" onclick="selStyle(this)">
+        <div class="style-card sel" data-style="editorial" onclick="selStyle(this)">
           <div class="sc-preview" style="background:#E6D3B5;color:#111;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:800;letter-spacing:.2px">editorial</div>
           <div class="sc-name">Editorial Poster</div>
         </div>
@@ -389,9 +389,9 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
       </div>
       <div class="ctrl-row" style="margin-top:4px;">
         <span class="ctrl-lbl">Pixabay photos 📷</span>
-        <button class="toggle" id="togglePixabay" onclick="togglePixabayMode(this)"></button>
+        <button class="toggle on" id="togglePixabay" onclick="togglePixabayMode(this)"></button>
       </div>
-      <div id="pixabayStatusRow" class="ctrl-row" style="display:none;margin-top:-4px;">
+      <div id="pixabayStatusRow" class="ctrl-row" style="margin-top:-4px;">
         <span class="ctrl-lbl" id="pixabayStatus" style="font-size:10.5px;color:var(--text3);font-style:italic;line-height:1.4;">Add API key and hit Generate to fetch photos</span>
       </div>
       <div class="ctrl-row" style="margin-top:4px;">
@@ -404,8 +404,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
       <div class="ctrl-row">
         <span class="ctrl-lbl">Graphic size</span>
         <div class="ctrl-right">
-          <input type="range" min="20" max="120" value="56" id="graphicSize" oninput="updateCtrl(this,'gsVal','p')">
-          <span class="ctrl-val" id="gsVal">56p</span>
+          <input type="range" min="50" max="200" value="50" id="graphicSize" oninput="updateCtrl(this,'gsVal','p')">
+          <span class="ctrl-val" id="gsVal">50p</span>
         </div>
       </div>
     </div>
@@ -425,7 +425,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
     <div class="s-section">
       <div class="s-label">Layout Mode</div>
       <div class="layout-grid">
-        <div class="layout-card sel" data-layout="center" onclick="selLayout(this)">
+        <div class="layout-card" data-layout="center" onclick="selLayout(this)">
           <div class="layout-icon">⊞</div><div class="layout-name">Center</div>
         </div>
         <div class="layout-card" data-layout="scattered" onclick="selLayout(this)">
@@ -452,7 +452,7 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
         <div class="layout-card" data-layout="grid" onclick="selLayout(this)">
           <div class="layout-icon">▦</div><div class="layout-name">Grid</div>
         </div>
-        <div class="layout-card" data-layout="poster" onclick="selLayout(this)">
+        <div class="layout-card sel" data-layout="poster" onclick="selLayout(this)">
           <div class="layout-icon">🅣</div><div class="layout-name">Poster Hero</div>
         </div>
         <div class="layout-card" data-layout="beat" onclick="selLayout(this)">
@@ -519,8 +519,8 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
       <div class="s-label">Timing</div>
       <div class="timing-row">
         <button class="timing-chip" data-ms="700" onclick="selTiming(this)">Slow</button>
-        <button class="timing-chip sel" data-ms="450" onclick="selTiming(this)">Normal</button>
-        <button class="timing-chip" data-ms="270" onclick="selTiming(this)">Fast</button>
+        <button class="timing-chip" data-ms="450" onclick="selTiming(this)">Normal</button>
+        <button class="timing-chip sel" data-ms="270" onclick="selTiming(this)">Fast</button>
         <button class="timing-chip" data-ms="150" onclick="selTiming(this)">Rapid</button>
         <button class="timing-chip" data-ms="120" onclick="selTiming(this)">Beat 120</button>
         <button class="timing-chip" data-ms="900" onclick="selTiming(this)">Ballad</button>
@@ -587,8 +587,15 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
     <div class="preview-bar">
       <div class="pb-left">
         <button class="btn-gen preview-gen" id="genBtn" onclick="generate()">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.2L13 7L8.5 8.8L7 13L5.5 8.8L1 7L5.5 5.2L7 1Z" fill="white"/></svg>
+          <!-- <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.2L13 7L8.5 8.8L7 13L5.5 8.8L1 7L5.5 5.2L7 1Z" fill="white"/></svg> -->
           Generate Video
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="6" cy="7" r="4.5" stroke="white" stroke-width="1.2"/>
+          <polygon points="5,5 9,7 5,9" fill="white"/>
+          <circle cx="12" cy="2" r="1" fill="white"/>
+          <circle cx="13" cy="6" r="0.8" fill="white"/>
+          <circle cx="11" cy="10" r="0.8" fill="white"/>
+        </svg>
         </button>
         <span class="pb-title">Kinetic Preview</span>
         <span class="ratio-badge" id="ratioBadge">16:9</span>
@@ -656,11 +663,16 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
 //  STATE
 // ═══════════════════════════════════════════
 let cv, ctx, W, H;
-let phrases=[], wordMs=450, phraseGapMs=480;
-let currentStyle='neon', currentLayout='center', currentAnim='mix', currentRatio='16:9';
+let phrases=[], wordMs=270, phraseGapMs=480;
+let currentStyle='editorial', currentLayout='poster', currentAnim='mix', currentRatio='16:9';
 let playing=false, raf=null, startStamp=null, progress=0, totalDurMs=0, generated=false;
 let ffmpegInstance=null;
 let isExporting=false;
+let mediaSlotCache={};
+
+function clearMediaSlotCache(){
+  mediaSlotCache={};
+}
 
 function downloadBlob(blob, filename){
   const url=URL.createObjectURL(blob);
@@ -945,6 +957,241 @@ function ratioWH(canvasMaxW, canvasMaxH, ratio){
 // ═══════════════════════════════════════════
 //  COMPUTE LAYOUTS
 // ═══════════════════════════════════════════
+function getDisplayWordForStyle(wordObj, styleKey=currentStyle){
+  if(styleKey==='editorial') return (wordObj.raw||wordObj.text).toLowerCase();
+  if(styleKey==='newspaper') return (wordObj.raw||wordObj.text).toUpperCase();
+  return wordObj.text;
+}
+
+function measureWordHalfBox(wordObj, lp, styleKey=currentStyle){
+  const drawWord=getDisplayWordForStyle(wordObj, styleKey);
+  let textW=Math.max(lp.sz*0.45, lp.sz*0.56*Math.max(1, drawWord.length));
+  let textH=lp.sz*0.95;
+
+  if(ctx){
+    const font=FONTS[lp.fontIdx]||FONTS[0];
+    ctx.save();
+    ctx.font=font.f(lp.sz);
+    const m=ctx.measureText(drawWord);
+    const asc=m.actualBoundingBoxAscent||lp.sz*0.72;
+    const desc=m.actualBoundingBoxDescent||lp.sz*0.22;
+    textW=Math.max(1,m.width);
+    textH=Math.max(1,asc+desc);
+    ctx.restore();
+  }
+
+  // Small safety margin for anti-aliasing + style shadows.
+  textW*=1.06;
+  textH*=1.08;
+
+  if(lp.rot){
+    const c=Math.abs(Math.cos(lp.rot));
+    const s=Math.abs(Math.sin(lp.rot));
+    const rw=textW*c+textH*s;
+    const rh=textW*s+textH*c;
+    return {halfW:rw/2,halfH:rh/2};
+  }
+  return {halfW:textW/2,halfH:textH/2};
+}
+
+function fitLayoutToCanvas(phraseWords,layoutItems,styleKey=currentStyle,options={}){
+  if(!layoutItems.length) return layoutItems;
+  const preserveIndices=new Set(Array.isArray(options.preserveIndices)?options.preserveIndices:[]);
+  const isPreserved=(idx)=>preserveIndices.has(idx);
+  const reservedBoxes=Array.isArray(options.reservedBoxes)?options.reservedBoxes:[];
+  const ratio=W/Math.max(1,H);
+  const narrowBoost=ratio<0.72?1.45:(ratio<1?1.2:1);
+  const padX=Math.max(10,W*0.025*narrowBoost);
+  const padY=Math.max(10,H*0.03);
+  const maxWordWidth=Math.max(48,W-2*padX);
+
+  // Pass 1: Shrink very long words so one word cannot exceed the canvas width.
+  layoutItems.forEach((lp,i)=>{
+    let guard=0;
+    while(guard<7){
+      const box=measureWordHalfBox(phraseWords[i],lp,styleKey);
+      const w=box.halfW*2;
+      if(w<=maxWordWidth||lp.sz<=10) break;
+      if(isPreserved(i) && w<=maxWordWidth*1.02) break;
+      const ratio=maxWordWidth/Math.max(1,w);
+      const floor=isPreserved(i)?12:10;
+      lp.sz=Math.max(floor,Math.floor(lp.sz*Math.max(isPreserved(i)?0.82:0.7,ratio)));
+      guard++;
+    }
+  });
+
+  const getBounds=()=>{
+    let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+    layoutItems.forEach((lp,i)=>{
+      const b=measureWordHalfBox(phraseWords[i],lp,styleKey);
+      minX=Math.min(minX,lp.x-b.halfW);
+      maxX=Math.max(maxX,lp.x+b.halfW);
+      minY=Math.min(minY,lp.y-b.halfH);
+      maxY=Math.max(maxY,lp.y+b.halfH);
+    });
+    return {minX,maxX,minY,maxY,w:maxX-minX,h:maxY-minY,cx:(minX+maxX)/2,cy:(minY+maxY)/2};
+  };
+
+  // Pass 2: Global fit scale for the whole phrase block.
+  const bounds=getBounds();
+  const availW=Math.max(40,W-2*padX);
+  const availH=Math.max(40,H-2*padY);
+  const fitScale=Math.min(1,availW/Math.max(1,bounds.w),availH/Math.max(1,bounds.h));
+  if(fitScale<1){
+    layoutItems.forEach(lp=>{
+      lp.x=bounds.cx+(lp.x-bounds.cx)*fitScale;
+      lp.y=bounds.cy+(lp.y-bounds.cy)*fitScale;
+    });
+    const protectedScale=Math.max(0.9,Math.sqrt(fitScale));
+    layoutItems.forEach((lp,i)=>{
+      const floor=isPreserved(i)?12:10;
+      const s=isPreserved(i)?protectedScale:fitScale;
+      lp.sz=Math.max(floor,Math.floor(lp.sz*s));
+    });
+  }
+
+  // Pass 3: Clamp + overlap relaxation iterations.
+  const tries=12;
+  for(let iter=0;iter<tries;iter++){
+    let moved=false;
+    let hadOverlap=false;
+
+    layoutItems.forEach((lp,i)=>{
+      const b=measureWordHalfBox(phraseWords[i],lp,styleKey);
+      const nx=Math.max(padX+b.halfW,Math.min(W-padX-b.halfW,lp.x));
+      const ny=Math.max(padY+b.halfH,Math.min(H-padY-b.halfH,lp.y));
+      if(nx!==lp.x||ny!==lp.y){lp.x=nx;lp.y=ny;moved=true;}
+    });
+
+    for(let a=0;a<layoutItems.length;a++){
+      for(let b=a+1;b<layoutItems.length;b++){
+        const la=layoutItems[a],lb=layoutItems[b];
+        const ba=measureWordHalfBox(phraseWords[a],la,styleKey);
+        const bb=measureWordHalfBox(phraseWords[b],lb,styleKey);
+        const dx=lb.x-la.x;
+        const dy=lb.y-la.y;
+        const overlapX=(ba.halfW+bb.halfW)-Math.abs(dx);
+        const overlapY=(ba.halfH+bb.halfH)-Math.abs(dy);
+        if(overlapX>0&&overlapY>0){
+          hadOverlap=true;
+          moved=true;
+          if(overlapX<overlapY){
+            const push=(overlapX/2)+1;
+            const dir=dx>=0?1:-1;
+            la.x-=dir*push;
+            lb.x+=dir*push;
+          }else{
+            const push=(overlapY/2)+1;
+            const dir=dy>=0?1:-1;
+            la.y-=dir*push;
+            lb.y+=dir*push;
+          }
+        }
+      }
+    }
+
+    // Keep words out of reserved media regions (image priority).
+    for(let i=0;i<layoutItems.length;i++){
+      const lp=layoutItems[i];
+      const bw=measureWordHalfBox(phraseWords[i],lp,styleKey);
+      const left=lp.x-bw.halfW;
+      const right=lp.x+bw.halfW;
+      const top=lp.y-bw.halfH;
+      const bottom=lp.y+bw.halfH;
+
+      reservedBoxes.forEach(rb=>{
+        const overlapX=Math.min(right,rb.right)-Math.max(left,rb.left);
+        const overlapY=Math.min(bottom,rb.bottom)-Math.max(top,rb.top);
+        if(overlapX>0&&overlapY>0){
+          hadOverlap=true;
+          moved=true;
+          const cx=(rb.left+rb.right)/2;
+          const cy=(rb.top+rb.bottom)/2;
+          const dx=lp.x-cx;
+          const dy=lp.y-cy;
+
+          if(overlapX<overlapY){
+            const dir=dx>=0?1:-1;
+            lp.x+=dir*(overlapX+2);
+          }else{
+            const dir=dy>=0?1:-1;
+            lp.y+=dir*(overlapY+2);
+          }
+        }
+      });
+    }
+
+    if(hadOverlap && iter>=5){
+      // If overlap persists, reduce non-hero words first.
+      let shrunkSecondary=false;
+      layoutItems.forEach((lp,i)=>{
+        if(!isPreserved(i) && lp.sz>10){
+          lp.sz=Math.max(10,Math.floor(lp.sz*0.95));
+          shrunkSecondary=true;
+          moved=true;
+        }
+      });
+      // Last resort: allow slight hero reduction if nothing else can resolve it.
+      if(!shrunkSecondary){
+        layoutItems.forEach((lp,i)=>{
+          if(isPreserved(i) && lp.sz>12){
+            lp.sz=Math.max(12,Math.floor(lp.sz*0.97));
+            moved=true;
+          }
+        });
+      }
+    }
+
+    if(!moved) break;
+  }
+
+  // Final clamp and emergency downscale for dense phrases.
+  layoutItems.forEach((lp,i)=>{
+    const b=measureWordHalfBox(phraseWords[i],lp,styleKey);
+    lp.x=Math.max(padX+b.halfW,Math.min(W-padX-b.halfW,lp.x));
+    lp.y=Math.max(padY+b.halfH,Math.min(H-padY-b.halfH,lp.y));
+  });
+
+  return layoutItems;
+}
+
+function getPriorityMediaDimsForPhrase(phIdx){
+  const base=parseInt(document.getElementById('graphicSize')?.value||'56',10);
+  const scale=Math.min(1,W/480,H/320);
+
+  // Explicit image sources get top priority.
+  if(pixabayEnabled){
+    const fallbackAspect=(W&&H)?(W/H):1;
+    const imageAspect=Math.max(0.45,Math.min(2.4,pixabayPhraseData?.[phIdx]?.aspect||fallbackAspect||1));
+    const maxW=W*0.42;
+    const maxH=H*0.42;
+    const baseLong=Math.max(92,Math.round(base*scale*2.1));
+    let w,h;
+    if(imageAspect>=1){w=baseLong;h=w/imageAspect;}else{h=baseLong;w=h*imageAspect;}
+    const s=Math.min(1,maxW/w,maxH/h);
+    w=Math.max(72,Math.round(w*s));
+    h=Math.max(72,Math.round(h*s));
+    return {w,h,type:'pixabay'};
+  }
+  if(undrawEnabled){
+    const sz=Math.max(80,Math.round(base*scale*2.4));
+    return {w:sz,h:Math.round(sz*0.7),type:'undraw'};
+  }
+  if(lottieEnabled){
+    const sz=Math.max(48,Math.round(base*scale*1.6));
+    return {w:sz,h:sz,type:'lottie'};
+  }
+  if(emojiEnabled){
+    const sz=Math.max(24,Math.round(base*scale*0.92));
+    return {w:sz,h:sz,type:'emoji'};
+  }
+  if(document.getElementById('toggleMotion')?.classList.contains('on')){
+    const sz=Math.max(48,Math.round(base*scale*1.8));
+    return {w:sz,h:sz,type:'motion'};
+  }
+  return null;
+}
+
 function computeLayouts(phraseWords,phraseIndex){
   const rng=seededRng(phraseIndex*7919+3141);
   const userFz=parseInt(document.getElementById('fontSize').value);
@@ -966,8 +1213,15 @@ function computeLayouts(phraseWords,phraseIndex){
         return score>best.score?{i,score}:best;
       },{i:0,score:-1}).i
     : -1;
+  const editorialHeroIdx=currentStyle==='editorial'
+    ? phraseWords.reduce((best,w,i)=>{
+        const len=(w.text||'').length;
+        const score=(w.isEmph?24:0)+len;
+        return score>best.score?{i,score}:best;
+      },{i:0,score:-1}).i
+    : -1;
 
-  return phraseWords.map((w,wi)=>{
+  const layoutItems=phraseWords.map((w,wi)=>{
     const emphMul=currentLayout==='poster'
       ? (wi===heroIdx?(1.9+sizeVar*.65):(0.68+sizeVar*.2*rng()))
       : (w.isEmph?(1+sizeVar*.6):(1-sizeVar*.15*rng()));
@@ -1140,14 +1394,35 @@ function computeLayouts(phraseWords,phraseIndex){
       }
       default:x=W/2;y=H/2;
     }
-    // Clamp: pad based on estimated text half-width and font height
-    const estHalfW=sz*3.5; // rough estimate: ~7 chars avg * sz * 0.5
-    const padX=Math.min(estHalfW, W*0.42);
-    const padY=sz*0.7;
-    x=Math.max(padX, Math.min(W-padX, x));
-    y=Math.max(padY, Math.min(H-padY, y));
     return{x,y,rot,sz,fontIdx,colorIdx};
   });
+
+  const preserveIndices=[];
+  if(currentLayout==='poster' && heroIdx>=0) preserveIndices.push(heroIdx);
+  if(currentStyle==='editorial' && editorialHeroIdx>=0 && !preserveIndices.includes(editorialHeroIdx)){
+    preserveIndices.push(editorialHeroIdx);
+  }
+
+  fitLayoutToCanvas(phraseWords,layoutItems,currentStyle,{preserveIndices});
+
+  // Joint media+text placement: reserve priority media box, then re-fit text around it.
+  const mediaDims=getPriorityMediaDimsForPhrase(phraseIndex);
+  if(mediaDims){
+    const pseudoPhrase={words:phraseWords,layout:layoutItems};
+    const slot=getMediaSafeSlot(pseudoPhrase,phraseIndex,mediaDims.w,mediaDims.h,{skipCache:true});
+    if(slot){
+      const gap=Math.max(8,Math.round(Math.min(mediaDims.w,mediaDims.h)*0.14));
+      const reserved=[{
+        left:slot.x-mediaDims.w/2-gap,
+        right:slot.x+mediaDims.w/2+gap,
+        top:slot.y-mediaDims.h/2-gap,
+        bottom:slot.y+mediaDims.h/2+gap
+      }];
+      fitLayoutToCanvas(phraseWords,layoutItems,currentStyle,{preserveIndices,reservedBoxes:reserved});
+    }
+  }
+
+  return layoutItems;
 }
 
 // ═══════════════════════════════════════════
@@ -1178,6 +1453,7 @@ function parseIntoPhrases(text){
 }
 
 function buildTimeline(parsed){
+  clearMediaSlotCache();
   let cursor=0;
   return parsed.map((ph,pi)=>{
     const wordStarts=ph.words.map((_,wi)=>wi*wordMs);
@@ -1206,6 +1482,7 @@ function sizeCanvas(){
   const maxH=Math.max(220,area.clientHeight-40);
   const dim=ratioWH(maxW,maxH,currentRatio);
   W=dim.w; H=dim.h;
+  clearMediaSlotCache();
   cv.width=W; cv.height=H;
   cv.style.width=W+'px'; cv.style.height=H+'px';
 }
@@ -1694,13 +1971,15 @@ function buildGraphicSVG(type, sz) {
 const graphicInstances = new Map();
 let currentGraphicPhIdx = -1;
 
-function getGraphicPosition(phIdx) {
-  const zones = [
-    [0.88, 0.15], [0.12, 0.15], [0.88, 0.82], [0.12, 0.82],
-    [0.88, 0.50], [0.12, 0.50],
-  ];
-  const z = zones[phIdx % zones.length];
-  return { left: (z[0] * 100).toFixed(1) + '%', top: (z[1] * 100).toFixed(1) + '%' };
+function getGraphicPosition(ph, phIdx, sizePx) {
+  const slot = getMediaSafeSlot(ph, phIdx, sizePx, sizePx);
+  if (slot) {
+    return {
+      left: ((slot.x / W) * 100).toFixed(2) + '%',
+      top: ((slot.y / H) * 100).toFixed(2) + '%'
+    };
+  }
+  return { left: '50%', top: '20%' };
 }
 
 function showGraphicForPhrase(ph, phIdx) {
@@ -1718,7 +1997,7 @@ function showGraphicForPhrase(ph, phIdx) {
   const sz = Math.max(48, Math.round(baseSize * scaleFactor * 1.8));
 
   const type = getPhraseGraphicType(ph, phIdx);
-  const pos = getGraphicPosition(phIdx);
+  const pos = getGraphicPosition(ph, phIdx, sz);
   const svg = buildGraphicSVG(type, sz);
 
   const el = document.createElement('div');
@@ -1802,36 +2081,27 @@ function getPhraseWordBoxes(ph) {
   if (!ph || !Array.isArray(ph.layout) || !ph.layout.length) return [];
   const boxes = [];
   ph.layout.forEach((lp, idx) => {
-    const fallbackWord = ph.words[idx]?.text || '';
-    const drawWord = currentStyle === 'editorial'
-      ? ((ph.words[idx]?.raw || fallbackWord).toLowerCase())
-      : fallbackWord;
-
-    let textW = Math.max(lp.sz * 0.45, lp.sz * 0.56 * Math.max(1, drawWord.length));
-    let textH = lp.sz * 0.95;
-    if (ctx) {
-      const font = FONTS[lp.fontIdx] || FONTS[0];
-      ctx.save();
-      ctx.font = font.f(lp.sz);
-      const m = ctx.measureText(drawWord);
-      const asc = m.actualBoundingBoxAscent || lp.sz * 0.72;
-      const desc = m.actualBoundingBoxDescent || lp.sz * 0.22;
-      textW = Math.max(1, m.width);
-      textH = Math.max(1, asc + desc);
-      ctx.restore();
-    }
+    const wordObj = ph.words[idx] || { text: '' };
+    const box = measureWordHalfBox(wordObj, lp, currentStyle);
 
     boxes.push({
-      minX: lp.x - textW / 2,
-      maxX: lp.x + textW / 2,
-      minY: lp.y - textH / 2,
-      maxY: lp.y + textH / 2
+      minX: lp.x - box.halfW,
+      maxX: lp.x + box.halfW,
+      minY: lp.y - box.halfH,
+      maxY: lp.y + box.halfH
     });
   });
   return boxes;
 }
 
-function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
+function getMediaSafeSlot(ph, phIdx, mediaW, mediaH, opts = {}) {
+  const motionOn = document.getElementById('toggleMotion')?.classList.contains('on') ? 1 : 0;
+  const modeKey = `${pixabayEnabled?1:0}${undrawEnabled?1:0}${lottieEnabled?1:0}${emojiEnabled?1:0}${motionOn}`;
+  const cacheKey = `${phIdx}:${Math.round(mediaW)}x${Math.round(mediaH)}:${modeKey}:${currentStyle}:${currentLayout}:${W}x${H}`;
+  if (!opts.skipCache && mediaSlotCache[cacheKey]) {
+    return mediaSlotCache[cacheKey];
+  }
+
   const boxes = getPhraseWordBoxes(ph);
   const bounds = getPhraseTextBounds(ph);
   const cx = (bounds.minX + bounds.maxX) / 2;
@@ -1839,7 +2109,7 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
 
   const halfW = mediaW / 2;
   const halfH = mediaH / 2;
-  const m = 2;
+  const m = Math.max(4, Math.round(Math.min(W, H) * 0.01));
   const xL = halfW + m;
   const xR = W - halfW - m;
   const yT = halfH + m;
@@ -1862,6 +2132,15 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
   });
 
   const candidates = [];
+  const seen = new Set();
+  const addCandidate = (p) => {
+    const c = clampCandidate(p);
+    const key = `${Math.round(c.x)}:${Math.round(c.y)}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    candidates.push(c);
+  };
+
   anchors.forEach((a) => {
     const dx = a.x - cx;
     const dy = a.y - cy;
@@ -1871,9 +2150,33 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
     // Deterministic outward sweep from closest touch position.
     for (let step = 0; step <= 20; step++) {
       const d = step * 10;
-      candidates.push(clampCandidate({ x: a.x + ux * d, y: a.y + uy * d }));
+      addCandidate({ x: a.x + ux * d, y: a.y + uy * d });
     }
   });
+
+  // Circular sweeps around phrase center to avoid corner-only outcomes.
+  const angleOffset = (phIdx % 9) * 0.17;
+  const radii = [
+    Math.min(W, H) * 0.16,
+    Math.min(W, H) * 0.24,
+    Math.min(W, H) * 0.34
+  ];
+  radii.forEach((r) => {
+    for (let i = 0; i < 16; i++) {
+      const a = angleOffset + (Math.PI * 2 * i / 16);
+      addCandidate({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r });
+    }
+  });
+
+  // Interior grid for broader compositional placements.
+  [0.2, 0.35, 0.5, 0.65, 0.8].forEach((xp) => {
+    [0.22, 0.38, 0.5, 0.62, 0.78].forEach((yp) => {
+      addCandidate({ x: W * xp, y: H * yp });
+    });
+  });
+
+  // Include phrase center as a fallback candidate only when nothing else works.
+  addCandidate({ x: cx, y: cy });
 
   function overlapAreaWithPhraseBox(left, top, right, bottom) {
     if (!boxes.length) return 0;
@@ -1888,6 +2191,7 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
 
   let best = null;
   let bestScore = -Infinity;
+  const diag = Math.hypot(W, H) || 1;
   candidates.forEach((p) => {
     const left = p.x - halfW;
     const right = p.x + halfW;
@@ -1897,8 +2201,22 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
     const overlapArea = overlapAreaWithPhraseBox(left, top, right, bottom);
     const overlaps = overlapArea > 0;
     const dist = Math.hypot(p.x - cx, p.y - cy);
-    // Prefer the closest valid slot; no extra padding between text boxes and media.
-    const score = overlaps ? (-1e9 - overlapArea - dist) : (-dist);
+
+    // Penalize hugging corners so media can sit in varied interior regions.
+    const c1 = Math.hypot(p.x, p.y);
+    const c2 = Math.hypot(W - p.x, p.y);
+    const c3 = Math.hypot(p.x, H - p.y);
+    const c4 = Math.hypot(W - p.x, H - p.y);
+    const cornerDist = Math.min(c1, c2, c3, c4);
+    const cornerPenalty = Math.max(0, 1 - (cornerDist / (Math.min(W, H) * 0.26 || 1)));
+
+    const edgeDist = Math.min(left, top, W - right, H - bottom);
+    const normalizedDist = dist / diag;
+
+    // Priority: never overlap text; then prefer near phrase but not trapped in corners.
+    const score = overlaps
+      ? (-1e9 - overlapArea * 12 - dist)
+      : (-normalizedDist * 180) + (edgeDist * 0.55) - (cornerPenalty * 95);
     if (score > bestScore) {
       bestScore = score;
       best = p;
@@ -1906,10 +2224,12 @@ function getMediaSafeSlot(ph, phIdx, mediaW, mediaH) {
   });
 
   if (!best) best = { x: xR, y: yT };
-  return {
+  const out = {
     x: Math.max(halfW, Math.min(W - halfW, best.x)),
     y: Math.max(halfH, Math.min(H - halfH, best.y))
   };
+  if (!opts.skipCache) mediaSlotCache[cacheKey] = out;
+  return out;
 }
 
 // Sync overlay layer size to canvas
@@ -1936,13 +2256,52 @@ function drawWord(w,lp,t,st){
   const anim=(ANIMS[w.animName]||ANIMS.pop)(t);
   const alpha=Math.max(0,Math.min(1,anim.alpha??1));
   if(alpha<=0)return;
+  const ox=anim.ox||0,oy=anim.oy||0,rot=(anim.rot||0)+lp.rot;
+  let sx=anim.sx??1,sy=anim.sy??1;
+
+  // Runtime safety: cap animation scale to keep text inside canvas for all ratios (especially 9:16).
+  const font=FONTS[lp.fontIdx];
+  ctx.save();
+  ctx.font=font.f(lp.sz);
+  const m=ctx.measureText(wordText);
+  const rawW=Math.max(1,m.width)*1.08;
+  const rawH=Math.max(1,(m.actualBoundingBoxAscent||lp.sz*0.72)+(m.actualBoundingBoxDescent||lp.sz*0.22))*1.1;
+  ctx.restore();
+
+  let posX=lp.x+ox;
+  let posY=lp.y+oy;
+  const absCos=Math.abs(Math.cos(rot));
+  const absSin=Math.abs(Math.sin(rot));
+  const scaledHalfW=(rawW*Math.abs(sx))/2;
+  const scaledHalfH=(rawH*Math.abs(sy))/2;
+  const rotHalfW=scaledHalfW*absCos+scaledHalfH*absSin;
+  const rotHalfH=scaledHalfW*absSin+scaledHalfH*absCos;
+
+  const edgePadX=Math.max(4,W*0.01);
+  const edgePadY=Math.max(4,H*0.01);
+  const availHalfW=Math.max(8,Math.min(posX-edgePadX,W-edgePadX-posX));
+  const availHalfH=Math.max(8,Math.min(posY-edgePadY,H-edgePadY-posY));
+  if(rotHalfW>availHalfW||rotHalfH>availHalfH){
+    const sDown=Math.min(availHalfW/Math.max(1,rotHalfW),availHalfH/Math.max(1,rotHalfH));
+    if(sDown<1){
+      sx*=sDown;
+      sy*=sDown;
+    }
+  }
+
+  // Final positional clamp after scale adjust to keep animated centers inside visible area.
+  const adjScaledHalfW=(rawW*Math.abs(sx))/2;
+  const adjScaledHalfH=(rawH*Math.abs(sy))/2;
+  const adjRotHalfW=adjScaledHalfW*absCos+adjScaledHalfH*absSin;
+  const adjRotHalfH=adjScaledHalfW*absSin+adjScaledHalfH*absCos;
+  posX=Math.max(edgePadX+adjRotHalfW,Math.min(W-edgePadX-adjRotHalfW,posX));
+  posY=Math.max(edgePadY+adjRotHalfH,Math.min(H-edgePadY-adjRotHalfH,posY));
+
   ctx.save();
   ctx.globalAlpha=alpha;
-  const ox=anim.ox||0,oy=anim.oy||0,rot=(anim.rot||0)+lp.rot;
-  ctx.translate(lp.x+ox,lp.y+oy);
+  ctx.translate(posX,posY);
   if(rot)ctx.rotate(rot);
-  ctx.scale(anim.sx??1,anim.sy??1);
-  const font=FONTS[lp.fontIdx];
+  ctx.scale(sx,sy);
   ctx.font=font.f(lp.sz);
   ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.shadowColor=st.shadowColor||'transparent';
@@ -3216,7 +3575,7 @@ function syncUndrawLayer() {
 //  Pipeline: keyword -> Pixabay image API -> first hit
 // ═══════════════════════════════════════════
 
-let pixabayEnabled = false;
+let pixabayEnabled = true;
 let pixabayPhraseData = {}; // phIdx -> { url, keyword, user, tags } | null
 let currentPixabayPhIdx = -1;
 let pixabayCanvasImageCache = {}; // phIdx -> HTMLImageElement | null
@@ -3645,6 +4004,8 @@ function updateSearchKeywordsDisplay(keywords) {
 window.addEventListener('load',()=>{
   initSidebarSectionCollapse();
   initStyleVariantSwatches();
+  const pixabayBtn=document.getElementById('togglePixabay');
+  if(pixabayBtn && pixabayBtn.classList.contains('on')) togglePixabayMode(pixabayBtn);
   initCanvas();
   syncLottieLayer();
   syncLottieSearchLayer();
