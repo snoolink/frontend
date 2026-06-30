@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LFKW2DK9WQ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-LFKW2DK9WQ');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snoolink Kinetic Typography Studio - Dashboard App</title>
@@ -42,8 +51,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{width:100%;min-height:100dvh;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;}
 
 /* ── NAV ── */
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;z-index:200;}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:6px;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:96px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;z-index:200;}
+.nav-logo{color:var(--text);text-decoration:none;display:flex;align-items:center;padding:0;margin:0;line-height:0;}
+.nav-logo img{display:block;height:84px;width:auto;max-width:min(90vw,960px);object-fit:contain;padding:0;margin:0;}
 .logo-spark{color:var(--accent);}
 .nav-right{display:flex;align-items:center;gap:8px;}
 .credits-chip{display:flex;align-items:center;gap:5px;background:var(--adim);border:1px solid rgba(93,30,244,0.35);border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:600;color:var(--accent);}
@@ -59,6 +69,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 16px
 @media(max-width:768px){
   .ham-btn{display:flex;align-items:center;}
   .credits-chip{display:none;}
+  nav{height:82px;}
+  .nav-logo img{height:72px;max-width:min(92vw,720px);}
   .nav-cta{padding:7px 11px;font-size:11.5px;gap:6px;}
 }
 
@@ -264,11 +276,13 @@ button:focus-visible,.style-card:focus-visible,.layout-card:focus-visible,.swatc
 <body>
 
 <nav>
-  <div style="display:flex;align-items:center;gap:10px;">
+  <div style="display:flex;align-items:center;gap:0;">
     <button class="ham-btn" onclick="toggleSidebar()" aria-label="Menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
-    <a class="nav-logo" href="#">Snoolink Kinetic Typography</a>
+    <a class="nav-logo" href="#" aria-label="Snoolink">
+      <img src="assets/full_logo-white.png" alt="Snoolink">
+    </a>
   </div>
   <div class="nav-right">
     <a class="nav-cta" href="snoolink-lens-desktop.html" aria-label="Use your own photos in desktop app">
@@ -743,6 +757,18 @@ function getErrorText(err){
   if(!err) return 'Unknown error';
   if(typeof err==='string') return err;
   return err.message || 'Unknown error';
+}
+
+function trackGaEvent(eventName, params={}){
+  if(typeof window.gtag!=='function') return;
+  try{
+    window.gtag('event', eventName, {
+      page:'kinetic_typography_generator',
+      ...params
+    });
+  }catch(e){
+    // Ignore analytics failures to avoid disrupting UX flows.
+  }
 }
 
 // ═══════════════════════════════════════════
@@ -2364,6 +2390,14 @@ function updateTimelineUI(ph,localMs){
 //  GENERATE
 // ═══════════════════════════════════════════
 function generate(){
+  trackGaEvent('kt_generate_click',{
+    style:currentStyle,
+    layout:currentLayout,
+    ratio:currentRatio,
+    animation:currentAnim,
+    timing_ms:wordMs,
+    pixabay_on:pixabayEnabled
+  });
   const text=document.getElementById('scriptInput').value.trim();
   if(!text){toast('Enter a script first!',true);return;}
   const btn=document.getElementById('genBtn');
@@ -2460,6 +2494,13 @@ function setPlayIcon(p){
 // ═══════════════════════════════════════════
 function openExportModal(){
   if(!generated){toast('Generate a video first!',true);return;}
+  trackGaEvent('kt_export_button_click',{
+    style:currentStyle,
+    layout:currentLayout,
+    ratio:currentRatio,
+    animation:currentAnim,
+    timing_ms:wordMs
+  });
   document.getElementById('exportModal').classList.add('show');
   document.getElementById('dlProgress').style.display='none';
   document.getElementById('dlBar').style.width='0%';
@@ -2470,6 +2511,15 @@ function openExportModal(){
 function closeExportModal(){document.getElementById('exportModal').classList.remove('show');}
 
 async function startExport(type){
+  trackGaEvent('kt_export_option_click',{
+    export_type:type,
+    style:currentStyle,
+    layout:currentLayout,
+    ratio:currentRatio,
+    animation:currentAnim,
+    timing_ms:wordMs,
+    pixabay_on:pixabayEnabled
+  });
   if(type==='frames'){
     // Snapshot current frame as PNG
     drawAtTime(progress*totalDurMs);
