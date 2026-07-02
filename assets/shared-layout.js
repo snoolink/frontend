@@ -70,11 +70,11 @@
   function buildNav(currentPage) {
     var links = [
       { href: 'index.html#features', label: 'Features' },
-      { href: 'kinetic-typography.html', label: 'Kinetic Typography' },
+      // { href: 'kinetic-typography.html', label: 'Kinetic Typography' },
       { href: 'snoolink-lens-desktop.html', label: 'Desktop App' },
       { href: 'pricing.html', label: 'Pricing' },
       { href: 'use-cases.html', label: 'Use Cases' },
-      { href: 'roadmap.html', label: 'Roadmap' },
+      // { href: 'roadmap.html', label: 'Roadmap' },
       { href: 'wall-of-fame.html', label: 'Wall of Fame' },
       { href: 'about.html', label: 'About' },
       { href: 'contact.html', label: 'Contact' }

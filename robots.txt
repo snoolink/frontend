@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Sitemap: https://snoolink.com/sitemap.xml
+Sitemap: https://snoolink.com/sitemap-microtools.xml
 Host: snoolink.com
 # Rate limit and crawl-delay rules can be added here if needed.

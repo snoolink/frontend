@@ -32,7 +32,7 @@
     <meta property="og:image" content="assets/social-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="snoolink">
+    <meta property="og:site_name" content="Snoolink">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +43,7 @@
 
     <!-- Structured data (Organization + WebSite) -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://snoolink.com/#organization","name":"snoolink","url":"https://snoolink.com/","logo":"assets/social-preview.png","sameAs":["https://twitter.com/snoolink"]},{"@type":"WebSite","@id":"https://snoolink.com/#website","url":"https://snoolink.com/","name":"snoolink","publisher":{"@id":"https://snoolink.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://snoolink.com/?s={search_term_string}","query-input":"required name=search_term_string"}}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://snoolink.com/#organization","name":"Snoolink","url":"https://snoolink.com/","logo":"assets/social-preview.png","sameAs":["https://twitter.com/snoolink"]},{"@type":"WebSite","@id":"https://snoolink.com/#website","url":"https://snoolink.com/","name":"Snoolink","publisher":{"@id":"https://snoolink.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://snoolink.com/?s={search_term_string}","query-input":"required name=search_term_string"}}]}
     </script>
 
     <!-- Performance: preload hero image + preconnect fonts + prefetch next pages -->
@@ -135,6 +135,87 @@
         .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
         }
+
+        @keyframes partner-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        .partner-marquee {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-marquee::before,
+        .partner-marquee::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 70px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .partner-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(17, 24, 39, 1), rgba(17, 24, 39, 0));
+        }
+
+        .partner-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(17, 24, 39, 1), rgba(17, 24, 39, 0));
+        }
+
+        .partner-track {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            gap: 1.75rem;
+            animation: partner-marquee 26s linear infinite;
+            padding-right: 1.75rem;
+        }
+
+        .partner-item {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 5rem;
+            min-width: 11.5rem;
+            padding: 0;
+        }
+
+        .partner-logo {
+            height: 6.4rem;
+            width: auto;
+            max-width: 240px;
+            object-fit: contain;
+            filter: none;
+            opacity: 1;
+            transition: transform 0.25s ease;
+        }
+
+        .partner-item:hover .partner-logo {
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 640px) {
+            .partner-track { gap: 1rem; }
+            .partner-item {
+                min-width: 9.5rem;
+                height: 4.2rem;
+                padding: 0;
+            }
+            .partner-logo {
+                height: 3rem;
+                max-width: 185px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .partner-track { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -143,7 +224,7 @@
     <!-- <nav class="fixed w-full z-50 glass">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-                <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
+                <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="Snoolink logo" class="h-14 w-30">
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="#features" class="hover:text-purple-400 transition">Features</a>
@@ -164,7 +245,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center z-50">
-                    <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-10 md:h-14 w-auto">
+                    <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="Snoolink logo" class="h-10 md:h-14 w-auto">
                 </a>
                 
                 <!-- Desktop Menu -->
@@ -217,19 +298,40 @@
             <div class="absolute bottom-20 right-10 w-96 h-96 bg-snoolink-purple rounded-full filter blur-3xl animate-float" style="animation-delay: 2s;"></div>
         </div>
         
-        <div class="relative max-w-7xl mx-auto text-center">
+        <div class="relative max-w-[90rem] mx-auto text-center">
             <div class="inline-block mb-6 px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30">
                 <span class="text-purple-300">✨ Powered by Advanced AI</span>
             </div>
             
             <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                Less Scrolling.<br/>
-                <span class="bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">More Creating.</span>
+                Stop Managing Content.<br/>
+                <span class="bg-gradient-to-r from-snoolink-purple to-purple-400 bg-clip-text text-transparent">Start Creating.</span>
             </h1>
             
             <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
                 Meet <span class="font-bold text-snoolink-purple">Snoolink</span>, your social media content management platform that helps you organize, manage, and automate your content workflow — so you can focus on what matters most.
             </p>
+
+            <div class="max-w-[90rem] mx-auto mb-10">
+                <!-- <div class="text-center mb-5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Studio Screenshot Preview</h2>
+                    <p class="text-gray-400">A quick look at the studio experience before you start.</p>
+                </div> -->
+
+                <div class="glass rounded-3xl p-2 md:p-4 border border-snoolink-purple/40 shadow-2xl shadow-snoolink-purple/20">
+                    <img
+                        src="https://placehold.co/1600x900.gif?text=Snoolink+Studio+Demo+GIF"
+                        alt="Snoolink studio demo preview"
+                        class="w-full rounded-2xl border border-snoolink-purple/25"
+                    />
+                </div>
+
+                <!-- <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-sm">
+                    <div class="glass rounded-xl p-3 text-gray-300">Live motion preview</div>
+                    <div class="glass rounded-xl p-3 text-gray-300">One-click workflow</div>
+                    <div class="glass rounded-xl p-3 text-gray-300">Social-ready exports</div>
+                </div> -->
+            </div>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <button onclick="window.location.href='https://app.snoolink.com/'" class="bg-snoolink-purple px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
@@ -249,14 +351,30 @@
     </section>
 
     <!-- Social Proof -->
-    <section class="py-12 border-y border-gray-800">
+    <section class="py-10 border-y border-gray-800 bg-gray-900/70">
         <div class="max-w-7xl mx-auto px-6">
-            <p class="text-center text-gray-400 mb-8">Trusted by creators and brands worldwide</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
-                <div class="text-2xl font-bold">CREATOR CO.</div>
-                <div class="text-2xl font-bold">INFLUENCER HUB</div>
-                <div class="text-2xl font-bold">SOCIAL STUDIO</div>
-                <div class="text-2xl font-bold">MEDIA LABS</div>
+            <p class="text-center text-gray-400 mb-7">Trusted by creators and brands worldwide</p>
+
+            <div class="partner-marquee" aria-label="Partner companies">
+                <div class="flex items-center">
+                    <div class="partner-track">
+                        <div class="partner-item"><img src="assets/partners/khanacademy.png" alt="Khan Academy" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/sonyliv.png" alt="Sony Liv" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/isu.webp" alt="ISU" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/phsicswallah.webp" alt="Physics Wallah" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/hcc.svg" alt="HCC" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/dau.jpg" alt="DAU" class="partner-logo"></div>
+                    </div>
+
+                    <div class="partner-track" aria-hidden="true">
+                        <div class="partner-item"><img src="assets/partners/khanacademy.png" alt="" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/sonyliv.png" alt="" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/isu.webp" alt="" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/phsicswallah.webp" alt="" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/hcc.svg" alt="" class="partner-logo"></div>
+                        <div class="partner-item"><img src="assets/partners/dau.jpg" alt="" class="partner-logo"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -265,27 +383,42 @@
     <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-6">Why Creators Love Snoolink</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Transform your social media workflow with AI that understands your content and automates the boring stuff.</p>
+                <h2 class="text-5xl font-bold mb-6">Generate Reels in Seconds</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Turn raw footage into publish-ready reels with AI that picks the best moments, edits instantly, and formats for social platforms.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass p-8 rounded-2xl hover:scale-105 transition transform">
-                    <div class="text-5xl mb-4">🔍</div>
-                    <h3 class="text-2xl font-bold mb-4">Intelligent Search</h3>
-                    <p class="text-gray-400">Find any photo or video instantly using natural language. "Show me clips where I'm wearing sunglasses near a skyline."</p>
+                    <img
+                        src="https://github.com/snoolink/frontend/blob/main/assets/video-search-lens.png?raw=true"
+                        alt="Video search and scene retrieval in Snoolink Lens desktop app"
+                        class="w-full aspect-video object-contain rounded-xl mb-5 bg-gray-900/30 border border-snoolink-purple/20"
+                        loading="lazy"
+                    />
+                    <h3 class="text-2xl font-bold mb-4">One-Prompt Reel Creation</h3>
+                    <p class="text-gray-400">Describe the vibe once and let AI build your reel flow with matching cuts, pacing, and transitions.</p>
                 </div>
                 
                 <div class="glass p-8 rounded-2xl hover:scale-105 transition transform border border-snoolink-purple/30">
-                    <div class="text-5xl mb-4">🧹</div>
-                    <h3 class="text-2xl font-bold mb-4">Smart Organization</h3>
-                    <p class="text-gray-400">Automatically detect and remove duplicates, blurry shots, and low-quality content to keep your library clean.</p>
+                    <img
+                        src="https://github.com/snoolink/frontend/blob/main/assets/semantic-search-coffee-lens.png?raw=true"
+                        alt="Semantic search in Snoolink Lens desktop app"
+                        class="w-full aspect-video object-contain rounded-xl mb-5 bg-gray-900/30 border border-snoolink-purple/20"
+                        loading="lazy"
+                    />
+                    <h3 class="text-2xl font-bold mb-4">Smart Clip Selection</h3>
+                    <p class="text-gray-400">Automatically surface high-impact moments from your footage and stitch them into a cohesive story.</p>
                 </div>
                 
                 <div class="glass p-8 rounded-2xl hover:scale-105 transition transform">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <h3 class="text-2xl font-bold mb-4">Workflow Automation</h3>
-                    <p class="text-gray-400">Automate following, unfollowing, messaging, and engagement — safely and intelligently.</p>
+                    <img
+                        src="https://github.com/snoolink/frontend/blob/main/assets/image-retrieval-lens.png?raw=true"
+                        alt="Image retrieval results in Snoolink Lens desktop app"
+                        class="w-full aspect-video object-contain rounded-xl mb-5 bg-gray-900/30 border border-snoolink-purple/20"
+                        loading="lazy"
+                    />
+                    <h3 class="text-2xl font-bold mb-4">Social-Ready Exports</h3>
+                    <p class="text-gray-400">Export polished reels in platform-friendly formats for Instagram, TikTok, and YouTube Shorts in one click.</p>
                 </div>
             </div>
         </div>
@@ -325,41 +458,41 @@
                 <!-- Mobile-optimized image - no zoom -->
                 <div class="glass rounded-2xl overflow-hidden">
                     <img 
-                        src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/semantic-search-on-content.png" 
-                        alt="snoolink Search Illustration" 
+                        src="https://github.com/snoolink/frontend/blob/main/assets/semantic-search-coffee-lens.png?raw=true" 
+                        alt="Snoolink semantic search in Lens desktop app" 
                         class="w-full h-auto object-contain max-h-96"
                     />
                 </div>
             </div>
             
-            <!-- Feature 2: Growth Automation -->
+            <!-- Feature 2: Frame-Accurate Content Retrieval -->
             <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center mb-16">
                 <!-- Mobile-optimized image - no zoom -->
                 <div class="glass rounded-2xl overflow-hidden">
                     <img 
-                        src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/automation-social-media.png" 
-                        alt="Snoolink Growth Automation" 
+                        src="https://github.com/snoolink/frontend/blob/main/assets/video-search-lens.png?raw=true" 
+                        alt="Snoolink frame-accurate video search" 
                         class="w-full h-auto object-contain max-h-96"
                     />
                 </div>
                 <div class="order-first lg:order-last">
                     <div class="inline-block px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30 mb-6">
-                        <span class="text-purple-300">Growth Automation</span>
+                        <span class="text-purple-300">Frame-Accurate Search</span>
                     </div>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6">Grow Your Audience on Autopilot</h3>
-                    <p class="text-gray-400 text-base md:text-lg mb-6">Let Snoolink handle the repetitive tasks — follow relevant accounts, send personalized DMs, and engage with your target audience while you create.</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-6">Find the Exact Video Frames in Seconds</h3>
+                    <p class="text-gray-400 text-base md:text-lg mb-6">Skip timeline scrubbing. Snoolink pinpoints the exact moments you need so you can curate, assemble, and publish content much faster.</p>
                     <ul class="space-y-3">
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>Smart follow/unfollow based on engagement patterns</span>
+                            <span>Frame-level search across your full video library</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>AI-written DM templates that feel personal</span>
+                            <span>Instantly surface scenes by object, action, or visual style</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>Safe, platform-compliant automation</span>
+                            <span>Build reels faster with precise, ready-to-use clip moments</span>
                         </li>
                     </ul>
                 </div>
@@ -399,8 +532,8 @@
                 <!-- Mobile-optimized image - no zoom -->
                 <div class="glass rounded-2xl overflow-hidden">
                     <img 
-                        src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/stitch-instagram-reels.png" 
-                        alt="Snoolink Reel Creation" 
+                        src="https://github.com/snoolink/frontend/blob/main/assets/start-indexing-lens.png?raw=true" 
+                        alt="Snoolink indexing workflow in Lens desktop app" 
                         class="w-full h-auto object-contain max-h-96"
                     />
                 </div>
@@ -592,6 +725,53 @@
             </div>
         </div>
     </section>
+
+    <!-- MicroTools Hub -->
+    <section class="py-24 px-6 border-y border-gray-800 bg-gradient-to-br from-gray-900 via-gray-800/40 to-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <div class="inline-block mb-4 px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30">
+                    <span class="text-purple-300">Free Creator MicroTools</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-5">Launch Faster with Snoolink MicroTools</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Start with Kinetic Typography as the lead tool, then layer analysis, hooks, and download workflows to publish faster.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <a href="kinetic-typography.html" class="lg:col-span-2 glass rounded-2xl p-8 border border-snoolink-purple/35 hover:border-snoolink-purple/70 hover:-translate-y-1 transition transform group">
+                    <div class="flex items-start justify-between gap-4 mb-5">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-purple-300 mb-2">Lead MicroTool</p>
+                            <h3 class="text-3xl font-bold mb-2">Kinetic Typography Studio</h3>
+                            <p class="text-gray-300 max-w-2xl">Turn scripts into animated captions with phrase-aware motion, timeline control, and social-ready exports.</p>
+                        </div>
+                        <span class="text-snoolink-purple text-2xl group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                    <div class="glass rounded-xl p-4 border border-snoolink-purple/25">
+                        <img src="assets/kinetic-dashboard-ui.png" alt="Snoolink Kinetic Typography Studio interface" class="w-full h-auto rounded-lg object-cover" loading="lazy" />
+                    </div>
+                </a>
+
+                <div class="grid sm:grid-cols-3 lg:grid-cols-1 gap-6 lg:gap-6">
+                    <a href="instagram-reel-analyzer.html" class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                        <h4 class="text-xl font-bold mb-2">Instagram Reel Analyzer</h4>
+                        <p class="text-gray-400 text-sm">Get AI breakdowns of winning reels and reuse ideas faster.</p>
+                    </a>
+
+                    <a href="viral-hook-generator.html" class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                        <h4 class="text-xl font-bold mb-2">Viral Hook Generator</h4>
+                        <p class="text-gray-400 text-sm">Generate hook variants by niche for stronger first 3 seconds.</p>
+                    </a>
+
+                    <a href="download-instagram-reel.html" class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                        <h4 class="text-xl font-bold mb-2">Instagram Reel Downloader</h4>
+                        <p class="text-gray-400 text-sm">Quickly collect references for curation and creative analysis.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section
     <section id="features" class="py-24 px-6 bg-gray-800/30">
         <div class="max-w-7xl mx-auto">
@@ -625,7 +805,7 @@
                 <div class="glass rounded-2xl h-96 flex items-center justify-center">
                     <img 
                         src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/semantic-search-on-content.png" 
-                        alt="snoolink Search Illustration" 
+                        alt="Snoolink Search Illustration" 
                         class="h-full w-auto rounded-2xl object-cover"
                     />
                 </div>
@@ -634,29 +814,29 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="glass rounded-2xl h-96 flex items-center justify-center">
                     <img 
-                        src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/automation-social-media.png" 
-                        alt="Snoolink Growth Automation" 
+                        src="https://github.com/snoolink/frontend/blob/main/assets/video-search-lens.png?raw=true" 
+                        alt="Snoolink frame-accurate video search" 
                         class="h-full w-auto rounded-2xl object-cover"
                     />
                 </div>
                 <div class="order-1 lg:order-2">
                     <div class="inline-block px-4 py-2 bg-snoolink-purple/20 rounded-full border border-snoolink-purple/30 mb-6">
-                        <span class="text-purple-300">Growth Automation</span>
+                        <span class="text-purple-300">Frame-Accurate Search</span>
                     </div>
-                    <h3 class="text-4xl font-bold mb-6">Grow Your Audience on Autopilot</h3>
-                    <p class="text-gray-400 text-lg mb-6">Let Snoolink handle the repetitive tasks — follow relevant accounts, send personalized DMs, and engage with your target audience while you create.</p>
+                    <h3 class="text-4xl font-bold mb-6">Find the Exact Video Frames in Seconds</h3>
+                    <p class="text-gray-400 text-lg mb-6">Skip timeline scrubbing. Snoolink pinpoints the exact moments you need so you can curate, assemble, and publish content much faster.</p>
                     <ul class="space-y-3">
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>Smart follow/unfollow based on engagement patterns</span>
+                            <span>Frame-level search across your full video library</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>AI-written DM templates that feel personal</span>
+                            <span>Instantly surface scenes by object, action, or visual style</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-snoolink-purple mr-3">✓</span>
-                            <span>Safe, platform-compliant automation</span>
+                            <span>Build reels faster with precise, ready-to-use clip moments</span>
                         </li>
                     </ul>
                 </div>
@@ -668,30 +848,48 @@
     <section id="how-it-works" class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-6">Get Started in Minutes</h2>
-                <p class="text-xl text-gray-400">Simple setup, powerful results.</p>
+                <div class="inline-block mb-4 px-4 py-2 bg-snoolink-purple/15 rounded-full border border-snoolink-purple/30">
+                    <span class="text-purple-300">Fast Reel Workflow</span>
+                </div>
+                <h2 class="text-5xl font-bold mb-6">From Raw Clips to Posted Reel</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Index, search by full video or exact timeframe, edit with AI-assisted stitching, then post and enjoy.</p>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-snoolink-purple/50">1</div>
-                    <h4 class="text-xl font-bold mb-2">Upload Content</h4>
-                    <p class="text-gray-400">Connect your cloud storage or upload local folders</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-snoolink-purple/20 text-snoolink-purple font-bold flex items-center justify-center">1</div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-gray-400">Step 1</p>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Index</h4>
+                    <p class="text-gray-400">Ingest your content library once so every clip and frame becomes searchable.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-snoolink-purple/50">2</div>
-                    <h4 class="text-xl font-bold mb-2">AI Analyzes</h4>
-                    <p class="text-gray-400">Snoolink automatically tags and organizes everything</p>
+
+                <div class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-snoolink-purple/20 text-snoolink-purple font-bold flex items-center justify-center">2</div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-gray-400">Step 2</p>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Search</h4>
+                    <p class="text-gray-400">Find moments instantly using full-video search or exact timeframe targeting.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-snoolink-purple/50">3</div>
-                    <h4 class="text-xl font-bold mb-2">Automate Tasks</h4>
-                    <p class="text-gray-400">Set up your social media automation rules</p>
+
+                <div class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-snoolink-purple/20 text-snoolink-purple font-bold flex items-center justify-center">3</div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-gray-400">Step 3</p>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Edit</h4>
+                    <p class="text-gray-400">Snoolink stitches a trending reel for you from the exact frames you selected.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-snoolink-purple rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-snoolink-purple/50">4</div>
-                    <h4 class="text-xl font-bold mb-2">Watch It Grow</h4>
-                    <p class="text-gray-400">Track insights and optimize your strategy</p>
+
+                <div class="glass rounded-2xl p-6 border border-snoolink-purple/20 hover:border-snoolink-purple/50 hover:-translate-y-1 transition transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-snoolink-purple/20 text-snoolink-purple font-bold flex items-center justify-center">4</div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-gray-400">Step 4</p>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Post and Enjoy</h4>
+                    <p class="text-gray-400">Publish faster across platforms and keep your creation loop moving.</p>
                 </div>
             </div>
         </div>
@@ -733,7 +931,7 @@
                             <span>👥 850K followers</span>
                         </div>
                         <div class="text-yellow-400 mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm italic">"snoolink transformed my content workflow! My engagement is up 250%!"</p>
+                        <p class="text-gray-300 text-sm italic">"Snoolink transformed my content workflow! My engagement is up 250%!"</p>
                     </div>
                 </a>
                 
@@ -789,7 +987,7 @@
                             <span>👥 1.5M followers</span>
                         </div>
                         <div class="text-yellow-400 mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm italic">"snoolink's search is like magic - it just works perfectly!"</p>
+                        <p class="text-gray-300 text-sm italic">"Snoolink's search is like magic - it just works perfectly!"</p>
                     </div>
                 </a>
             </div>
@@ -883,7 +1081,8 @@
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="glass p-8 rounded-2xl hover:scale-105 transition transform">
                     <h3 class="text-2xl font-bold mb-2">Starter</h3>
-                    <div class="text-4xl font-bold mb-6">$9<span class="text-lg text-gray-400">/mo</span></div>
+                    <div class="text-4xl font-bold mb-2">$9<span class="text-lg text-gray-400">/mo</span></div>
+                    <p class="text-sm text-gray-400 mb-6">or $84/year billed annually (save 22%)</p>
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-start"><span class="text-snoolink-purple mr-2">✓</span> 5,000 media files</li>
                         <li class="flex items-start"><span class="text-snoolink-purple mr-2">✓</span> AI search & organization</li>
@@ -898,7 +1097,8 @@
                 <div class="glass p-8 rounded-2xl hover:scale-105 transition transform border-2 border-snoolink-purple relative">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-snoolink-purple px-4 py-1 rounded-full text-sm font-bold shadow-lg">POPULAR</div>
                     <h3 class="text-2xl font-bold mb-2">Pro</h3>
-                    <div class="text-4xl font-bold mb-6">$29<span class="text-lg text-gray-400">/mo</span></div>
+                    <div class="text-4xl font-bold mb-2">$19<span class="text-lg text-gray-400">/mo</span></div>
+                    <p class="text-sm text-snoolink-purple mb-6">or $180/year billed annually (save 21%)</p>
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-start"><span class="text-snoolink-purple mr-2">✓</span> Unlimited media files</li>
                         <li class="flex items-start"><span class="text-snoolink-purple mr-2">✓</span> Advanced AI features</li>
@@ -927,15 +1127,15 @@
         </div>
     </section>
 
-    <!-- Team -->
+    <!-- Creator Story -->
     <section id="team" class="py-24 px-6 bg-gray-800/30">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold mb-6">Meet the Team</h2>
-                <p class="text-xl text-gray-400">Built by creators, for creators.</p>
+                <h2 class="text-5xl font-bold mb-6">Meet Jay: Traveler Who Never Shared His Story</h2>
+                <p class="text-xl text-gray-400 max-w-4xl mx-auto">Jay captured amazing travel moments but rarely posted because finding the right frames took too long. Snoolink changed that with exact frame search and faster reel creation.</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-2">
+            <div class="max-w-md mx-auto">
                 <!-- <div class="text-center">
                     <div class="w-32 h-32 bg-gradient-to-br from-snoolink-purple to-purple-400 rounded-full mx-auto mb-4 shadow-lg shadow-snoolink-purple/30"></div>
                     <h4 class="text-xl font-bold mb-1">Alex Morgan</h4>
@@ -950,44 +1150,8 @@
                     />
                     
                     <h4 class="text-xl font-bold mb-1">Jay Dev</h4>
-                    <p class="text-snoolink-purple mb-2">Storyteller</p>
-                    <p class="text-gray-400 text-sm">Current Data Scientist</p>
-                </div>
-                
-                <!-- <div class="text-center">
-                    <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full mx-auto mb-4 shadow-lg shadow-blue-500/30"></div>
-                    <h4 class="text-xl font-bold mb-1">Jordan Lee</h4>
-                    <p class="text-snoolink-purple mb-2">CTO & Co-Founder</p>
-                    <p class="text-gray-400 text-sm">AI/ML expert, formerly at OpenAI</p>
-                </div> -->
-                <div class="text-center">
-                    <img 
-                        src="https://raw.githubusercontent.com/snoolink/database/refs/heads/main/team/hritiksharma.jpeg" 
-                        alt="Hritik Sharma" 
-                        class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg shadow-snoolink-purple/30"
-                    />
-                    
-                    <h4 class="text-xl font-bold mb-1">Hritik Sharma</h4>
-                    <p class="text-snoolink-purple mb-2">CTO & Co-Founder</p>
-                    <p class="text-gray-400 text-sm">Current Sr Software Engineer</p>
-                </div>
-                
-                <!-- <div class="text-center">
-                    <div class="w-32 h-32 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full mx-auto mb-4 shadow-lg shadow-green-500/30"></div>
-                    <h4 class="text-xl font-bold mb-1">Sam Patel</h4>
-                    <p class="text-snoolink-purple mb-2">Head of Product</p>
-                    <p class="text-gray-400 text-sm">Designer turned PM, UX obsessed</p>
-                </div> -->
-                <div class="text-center">
-                    <img 
-                        src="https://raw.githubusercontent.com/snoolink/database/refs/heads/main/team/anshikasingh.jpeg" 
-                        alt="Anshika Singh" 
-                        class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg shadow-snoolink-purple/30"
-                    />
-
-                    <h4 class="text-xl font-bold mb-1">Anshika Singh</h4>
-                    <p class="text-snoolink-purple mb-2">Marketing Wizard</p>
-                    <p class="text-gray-400 text-sm">Current Brand Specialist</p>
+                    <p class="text-snoolink-purple mb-2">Traveler & Storyteller</p>
+                    <p class="text-gray-400 text-sm">Now turns raw travel footage into posted reels in minutes with Snoolink.</p>
                 </div>
                 
                 <!-- <div class="text-center">
@@ -1140,7 +1304,7 @@
             <div class="mt-16 bg-gradient-to-r from-snoolink-purple/30 to-purple-600/30 p-10 rounded-2xl border-2 border-snoolink-purple text-center">
                 <h3 class="text-3xl font-bold mb-4">Our Privacy Promise to You</h3>
                 <p class="text-xl text-gray-200 max-w-4xl mx-auto mb-6">
-                    "We built snoolink because we understand the value of your content. Every photo tells a story. Every video captures a moment. We promise to protect your creative assets with the same care we'd protect our own family photos."
+                    "We built Snoolink because we understand the value of your content. Every photo tells a story. Every video captures a moment. We promise to protect your creative assets with the same care we'd protect our own family photos."
                 </p>
                 <p class="text-lg text-snoolink-purple font-bold">
                     — Jay & Sarah, Co-Founders
@@ -1158,7 +1322,7 @@
     <section id="cta" class="py-24 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-5xl md:text-6xl font-bold mb-6">Ready to Transform Your Workflow?</h2>
-            <p class="text-xl text-gray-400 mb-10">Join thousands of creators who've reclaimed their time with snoolink.</p>
+            <p class="text-xl text-gray-400 mb-10">Join thousands of creators who've reclaimed their time with Snoolink.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onclick="window.location.href='https://app.snoolink.com/'" class="bg-snoolink-purple px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition transform shadow-2xl hover:shadow-snoolink-purple/50">
                     Start Your Free Trial
@@ -1176,9 +1340,9 @@
         <div class="max-w-7xl mx-auto text-center">
             <div class="max-w-7xl mx-auto text-center">
                     <a href="index.html" class="flex items-center justify-center space-x-3 mb-4">
-                        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-14 w-30">
+                        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="Snoolink logo" class="h-14 w-30">
                     </a>
-                    <p class="text-gray-400 text-sm mb-4">© 2025 snoolink. All rights reserved.</p>
+                    <p class="text-gray-400 text-sm mb-4">© 2026 Snoolink. All rights reserved.</p>
                 </div>
             <div class="flex justify-center space-x-6">
                 <a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy</a>
@@ -1196,7 +1360,7 @@
                 <!-- Brand Section -->
                 <div class="md:col-span-1">
                     <a href="index.html" class="flex items-center mb-4">
-                        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-12 w-auto">
+                        <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="Snoolink logo" class="h-12 w-auto">
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">AI-powered content management for the modern creator.</p>
                     
@@ -1205,10 +1369,10 @@
                         <a href="https://twitter.com/snoolink" class="text-gray-400 hover:text-blue-400 transition-colors duration-200" aria-label="Twitter">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
-                        <a href="https://linkedin.com/company/snoolink" class="text-gray-400 hover:text-blue-500 transition-colors duration-200" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/company/Snoolink" class="text-gray-400 hover:text-blue-500 transition-colors duration-200" aria-label="LinkedIn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </a>
-                        <a href="https://instagram.com/snoolink" class="text-gray-400 hover:text-pink-500 transition-colors duration-200" aria-label="Instagram">
+                        <a href="https://instagram.com/Snoolink" class="text-gray-400 hover:text-pink-500 transition-colors duration-200" aria-label="Instagram">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
                         <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-200" aria-label="Discord">
@@ -1232,6 +1396,8 @@
                 <div>
                     <h5 class="font-semibold mb-4 text-white">MicroTools</h5>
                     <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="kinetic-typography.html" class="hover:text-white transition-colors duration-200">Kinetic Typography</a></li>
+                        <li><a href="kinetic-typography-generator.html" class="hover:text-white transition-colors duration-200">Kinetic Typography Studio</a></li>
                         <li><a href="download-instagram-reel.html" class="hover:text-white transition-colors duration-200">Download Instagram Reel</a></li>
                         <li><a href="instagram-reel-analyzer.html" class="hover:text-white transition-colors duration-200">Analyze Instagram Reel</a></li>
                         <li><a href="viral-hook-generator.html" class="hover:text-white transition-colors duration-200">Viral Hook Generator</a></li>
@@ -1262,7 +1428,7 @@
             
             <!-- Bottom Bar -->
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-400 text-sm">© 2025 Snoolink. All rights reserved.</p>
+                <p class="text-gray-400 text-sm">© 2026 Snoolink. All rights reserved.</p>
                 <!-- <div class="flex flex-wrap gap-6 text-sm">
                     <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors duration-200">Privacy Policy</a>
                     <a href="terms.html" class="text-gray-400 hover:text-white transition-colors duration-200">Terms of Service</a>
@@ -1293,3 +1459,5 @@
     <script src="assets/shared-layout.js"></script>
 </body>
 </html>
+
+
