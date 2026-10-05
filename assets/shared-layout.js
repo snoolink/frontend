@@ -98,7 +98,7 @@
       '      <img src="https://raw.githubusercontent.com/snoolink/frontend/refs/heads/main/assets/full_logo-white.png" alt="snoolink logo" class="h-10 md:h-14 w-auto">',
       '    </a>',
       '    <div class="hidden md:flex space-x-8">' + desktopLinks + '</div>',
-      '    <a href="https://app.snoolink.com/" class="hidden md:block shared-bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-purple-500/50">Get Started</a>',
+      '    <a href="https://snoolink.com/snoolink-lens-desktop.html" class="hidden md:block shared-bg-snoolink-purple px-6 py-2 rounded-full font-semibold hover:scale-105 transition transform shadow-lg hover:shadow-purple-500/50">Get Started</a>',
       '    <button class="md:hidden hamburger shared-hamburger z-50" id="hamburger" aria-label="Open menu">',
       '      <span></span><span></span><span></span>',
       '    </button>',
@@ -106,7 +106,7 @@
       '  <div class="mobile-menu shared-mobile-menu md:hidden" id="mobileMenu">',
       '    <div class="flex flex-col space-y-4 pt-6 pb-4">',
       mobileLinks,
-      '      <a href="https://app.snoolink.com/" class="shared-bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">Get Started</a>',
+      '      <a href="https://snoolink.com/snoolink-lens-desktop.html" class="shared-bg-snoolink-purple px-6 py-3 rounded-full font-semibold text-center hover:scale-105 transition transform shadow-lg mt-4">Get Started</a>',
       '    </div>',
       '  </div>',
       '</div>'
